@@ -22,4 +22,4 @@ jobs:
             cd ~/git/tin-apps
             git pull
             ~/.nvm/nvm-exec npm run setup:prod
-            systemctl restart tin-apps.service
+            systemctl restart android-apks.service
