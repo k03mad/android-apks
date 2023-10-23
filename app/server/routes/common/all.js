@@ -1,6 +1,6 @@
 import express from 'express';
 
-const router = new express.Router();
+const router = express.Router();
 
 export default router.get(
     // not send anything => connectionfailure at browser

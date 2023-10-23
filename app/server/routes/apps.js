@@ -2,7 +2,7 @@ import express from 'express';
 
 import {getApkFilesInfo} from '../../../utils/aapt.js';
 
-const router = new express.Router();
+const router = express.Router();
 
 const PAGE = {
     header: 'ANDROID APKS',

@@ -6,12 +6,13 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 
 import env from '../../env.js';
-import {nameText, numText} from '../../utils/colors.js';
+import {linkStyle} from '../../utils/colors.js';
 import {getRoutePath} from '../../utils/express.js';
-import {packageJson} from '../../utils/json.js';
 import {log} from '../../utils/logging.js';
 import config from './config.js';
-import routes from './routes/_index.js';
+import routesIndex from './routes/_index.js';
+
+const routes = Object.values(routesIndex);
 
 /** */
 export default () => {
@@ -33,11 +34,10 @@ export default () => {
         app.use(route);
     });
 
-    app.listen(env.server.port, () => log([
-        `[${new Date().toLocaleString()}] ${nameText(packageJson.name)} started`,
-        ...routes
+    app.listen(env.server.port, () => log(
+        Object.values(routes)
             .map(elem => getRoutePath(elem))
             .filter(elem => Boolean(elem) && elem !== '*')
-            .map(elem => numText(config.url + elem)),
-    ]));
+            .map(elem => `route enabled: ${linkStyle(config.url + elem)}`),
+    ));
 };
