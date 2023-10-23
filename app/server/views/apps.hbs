@@ -1,0 +1,23 @@
+<p class="header-main">{{pageData.texts.header}}</p>
+
+<hr>
+
+{{#each apkFiles}}
+<p>
+    <a href="{{this.relativePath}}">{{this.file}} ({{this.label}} {{this.version}})</a>
+</p>
+{{else}}
+<p class="error-apps-not-found">Приложения ещё не скачивались</p>
+{{/each}}
+
+<hr>
+
+<p class="timestamp-title-info">Визиты:</p>
+{{#each pageData.visitors.timestamps}}
+<p class="timestamp-items-info">— {{this}}</p>
+{{/each}}
+
+<p class="ua-title-info">UA:</p>
+{{#each pageData.visitors.useragents}}
+<p class="ua-items-info">— {{this}}</p>
+{{/each}}

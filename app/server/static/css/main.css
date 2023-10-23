@@ -1,0 +1,32 @@
+body {
+    background: #19181D;
+    font-family: Fira, Arial;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: #8282FF;
+}
+
+.header-main {
+    color: #FF82FF;
+}
+
+.error-apps-not-found {
+    color: #FF8899;
+}
+
+[class$=info] {
+    font-size: 14px;
+    color: #778899;
+}
+
+[class*=title-info] {
+    font-weight: bold;
+}
+
+[class*=items-info] {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
