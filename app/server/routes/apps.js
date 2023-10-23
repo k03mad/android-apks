@@ -1,12 +1,20 @@
 import express from 'express';
 
-import {PAGE} from '../../../config.js';
 import {getApkFilesInfo} from '../../../utils/aapt.js';
 
 const router = new express.Router();
 
-const timestamps = [];
-const useragents = new Set();
+const PAGE = {
+    header: 'ANDROID APKS',
+    timestamps: {
+        count: 10,
+        storage: [],
+    },
+    ua: {
+        count: 100,
+        storage: new Set(),
+    },
+};
 
 /**
  * @param {object} req
@@ -18,19 +26,27 @@ const useragents = new Set();
 const getPageData = req => {
     const ua = req.headers?.['user-agent'];
 
-    ua && useragents.add(ua);
-    useragents.size > PAGE.ua && useragents.delete([...useragents][0]);
+    if (ua) {
+        PAGE.ua.storage.add(ua);
+    }
 
-    timestamps.push(new Date().toISOString());
-    timestamps.length > PAGE.timestamps && timestamps.splice(0, 1);
+    if (PAGE.ua.storage.size > PAGE.ua.count) {
+        PAGE.ua.storage.delete([...PAGE.ua.storage][0]);
+    }
+
+    PAGE.timestamps.storage.push(new Date().toISOString());
+
+    if (PAGE.timestamps.storage.length > PAGE.timestamps.count) {
+        PAGE.timestamps.storage.splice(0, 1);
+    }
 
     return {
         texts: {
             header: PAGE.header,
         },
         visitors: {
-            timestamps: [...timestamps].reverse(),
-            useragents: [...useragents].sort(),
+            timestamps: [...PAGE.timestamps.storage].reverse(),
+            useragents: [...PAGE.ua.storage].sort(),
         },
     };
 };

@@ -1,10 +1,10 @@
 import {request} from '@k03mad/request';
 
-import {APK} from '../../../config.js';
 import {cleanFolderDownloadApk} from '../../../utils/aria.js';
 import {getCurrentFilename} from '../../../utils/files.js';
+import config from '../../server/config.js';
 
-const APK_DIR = `${APK.dir}/${getCurrentFilename(import.meta.url)}`;
+const APK_DIR = `${config.static.apk}/${getCurrentFilename(import.meta.url)}`;
 
 const DOWNLOAD_APPS_BY_LINK_INCLUDES = [
     'Tinkoff_Invest',

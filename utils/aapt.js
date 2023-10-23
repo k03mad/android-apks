@@ -1,6 +1,6 @@
 import {globby} from 'globby';
 
-import {APK, SERVER} from '../config.js';
+import config from '../app/server/config.js';
 import {run} from './shell.js';
 
 /**
@@ -17,14 +17,14 @@ const parseAaptOutput = output => {
  * @returns {Promise<Array<{label: string, version: string}>>}
  */
 export const getApkFilesInfo = async () => {
-    const paths = await globby(APK.dir);
+    const paths = await globby(config.static.apk);
 
     const data = await Promise.all(
         paths
             .filter(elem => elem.endsWith('apk'))
             .map(async path => {
                 const output = await run(`aapt dump badging ${path}`);
-                const relativePath = path.replace(SERVER.static, '');
+                const relativePath = path.replace(config.static.root, '');
                 const file = path.split('/').pop();
 
                 return {

@@ -44,7 +44,7 @@
     "setup": "npm run clean && npm i",
     "setup:prod": "npm run clean && npm i --omit=dev",
     "start": "node index",
-    "start:dev": "DEBUG=mad* nodemon -e js,json,css,hbs,woff,woff2,ico,webmanifest index",
+    "start:dev": "DEBUG=* nodemon -e js,json,css,hbs,woff,woff2,ico,webmanifest index",
     "prepare": "husky install || true"
   }
 }

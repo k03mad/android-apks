@@ -1,12 +1,8 @@
 import {Cron} from 'recron';
 
-import {CRON} from '../../config.js';
 import {logPlainError} from '../../utils/logging.js';
+import config from './config.js';
 import tasks from './tasks/_index.js';
-
-const scheduleOpts = {
-    timezone: 'Europe/Moscow',
-};
 
 /** */
 export default () => {
@@ -15,7 +11,7 @@ export default () => {
 
     for (const [name, fn] of Object.entries(tasks)) {
         cron.schedule(
-            CRON.interval,
+            config.interval,
             async () => {
                 try {
                     await fn();
@@ -23,7 +19,7 @@ export default () => {
                     logPlainError(['cron', name, err]);
                 }
             },
-            scheduleOpts,
+            config.scheduleOpts,
         );
     }
 };
