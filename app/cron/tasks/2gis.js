@@ -7,9 +7,13 @@ const APK_DIR = `${config.static.apk}/${getCurrentFilename(import.meta.url)}`;
 const APK_URL = 'https://disk.2gis.com/android/Latest/2GIS.apk';
 
 /**
- * @returns {Promise<void>}
+ * @returns {{interval: string, task: Function}}
  */
-export default async () => {
-    await cleanFolder(APK_DIR);
-    await download(APK_DIR, APK_URL);
+export default {
+    interval: '30 */12 * * *',
+
+    task: async () => {
+        await cleanFolder(APK_DIR);
+        await download(APK_DIR, APK_URL);
+    },
 };

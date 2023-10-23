@@ -9,17 +9,17 @@ export default () => {
     const cron = new Cron();
     cron.start();
 
-    Object.entries(tasks).forEach(([name, fn], i) => {
+    for (const [name, elem] of Object.entries(tasks)) {
         cron.schedule(
-            config.interval(i),
+            elem.interval,
             async () => {
                 try {
-                    await fn();
+                    await elem.task();
                 } catch (err) {
                     logPlainError(['cron', name, err]);
                 }
             },
             config.scheduleOpts,
         );
-    });
+    }
 };

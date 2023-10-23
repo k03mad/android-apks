@@ -26,20 +26,24 @@ const REQUEST_UA = 'Mozilla/5.0 (Linux; Android 11; Pixel 5) '
 const RESPONSE_ELEMENT_RE = /[^"]+apk/g;
 
 /** */
-export default async () => {
-    const {body} = await request(REQUEST_URL, {
-        headers: {'user-agent': REQUEST_UA},
-    });
+export default {
+    interval: '15 */1 * * *',
 
-    const urls = body.match(RESPONSE_ELEMENT_RE);
+    task: async () => {
+        const {body} = await request(REQUEST_URL, {
+            headers: {'user-agent': REQUEST_UA},
+        });
 
-    await cleanFolder(APK_DIR);
+        const urls = body.match(RESPONSE_ELEMENT_RE);
 
-    await Promise.all([...new Set(urls)].map(async url => {
-        await Promise.all(DOWNLOAD_APPS.map(async app => {
-            if (url.includes(app.apkUrlIncludes)) {
-                await download(`${APK_DIR}/${app.saveToFolder}`, url);
-            }
+        await cleanFolder(APK_DIR);
+
+        await Promise.all([...new Set(urls)].map(async url => {
+            await Promise.all(DOWNLOAD_APPS.map(async app => {
+                if (url.includes(app.apkUrlIncludes)) {
+                    await download(`${APK_DIR}/${app.saveToFolder}`, url);
+                }
+            }));
         }));
-    }));
+    },
 };
