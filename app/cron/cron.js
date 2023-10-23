@@ -1,7 +1,6 @@
 import {Cron} from 'recron';
 
 import {logPlainError} from '../../utils/logging.js';
-import config from './config.js';
 import tasks from './tasks/_index.js';
 
 /** */
@@ -19,7 +18,6 @@ export default () => {
                     logPlainError(['cron', name, err]);
                 }
             },
-            config.scheduleOpts,
         );
     }
 };

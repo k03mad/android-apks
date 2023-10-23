@@ -18,9 +18,10 @@ const PAGE = {
 
 /**
  * @param {object} req
+ * @param {object} [req.headers]
  * @returns {Promise<{
- *      links: {main: string},
- *      visitors: {timestamps: Array<string>, useragents: Array<string>}
+ * texts: {header: string},
+ * visitors: {timestamps: Array<string>, useragents: Array<string>}
  * }>}
  */
 const getPageData = req => {
