@@ -4,14 +4,9 @@ import {run} from './shell.js';
 
 /**
  * @param {string} dir
- * @param {string} href
+ * @param {string} url
  */
-export const cleanFolderDownloadApk = async (dir, href) => {
+export const download = async (dir, url) => {
     await fs.mkdir(dir, {recursive: true});
-
-    await run([
-        `cd ${dir}`,
-        'rm -rf *',
-        `aria2c ${href}`,
-    ].join(' && '));
+    await run(`cd ${dir} && aria2c ${url}`);
 };

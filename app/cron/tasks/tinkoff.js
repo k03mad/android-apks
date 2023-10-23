@@ -1,19 +1,19 @@
 import {request} from '@k03mad/request';
 
-import {cleanFolderDownloadApk} from '../../../utils/aria.js';
-import {getCurrentFilename} from '../../../utils/files.js';
+import {download} from '../../../utils/aria.js';
+import {cleanFolder, getCurrentFilename} from '../../../utils/files.js';
 import config from '../../server/config.js';
 
 const APK_DIR = `${config.static.apk}/${getCurrentFilename(import.meta.url)}`;
 
 const DOWNLOAD_APPS = [
     {
-        hrefIncludes: 'Tinkoff_Invest',
-        toFolder: 'tinkoff-invest',
+        apkUrlIncludes: 'Tinkoff_Invest',
+        saveToFolder: 'invest',
     },
     {
-        hrefIncludes: 'tinkoff-bank',
-        toFolder: 'tinkoff-bank',
+        apkUrlIncludes: 'tinkoff-bank',
+        saveToFolder: 'bank',
     },
 ];
 
@@ -31,16 +31,15 @@ export default async () => {
         headers: {'user-agent': REQUEST_UA},
     });
 
-    const hrefs = body.match(RESPONSE_ELEMENT_RE);
+    const urls = body.match(RESPONSE_ELEMENT_RE);
 
-    await Promise.all([...new Set(hrefs)].map(async href => {
-        for (const app of DOWNLOAD_APPS) {
-            if (href.includes(app.hrefIncludes)) {
-                await cleanFolderDownloadApk([
-                    APK_DIR,
-                    app.toFolder,
-                ].join('/'), href);
+    await cleanFolder(APK_DIR);
+
+    await Promise.all([...new Set(urls)].map(async url => {
+        await Promise.all(DOWNLOAD_APPS.map(async app => {
+            if (url.includes(app.apkUrlIncludes)) {
+                await download(`${APK_DIR}/${app.saveToFolder}`, url);
             }
-        }
+        }));
     }));
 };

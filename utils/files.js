@@ -1,3 +1,4 @@
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
 /**
@@ -5,3 +6,11 @@ import path from 'node:path';
  * @returns {string}
  */
 export const getCurrentFilename = file => path.basename(file, '.js');
+
+/**
+ * @param {string} dir
+ */
+export const cleanFolder = async dir => {
+    await fs.rm(dir, {force: true, recursive: true});
+    await fs.mkdir(dir, {recursive: true});
+};
