@@ -9,9 +9,9 @@ export default () => {
     const cron = new Cron();
     cron.start();
 
-    for (const [name, fn] of Object.entries(tasks)) {
+    Object.entries(tasks).forEach(([name, fn], i) => {
         cron.schedule(
-            config.interval,
+            config.interval(i),
             async () => {
                 try {
                     await fn();
@@ -21,5 +21,5 @@ export default () => {
             },
             config.scheduleOpts,
         );
-    }
+    });
 };
