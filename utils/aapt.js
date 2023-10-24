@@ -28,8 +28,16 @@ export const getApkFilesInfo = async () => {
     const data = await Promise.all(
         paths
             .filter(elem => elem.endsWith('.apk'))
+            .sort()
             .map(async path => {
-                const output = await aaptDumpBadging(path);
+                let output;
+
+                try {
+                    output = await aaptDumpBadging(path);
+                } catch (err) {
+                    output = err.stdout;
+                }
+
                 const relativePath = path.replace(config.static.root, '');
                 const file = path.split('/').pop();
 

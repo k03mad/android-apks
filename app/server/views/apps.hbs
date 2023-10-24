@@ -14,10 +14,10 @@
 
 <p class="crons-title-info">Проверка обновлений:</p>
 {{#each pageData.crons}}
-<p class="crons-items-info">— {{this.timestamp}} {{this.folder}}</p>
+<p class="crons-items-info">> {{this.timestamp}} :: {{this.folder}}</p>
 {{/each}}
 
 <p class="ua-title-info">Визиты:</p>
 {{#each pageData.visitors.useragents}}
-<p class="ua-items-info">— {{this}}</p>
+<p class="ua-items-info">> {{this}}</p>
 {{/each}}

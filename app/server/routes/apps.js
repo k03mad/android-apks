@@ -5,6 +5,7 @@ import express from 'express';
 import {globby} from 'globby';
 
 import {getApkFilesInfo} from '../../../utils/aapt.js';
+import {getNumberFromString} from '../../../utils/number.js';
 import config from '../config.js';
 
 const router = express.Router();
@@ -44,7 +45,7 @@ const getPageData = async req => {
     );
 
     return {
-        crons,
+        crons: [...crons].sort((a, b) => getNumberFromString(b.timestamp) - getNumberFromString(a.timestamp)),
         texts: {
             header: PAGE.header,
         },
