@@ -1,27 +1,23 @@
-/* eslint-disable key-spacing */
 import {Cron} from 'recron';
 
 import {cronStyle, stringStyle} from '../../utils/colors.js';
 import {log, logPlainError} from '../../utils/logging.js';
 import tasks from './tasks/_index.js';
 
-const INTERVALS = {
-    '2gis':    '15 */6 * * *',
-    'tinkoff': '25 */6 * * *',
-    'kinopub': '35 */6 * * *',
-};
+const DOWNLOAD_INTERVAL_HOURS = 5;
 
 /** */
 export default () => {
     const cron = new Cron();
     cron.start();
 
-    for (const [name, task] of Object.entries(tasks)) {
-        const interval = INTERVALS[name];
-        log(`cron scheduled: ${cronStyle(interval)} ${stringStyle(name)}`);
+    Object.entries(tasks).forEach(([name, task], i) => {
+        // 2 minutes interval between each app download start
+        const cronString = `${i + i} */${DOWNLOAD_INTERVAL_HOURS} * * *`;
+        log(`cron scheduled: ${cronStyle(cronString)} ${stringStyle(name)}`);
 
         cron.schedule(
-            interval,
+            cronString,
             async () => {
                 try {
                     await task();
@@ -30,5 +26,5 @@ export default () => {
                 }
             },
         );
-    }
+    });
 };
