@@ -1,3 +1,5 @@
 import tasks from './tasks/_index.js';
 
-await Promise.all(Object.entries(tasks).map(([, elem]) => elem.task()));
+for (const task of Object.values(tasks)) {
+    await task();
+}
