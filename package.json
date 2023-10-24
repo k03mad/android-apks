@@ -46,7 +46,7 @@
     "setup:prod": "npm run clean && npm i --omit=dev",
     "start": "node index",
     "start:dev": "DEBUG=mad* nodemon -e js,json,css,hbs,woff,woff2,ico,webmanifest index",
-    "start:tasks": "DEBUG=mad* node app/cron/run-all",
+    "start:tasks": "DEBUG=mad* node app/cron/run",
     "prepare": "husky install || true"
   }
 }

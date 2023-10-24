@@ -7,6 +7,7 @@ import tasks from './tasks/_index.js';
 const INTERVALS = {
     '2gis': '15 */6 * * *',
     'tinkoff': '25 */6 * * *',
+    'kinopub': '35 */6 * * *',
 };
 
 /** */
