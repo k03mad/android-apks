@@ -2,7 +2,6 @@ import {request} from '@k03mad/request';
 
 import {download} from '../../../utils/aria.js';
 import {cleanFolder, getCurrentFilename} from '../../../utils/files.js';
-import {logPlainError} from '../../../utils/logging.js';
 import config from '../../server/config.js';
 
 const APK_DIR = `${config.static.apk}/${getCurrentFilename(import.meta.url)}`;
@@ -45,13 +44,14 @@ export default async () => {
                 try {
                     await download(dir, url);
                 } catch (err) {
-                    errors.push(url, dir, err);
+                    errors.push(err);
                 }
             }
         }
     }
 
     if (errors.length > 0) {
-        logPlainError(errors);
+        // eslint-disable-next-line unicorn/error-message
+        throw new Error(errors.join('\n\n'));
     }
 };
