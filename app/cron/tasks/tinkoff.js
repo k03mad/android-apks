@@ -27,7 +27,7 @@ const RESPONSE_ELEMENT_RE = /[^"]+apk/g;
 
 /** */
 export default {
-    interval: '15 */6 * * *',
+    interval: '35 */6 * * *',
 
     task: async () => {
         const {body} = await request(REQUEST_URL, {

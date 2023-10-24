@@ -1,19 +1,25 @@
+import {request} from '@k03mad/request';
+
 import {download} from '../../../utils/aria.js';
 import {cleanFolder, getCurrentFilename} from '../../../utils/files.js';
 import config from '../../server/config.js';
 
 const APK_DIR = `${config.static.apk}/${getCurrentFilename(import.meta.url)}`;
 
-const APK_URL = 'https://disk.2gis.com/android/Latest/2GIS.apk';
+const REQUEST_URL = 'https://apk.2gis.ru/';
+const RESPONSE_ELEMENT_RE = /clickLink":"(.+?)"/;
 
 /**
  * @returns {{interval: string, task: Function}}
  */
 export default {
-    interval: '30 */12 * * *',
+    interval: '15 */6 * * *',
 
     task: async () => {
+        const {body} = await request(REQUEST_URL);
+        const href = body.match(RESPONSE_ELEMENT_RE)[1];
+
         await cleanFolder(APK_DIR);
-        await download(APK_DIR, APK_URL);
+        await download(APK_DIR, href);
     },
 };
