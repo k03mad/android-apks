@@ -4,10 +4,16 @@ import config from '../app/server/config.js';
 import {run} from './shell.js';
 
 /**
+ * @param {string} filePath
+ * @returns {Promise<string>}
+ */
+const aaptDumpBadging = filePath => run(`aapt dump badging ${filePath}`);
+
+/**
  * @param {string} output
  * @returns {{label: string, version: string}}
  */
-const parseAaptOutput = output => {
+const aaptDumpBadgingParse = output => {
     const label = output?.match(/application-label:'(.+)'/)?.[1];
     const version = output?.match(/versionName='(.+?)'/)?.[1];
     return {label, version};
@@ -21,15 +27,15 @@ export const getApkFilesInfo = async () => {
 
     const data = await Promise.all(
         paths
-            .filter(elem => elem.endsWith('apk'))
+            .filter(elem => elem.endsWith('.apk'))
             .map(async path => {
-                const output = await run(`aapt dump badging ${path}`);
+                const output = await aaptDumpBadging(path);
                 const relativePath = path.replace(config.static.root, '');
                 const file = path.split('/').pop();
 
                 return {
                     relativePath, file,
-                    ...parseAaptOutput(output),
+                    ...aaptDumpBadgingParse(output),
                 };
             }),
     );

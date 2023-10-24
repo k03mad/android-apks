@@ -15,7 +15,7 @@ export default {
     },
     rates: {
         windowMs: 1000,
-        limit: 3,
+        limit: 5,
         message: 429,
     },
 };
