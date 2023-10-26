@@ -1,4 +1,4 @@
-import {logPlainError} from '../../../../utils/logging.js';
+import {logError} from '../../../../utils/logs.js';
 
 /**
  * @param {Error} err
@@ -8,6 +8,6 @@ import {logPlainError} from '../../../../utils/logging.js';
  */
 // eslint-disable-next-line no-unused-vars
 export default (err, req, res, next) => {
-    logPlainError(['api', err.stack]);
+    logError(err.stack);
     res.sendStatus(500);
 };

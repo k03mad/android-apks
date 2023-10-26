@@ -7,12 +7,12 @@ import morgan from 'morgan';
 
 import env from '../../env.js';
 import {linkStyle} from '../../utils/colors.js';
-import {getRoutePath} from '../../utils/express.js';
-import {log} from '../../utils/logging.js';
+import {log} from '../../utils/logs.js';
 import config from './config.js';
 import routesIndex from './routes/_index.js';
 
 const routes = Object.values(routesIndex);
+const getRoutePath = route => route.stack?.[0].route.path;
 
 /** */
 export default () => {

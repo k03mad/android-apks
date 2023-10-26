@@ -1,23 +1,23 @@
-<p class="header-main">{{pageData.texts.header}}</p>
+<h1>{{pageData.texts.header}}</h1>
 
-<hr>
+<table>
+    {{#each apkFiles}}
+        <tr>
+            <td class="timestamp">{{this.timestamp}}</td>
+            <td>{{this.label}} {{this.version}}</td>
+            <td>
+                <a href="{{this.relativePath}}">{{this.file}}</a>
+            </td>
+        </tr>
+    {{else}}
+        <tr>
+            <td class="error">Приложения ещё не скачивались</td>
+        </tr>
+    {{/each}}
+</table>
 
-{{#each apkFiles}}
-<p>
-    <a href="{{this.relativePath}}">{{this.file}} ({{this.label}} {{this.version}})</a>
-</p>
-{{else}}
-<p class="error-apps-not-found">Приложения ещё не скачивались</p>
-{{/each}}
 
-<hr>
-
-<p class="crons-title-info">Проверка обновлений:</p>
-{{#each pageData.crons}}
-<p class="crons-items-info">> {{this.timestamp}} :: {{this.folder}}</p>
-{{/each}}
-
-<p class="ua-title-info">Визиты:</p>
+<p class="visitors_ua_title">Визиты:</p>
 {{#each pageData.visitors.useragents}}
-<p class="ua-items-info">> {{this}}</p>
+    <p class="visitors_ua_items">> {{this}}</p>
 {{/each}}

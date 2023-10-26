@@ -47,7 +47,8 @@
     "setup:prod": "npm run clean && npm i --omit=dev",
     "start": "node index",
     "start:dev": "DEBUG=mad* nodemon -e js,json,css,hbs,woff,woff2,ico,webmanifest index",
-    "start:tasks": "DEBUG=mad* node app/cron/run",
+    "apk:get": "DEBUG=mad* node app/cron/scripts/test-get",
+    "apk:dl": "DEBUG=mad* node app/cron/scripts/test-dl",
     "prepare": "husky install || true"
   }
 }

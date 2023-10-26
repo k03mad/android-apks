@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
+import path from 'node:path';
 
 import {getCurrentDate} from './date.js';
-import {cleanFolder} from './files.js';
 import {getUa} from './request.js';
 import {run} from './shell.js';
 
@@ -22,17 +22,10 @@ const getAriaArgs = uaType => [
  */
 export const download = async (dir, url, opts = {}) => {
     await fs.mkdir(dir, {recursive: true});
-    await run(`cd ${dir} && aria2c ${getAriaArgs(opts.ua)} ${url}`);
-    await fs.writeFile(`${dir}/timestamp.log`, getCurrentDate());
-};
 
-/**
- * @param {string} dir
- * @param {string} url
- * @param {object} [opts]
- * @param {'desktop'|'mobile'|'empty'} [opts.ua]
- */
-export const cleanAndDownload = async (dir, url, opts) => {
-    await cleanFolder(dir);
-    await download(dir, url, opts);
+    const output = await run(`cd ${dir} && aria2c ${getAriaArgs(opts.ua)} ${url}`);
+    const apkPath = output?.match(/\/(.+)\.apk/)?.[1];
+    const logFile = apkPath ? `${path.basename(apkPath)}.log` : Date.now();
+
+    await fs.writeFile(`${dir}/${logFile}`, getCurrentDate());
 };

@@ -1,17 +1,19 @@
+import fs from 'node:fs/promises';
+
 import {globby} from 'globby';
 
 import config from '../app/server/config.js';
+import {logError} from './logs.js';
 import {run} from './shell.js';
 
 /**
- * @param {string} filePath
+ * @param {string} apkFilePath
  * @returns {Promise<string>}
  */
-const aaptDumpBadging = filePath => run(`aapt dump badging ${filePath}`);
+const aaptDumpBadging = apkFilePath => run(`aapt dump badging ${apkFilePath}`);
 
 /**
  * @param {string} output
- * @returns {{label: string, version: string}}
  */
 const aaptDumpBadgingParse = output => {
     const label = output?.match(/application-label:'(.+)'/)?.[1];
@@ -20,17 +22,18 @@ const aaptDumpBadgingParse = output => {
 };
 
 /**
- * @returns {Promise<Array<{label: string, version: string}>>}
+ * @param {string} folder
+ * @returns {Promise<Array<{label: string, version: string, relativePath: string, file: string}>>}
  */
-export const getApkFilesInfo = async () => {
-    const paths = await globby(config.static.apk);
+export const getApkFilesInfo = async folder => {
+    const paths = await globby(folder);
 
     const data = await Promise.all(
         paths
             .filter(elem => elem.endsWith('.apk'))
             .sort()
             .map(async path => {
-                let output;
+                let output, timestamp;
 
                 try {
                     output = await aaptDumpBadging(path);
@@ -38,11 +41,17 @@ export const getApkFilesInfo = async () => {
                     output = err.stdout;
                 }
 
+                try {
+                    timestamp = await fs.readFile(path.replace(/apk$/, 'log'), {encoding: 'utf8'});
+                } catch (err) {
+                    logError(err);
+                }
+
                 const relativePath = path.replace(config.static.root, '');
                 const file = path.split('/').pop();
 
                 return {
-                    relativePath, file,
+                    relativePath, file, timestamp,
                     ...aaptDumpBadgingParse(output),
                 };
             }),

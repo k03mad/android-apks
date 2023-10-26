@@ -1,30 +1,23 @@
 import {Cron} from 'recron';
 
-import {cronStyle, stringStyle} from '../../utils/colors.js';
-import {log, logPlainError} from '../../utils/logging.js';
-import tasks from './tasks/_index.js';
-
-const DOWNLOAD_INTERVAL_HOURS = 5;
+import {cronStyle} from '../../utils/colors.js';
+import {log} from '../../utils/logs.js';
+import config from './config.js';
+import providers from './providers/_index.js';
+import {downloadApk, getData} from './utils/download.js';
 
 /** */
 export default () => {
     const cron = new Cron();
     cron.start();
 
-    Object.entries(tasks).forEach(([name, task], i) => {
-        // 2 minutes interval between each app download start
-        const cronString = `${i + i} */${DOWNLOAD_INTERVAL_HOURS} * * *`;
-        log(`cron scheduled: ${cronStyle(cronString)} ${stringStyle(name)}`);
+    cron.schedule(
+        config.interval,
+        async () => {
+            const providersData = await getData(providers);
+            await downloadApk(providersData);
+        },
+    );
 
-        cron.schedule(
-            cronString,
-            async () => {
-                try {
-                    await task();
-                } catch (err) {
-                    logPlainError(['cron', name, err]);
-                }
-            },
-        );
-    });
+    log(`cron scheduled: ${cronStyle(config.interval)} [${Object.keys(providers).join(', ')}]`);
 };
