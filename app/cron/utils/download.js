@@ -26,12 +26,16 @@ export const getData = async providers => await Promise.all(
 
 /**
  * @param {object} providers
+ * @param {boolean} skipClean
  */
-export const downloadApk = async providers => {
+export const downloadApk = async (providers, skipClean) => {
     const start = Date.now();
 
     const providersData = await getData(providers);
-    await fs.rm(serverConfig.static.apk, {force: true, recursive: true});
+
+    if (!skipClean) {
+        await fs.rm(serverConfig.static.apk, {force: true, recursive: true});
+    }
 
     await pMap(
         providersData.filter(Boolean).flat(),
