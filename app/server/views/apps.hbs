@@ -31,6 +31,17 @@
             </td>
         </tr>
     {{/each}}
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    {{#each apkFiles.sber}}
+        <tr>
+            <td>{{this.label}} {{this.version}}</td>
+            <td>
+                <a href="{{this.relativePath}}">{{this.file}}>
+            </td>
+        </tr>
+    {{/each}}
 </table>
 
 <hr>
