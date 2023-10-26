@@ -4,11 +4,6 @@ body {
     font-size: 14px;
 }
 
-h1 {
-    font-size: 15px;
-    color: #FF82FF;
-}
-
 a {
     text-decoration: none;
     color: #8282FF;
@@ -18,6 +13,12 @@ table {
     font-size: 14px;
     color: #819b93;
     border-spacing: 10 0;
+}
+
+@media screen and (max-width: 1000px) {
+    table {
+        font-size: 2em;
+    }
 }
 
 hr {
