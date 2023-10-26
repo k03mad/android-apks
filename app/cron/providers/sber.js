@@ -28,7 +28,7 @@ export default async () => {
 
                 return appPageBody.match(RESPONSE_APP_DOWNLOAD_LINK_RE);
             } catch (err) {
-                logError(['sber', appPageLink, err]);
+                logError([appPageLink, err]);
             }
         }),
     );

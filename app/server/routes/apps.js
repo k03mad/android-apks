@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import express from 'express';
 
 import {getApkFilesInfo} from '../../../utils/aapt.js';
+import {logError} from '../../../utils/logs.js';
 import cronConfig from '../../cron/config.js';
 import serverConfig from '../config.js';
 
@@ -31,7 +32,13 @@ const getPageData = async req => {
         PAGE.ua.storage.delete([...PAGE.ua.storage][0]);
     }
 
-    const timestamp = await fs.readFile(cronConfig.logs.timestamp.file, {encoding: 'utf8'});
+    let timestamp;
+
+    try {
+        timestamp = await fs.readFile(cronConfig.logs.timestamp.file, {encoding: 'utf8'});
+    } catch (err) {
+        logError(err);
+    }
 
     return {
         texts: {
