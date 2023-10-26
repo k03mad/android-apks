@@ -40,7 +40,7 @@ export const downloadApk = async providers => {
             try {
                 await download(`${serverConfig.static.apk}/${providerName}`, link, opts);
             } catch (err) {
-                logError([providerName, link, err]);
+                logError([providerName, link, err.stack]);
             }
         },
 

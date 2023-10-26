@@ -1,5 +1,6 @@
 import {request} from '@k03mad/request';
 
+import {logError} from '../../../utils/logs.js';
 import {getUa} from '../../../utils/request.js';
 
 const REQUEST_URL = 'https://apps.sber.ru/apps/';
@@ -20,15 +21,19 @@ export default async () => {
 
     const appDownloadLinks = await Promise.all(
         appPageLinks.filter(Boolean).map(async appPageLink => {
-            const {body: appPageBody} = await request(REQUEST_URL + appPageLink, {
-                headers: {'user-agent': getUa()},
-            });
+            try {
+                const {body: appPageBody} = await request(REQUEST_URL + appPageLink, {
+                    headers: {'user-agent': getUa()},
+                });
 
-            return appPageBody.match(RESPONSE_APP_DOWNLOAD_LINK_RE);
+                return appPageBody.match(RESPONSE_APP_DOWNLOAD_LINK_RE);
+            } catch (err) {
+                logError(['sber', appPageLink, err]);
+            }
         }),
     );
 
-    return [...new Set(appDownloadLinks.flat())]
+    return [...new Set(appDownloadLinks.filter(Boolean).flat())]
         .filter(link => link.startsWith('http'))
         .map(link => ({link}));
 };
