@@ -11,6 +11,7 @@ const getAriaArgs = uaType => [
     '--max-connection-per-server=16',
     '--min-split-size=1M',
     '--max-concurrent-downloads=1',
+    '--check-certificate=false',
     `--user-agent="${getUa(uaType)}"`,
 ].join(' ');
 
