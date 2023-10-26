@@ -10,21 +10,14 @@ a {
 }
 
 table {
-    font-size: 14px;
     color: #819b93;
     border-spacing: 10 0;
 }
 
-@media screen and (max-width: 1000px) {
-    table {
-        font-size: 2em;
-    }
-}
-
 hr {
-  border: 1;
-  border-color: #646f79;
-  margin: 1em 0;
+    border: 1;
+    border-color: #646f79;
+    margin: 1em 0;
 }
 
 .info {
