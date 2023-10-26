@@ -7,8 +7,8 @@ import {run} from './shell.js';
 
 const getAriaArgs = uaType => [
     '--continue=true',
-    '--split=16',
-    '--max-connection-per-server=16',
+    '--split=5',
+    '--max-connection-per-server=5',
     '--min-split-size=1M',
     '--max-concurrent-downloads=1',
     '--check-certificate=false',
