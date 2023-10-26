@@ -20,6 +20,13 @@ table {
     border-spacing: 10 0;
 }
 
+hr {
+  border: 0;
+  border-top: 1px solid;
+  border-color: #646f79;
+  margin: 1em 0;
+}
+
 .info {
     color: #778899;
 }

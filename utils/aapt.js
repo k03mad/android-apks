@@ -28,7 +28,6 @@ export const getApkFilesInfo = async folder => {
     const data = await Promise.all(
         paths
             .filter(elem => elem.endsWith('.apk'))
-            .sort()
             .map(async path => {
                 let output;
 
@@ -39,14 +38,30 @@ export const getApkFilesInfo = async folder => {
                 }
 
                 const relativePath = path.replace(config.static.root, '');
-                const file = path.split('/').pop();
+                const splitted = path.split('/');
+
+                const file = splitted.at(-1);
+                const type = splitted.at(-2);
 
                 return {
-                    relativePath, file,
+                    relativePath, file, type,
                     ...aaptDumpBadgingParse(output),
                 };
             }),
     );
 
-    return data.filter(({version}) => version);
+    const byType = {};
+
+    data
+        .filter(({version}) => version)
+        .sort((a, b) => a.label.localeCompare(b.label))
+        .forEach(elem => {
+            if (byType[elem.type]) {
+                byType[elem.type].push(elem);
+            } else {
+                byType[elem.type] = [elem];
+            }
+        });
+
+    return byType;
 };

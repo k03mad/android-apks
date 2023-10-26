@@ -31,7 +31,6 @@ export const downloadApk = async providers => {
     const start = Date.now();
 
     const providersData = await getData(providers);
-
     await fs.rm(serverConfig.static.apk, {force: true, recursive: true});
 
     await pMap(
@@ -51,7 +50,7 @@ export const downloadApk = async providers => {
     const finish = Date.now();
 
     const timestamp = `${moment(start).format(cronConfig.logs.timestamp.format.full)}-`
-                    + `${moment(start).format(cronConfig.logs.timestamp.format.time)} `
+                    + `${moment(finish).format(cronConfig.logs.timestamp.format.time)} `
                     + `${ms(finish - start)}`;
 
     await fs.mkdir(cronConfig.logs.folder, {recursive: true});

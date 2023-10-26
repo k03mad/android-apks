@@ -1,27 +1,51 @@
-<h1>{{pageData.texts.header}}</h1>
+<hr>
 
 <table>
-    {{#each apkFiles}}
+    {{#each apkFiles.common}}
         <tr>
             <td>{{this.label}} {{this.version}}</td>
             <td>
                 <a href="{{this.relativePath}}">{{this.file}}</a>
             </td>
         </tr>
-    {{else}}
+    {{/each}}
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    {{#each apkFiles.tinkoff}}
         <tr>
-            <td class="error">Приложения ещё не скачивались</td>
+            <td>{{this.label}} {{this.version}}</td>
+            <td>
+                <a href="{{this.relativePath}}">{{this.file}}</a>
+            </td>
+        </tr>
+    {{/each}}
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    {{#each apkFiles.sber}}
+        <tr>
+            <td>{{this.label}} {{this.version}}</td>
+            <td>
+                <a href="{{this.relativePath}}">{{this.file}}</a>
+            </td>
         </tr>
     {{/each}}
 </table>
+
+<hr>
 
 <div class="info">
     <p>
         Обновление приложений:
         <span class="timestamp">{{pageData.texts.timestamp}}</span>
+        <br>
+        Визиты:
     </p>
-    <p>Визиты:</p>
-    {{#each pageData.visitors.useragents}}
-        > {{this}}</br>
-    {{/each}}
+    <p>
+        {{#each pageData.visitors.useragents}}
+            > {{this}}
+            <br>
+        {{/each}}
+    </p>
 </div>
