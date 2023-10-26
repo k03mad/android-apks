@@ -8,7 +8,6 @@ const getAriaArgs = uaType => [
     '--split=5',
     '--max-connection-per-server=5',
     '--min-split-size=1M',
-    '--max-concurrent-downloads=1',
     '--check-certificate=false',
     `--user-agent="${getUa(uaType)}"`,
 ].join(' ');
