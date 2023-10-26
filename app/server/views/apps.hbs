@@ -3,7 +3,6 @@
 <table>
     {{#each apkFiles}}
         <tr>
-            <td class="timestamp">{{this.timestamp}}</td>
             <td>{{this.label}} {{this.version}}</td>
             <td>
                 <a href="{{this.relativePath}}">{{this.file}}</a>
@@ -16,8 +15,13 @@
     {{/each}}
 </table>
 
-
-<p class="visitors_ua_title">Визиты:</p>
-{{#each pageData.visitors.useragents}}
-    <p class="visitors_ua_items">> {{this}}</p>
-{{/each}}
+<div class="info">
+    <p>
+        Обновление приложений:
+        <span class="timestamp">{{pageData.texts.timestamp}}</span>
+    </p>
+    <p>Визиты:</p>
+    {{#each pageData.visitors.useragents}}
+        > {{this}}</br>
+    {{/each}}
+</div>
