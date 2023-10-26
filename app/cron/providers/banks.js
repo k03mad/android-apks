@@ -6,7 +6,4 @@ export default () => [
     {
         link: 'https://alfamobile-web.servicecdn.ru/latest/alfa-bank.apk',
     },
-    {
-        link: 'https://cdnweb.sberbank.ru/appdistr/SberbankOnline.apk',
-    },
 ];
