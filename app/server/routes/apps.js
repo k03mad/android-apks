@@ -63,7 +63,7 @@ export default router.get(
                 getApkFilesInfo(serverConfig.static.apk),
             ]);
 
-            res.render('apps', {files, data});
+            res.render('apps', {data, files});
         } catch (err) {
             next(err);
         }

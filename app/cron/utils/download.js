@@ -41,7 +41,9 @@ export const downloadApk = async (providers, skipClean) => {
 
         async ({link, opts, providerName}) => {
             try {
-                await download(`${serverConfig.static.apk}/${providerName}`, link, opts);
+                const folder = `${serverConfig.static.apk}/${providerName}`;
+                const file = await download(folder, link, opts);
+                await fs.writeFile(`${folder}/${file.split('/').at(-1)}.log`, link);
             } catch (err) {
                 logError([providerName, link, err.stack]);
             }
@@ -50,12 +52,13 @@ export const downloadApk = async (providers, skipClean) => {
         {concurrency: cronConfig.download.concurrency},
     );
 
-    const timestamp = [
-        moment(start).format(cronConfig.logs.timestamp.format.full),
-        `${(Date.now() - start) / 1000}s`,
-    ].join(' :: ');
+    const timestamp = `${moment(start).format(cronConfig.logs.timestamp.format.full)} `
+                    + `${(Date.now() - start) / 1000}s`;
 
     await fs.mkdir(cronConfig.logs.folder, {recursive: true});
-    await fs.writeFile(cronConfig.logs.timestamp.file, timestamp);
-    await fs.writeFile(cronConfig.logs.providers.file, String(providersData.flat().length));
+
+    await Promise.all([
+        fs.writeFile(cronConfig.logs.timestamp.file, timestamp),
+        fs.writeFile(cronConfig.logs.providers.file, String(providersData.flat().length)),
+    ]);
 };

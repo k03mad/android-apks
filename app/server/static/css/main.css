@@ -28,6 +28,10 @@ hr {
     margin: 1em 0;
 }
 
+.file {
+    color: #64746f;
+}
+
 .info {
     color: #778899;
 }

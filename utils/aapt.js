@@ -1,6 +1,9 @@
+import fs from 'node:fs/promises';
+
 import {globby} from 'globby';
 
 import config from '../app/server/config.js';
+import {logError} from './logs.js';
 import {run} from './shell.js';
 
 /**
@@ -29,12 +32,18 @@ export const getApkFilesInfo = async folder => {
         paths
             .filter(elem => elem.endsWith('.apk'))
             .map(async path => {
-                let output;
+                let orig, output;
 
                 try {
                     output = await aaptDumpBadging(path);
                 } catch (err) {
                     output = err.stdout;
+                }
+
+                try {
+                    orig = await fs.readFile(path.replace(/\.apk$/, '.log'));
+                } catch (err) {
+                    logError(err);
                 }
 
                 const relativePath = path.replace(config.static.root, '');
@@ -44,7 +53,7 @@ export const getApkFilesInfo = async folder => {
                 const type = splitted.at(-2);
 
                 return {
-                    relativePath, file, type,
+                    relativePath, file, type, orig,
                     ...aaptDumpBadgingParse(output),
                 };
             }),

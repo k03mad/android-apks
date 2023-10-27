@@ -5,8 +5,16 @@
         {{#each this}}
             <tr>
                 <td>{{this.label}} {{this.version}}</td>
+                <td class="file">{{this.file}}</td>
                 <td>
-                    <a href="{{this.relativePath}}">{{this.file}}</a>
+                    {{#if this.orig}}
+                        <a href="{{this.orig}}">скачать</a>
+                    {{/if}}
+                </td>
+                <td>
+                    {{#if this.relativePath}}
+                        <a href="{{this.relativePath}}">зеркало</a>
+                    {{/if}}
                 </td>
             </tr>
         {{/each}}
