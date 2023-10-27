@@ -63,5 +63,5 @@ export const getApkFilesInfo = async folder => {
             }
         });
 
-    return byType;
+    return {apk: byType, count: data.length};
 };

@@ -14,5 +14,8 @@ export default {
                 time: 'HH:mm:ss',
             },
         },
+        providers: {
+            file: `${LOGS_FOLDER}/providers.log`,
+        },
     },
 };

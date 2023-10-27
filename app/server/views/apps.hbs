@@ -1,45 +1,17 @@
 <hr>
 
 <table>
-    {{#each apkFiles.common}}
+    {{#each files.apk}}
+        {{#each this}}
+            <tr>
+                <td>{{this.label}} {{this.version}}</td>
+                <td>
+                    <a href="{{this.relativePath}}">{{this.file}}</a>
+                </td>
+            </tr>
+        {{/each}}
         <tr>
-            <td>{{this.label}} {{this.version}}</td>
-            <td>
-                <a href="{{this.relativePath}}">{{this.file}}</a>
-            </td>
-        </tr>
-    {{/each}}
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    {{#each apkFiles.banks}}
-        <tr>
-            <td>{{this.label}} {{this.version}}</td>
-            <td>
-                <a href="{{this.relativePath}}">{{this.file}}</a>
-            </td>
-        </tr>
-    {{/each}}
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    {{#each apkFiles.tinkoff}}
-        <tr>
-            <td>{{this.label}} {{this.version}}</td>
-            <td>
-                <a href="{{this.relativePath}}">{{this.file}}</a>
-            </td>
-        </tr>
-    {{/each}}
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    {{#each apkFiles.sber}}
-        <tr>
-            <td>{{this.label}} {{this.version}}</td>
-            <td>
-                <a href="{{this.relativePath}}">{{this.file}}</a>
-            </td>
+            <td>&nbsp;</td>
         </tr>
     {{/each}}
 </table>
@@ -49,12 +21,12 @@
 <div class="info">
     <p>
         Обновление приложений:
-        <span class="timestamp">{{pageData.texts.timestamp}}</span>
+        <span class="timestamp">{{data.texts.timestamp}} :: {{files.count}}/{{data.texts.providers.count}}</span>
         <br>
         Визиты:
     </p>
     <p>
-        {{#each pageData.visitors.useragents}}
+        {{#each data.visitors.useragents}}
             > {{this}}
             <br>
         {{/each}}

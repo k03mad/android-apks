@@ -32,10 +32,13 @@ const getPageData = async req => {
         PAGE.ua.storage.delete([...PAGE.ua.storage][0]);
     }
 
-    let timestamp;
+    let providersCount, timestamp;
 
     try {
-        timestamp = await fs.readFile(cronConfig.logs.timestamp.file, {encoding: 'utf8'});
+        [timestamp, providersCount] = await Promise.all([
+            fs.readFile(cronConfig.logs.timestamp.file, {encoding: 'utf8'}),
+            fs.readFile(cronConfig.logs.providers.file, {encoding: 'utf8'}),
+        ]);
     } catch (err) {
         logError(err);
     }
@@ -44,6 +47,7 @@ const getPageData = async req => {
         texts: {
             header: PAGE.header,
             timestamp,
+            providers: {count: providersCount},
         },
         visitors: {
             useragents: [...PAGE.ua.storage].sort(),
@@ -54,12 +58,12 @@ const getPageData = async req => {
 export default router.get(
     '/apps', async (req, res, next) => {
         try {
-            const [pageData, apkFiles] = await Promise.all([
+            const [data, files] = await Promise.all([
                 getPageData(req),
                 getApkFilesInfo(serverConfig.static.apk),
             ]);
 
-            res.render('apps', {apkFiles, pageData});
+            res.render('apps', {files, data});
         } catch (err) {
             next(err);
         }

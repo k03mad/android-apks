@@ -1,7 +1,6 @@
 import fs from 'node:fs/promises';
 
 import moment from 'moment';
-import ms from 'ms';
 import pMap from 'p-map';
 
 import {download} from '../../../utils/aria.js';
@@ -51,12 +50,12 @@ export const downloadApk = async (providers, skipClean) => {
         {concurrency: cronConfig.download.concurrency},
     );
 
-    const finish = Date.now();
-
-    const timestamp = `${moment(start).format(cronConfig.logs.timestamp.format.full)}-`
-                    + `${moment(finish).format(cronConfig.logs.timestamp.format.time)} `
-                    + `${ms(finish - start)}`;
+    const timestamp = [
+        moment(start).format(cronConfig.logs.timestamp.format.full),
+        `${(Date.now() - start) / 1000}s`,
+    ].join(' :: ');
 
     await fs.mkdir(cronConfig.logs.folder, {recursive: true});
     await fs.writeFile(cronConfig.logs.timestamp.file, timestamp);
+    await fs.writeFile(cronConfig.logs.providers.file, String(providersData.flat().length));
 };

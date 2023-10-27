@@ -13,6 +13,7 @@ const getAriaArgs = uaType => [
     '--max-connection-per-server=5',
     '--min-split-size=1M',
     '--check-certificate=false',
+    '--allow-overwrite=true',
     `--user-agent="${getUa(uaType)}"`,
 ].join(' ');
 
@@ -28,7 +29,6 @@ export const download = async (dir, url, opts = {}) => {
     const cmd = `cd ${dir} && aria2c ${getAriaArgs(opts.ua)} ${url}`;
     debug(cmd);
     const output = await run(`cd ${dir} && aria2c ${getAriaArgs(opts.ua)} ${url}`);
-    debug(output);
 
     const apkPath = output?.match(/\/(.+)\.apk/)?.[1];
     return apkPath;
