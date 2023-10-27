@@ -1,7 +1,15 @@
-body {
+@font-face {
+    font-family: Fira;
+    src: url('/fonts/FiraCode-VF.woff2') format('woff2');
+}
+
+* {
+    font-size: 12px;
+}
+
+html {
     background: #19181D;
     font-family: Fira, Arial;
-    font-size: 14px;
 }
 
 a {
@@ -11,7 +19,7 @@ a {
 
 table {
     color: #819b93;
-    border-spacing: 10 0;
+    border-spacing: 10 1;
 }
 
 hr {
@@ -26,8 +34,4 @@ hr {
 
 .timestamp {
     color: #646f79;
-}
-
-.error {
-    color: #FF8899;
 }
