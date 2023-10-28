@@ -19,7 +19,6 @@
     "debug": "4.3.4",
     "express": "4.18.2",
     "express-handlebars": "7.1.2",
-    "express-rate-limit": "7.1.2",
     "globby": "13.2.2",
     "helmet": "7.0.0",
     "lodash": "4.17.21",
@@ -49,8 +48,8 @@
     "setup:prod": "npm run clean && npm i --omit=dev",
     "start": "node index",
     "start:dev": "DEBUG=mad* nodemon -e js,json,css,hbs,woff,woff2,ico,webmanifest index",
-    "apk:get": "DEBUG=mad* node app/cron/scripts/test-get",
-    "apk:dl": "DEBUG=mad* node app/cron/scripts/test-dl",
+    "apk:get": "DEBUG=mad* node app/cron/utils/test-get",
+    "apk:dl": "DEBUG=mad* node app/cron/utils/test-dl",
     "prepare": "husky install || true"
   }
 }

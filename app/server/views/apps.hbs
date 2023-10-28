@@ -3,13 +3,23 @@
         <td>&nbsp;</td>
     </tr>
     {{#each files.apk}}
+        <tr class="type">
+            <td>{{this.[0].type}}</td>
+        <tr>
         {{#each this}}
             <tr>
-                <td>{{this.label}} {{this.version}}</td>
-                <td><a href="{{this.orig}}">{{this.file}}</a></td>
+                <td class="label">{{this.label}} {{this.version}}</td>
+                <td>{{this.name}}</td>
+                {{#if this.orig}}
+                    <td><a href="{{this.orig}}">{{this.file}}</a></td>
+                {{else}}
+                    <td>{{this.file}}</td>
+                {{/if}}
                 <td>
                     {{#if this.relativePath}}
                         <a class="mirror" href="{{this.relativePath}}">[зеркало]</a>
+                    {{else}}
+                        [зеркало]
                     {{/if}}
                 </td>
             </tr>
@@ -23,13 +33,14 @@
 <div class="info">
     <p>
         Обновление:
-        <span>{{data.texts.timestamp}} :: {{files.count}}/{{data.texts.providers.count}}</span>
         <br>
-        Визиты:
+        <span class="info_data">{{data.texts.timestamp}} :: {{files.count}}/{{data.texts.providers.count}}</span>
     </p>
-    <p class="ua">
+    <p>
+        Визиты:
+        <br>
         {{#each data.visitors.useragents}}
-            > {{this}}
+            <span class="info_data">— {{this}}</span>
             <br>
         {{/each}}
     </p>

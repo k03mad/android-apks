@@ -7,7 +7,6 @@ import {convertToArray} from './array.js';
  * @returns {void}
  */
 export const log = msg => convertToArray(msg)
-    .filter(Boolean)
     .forEach(elem => console.log(elem));
 
 /**
@@ -15,5 +14,4 @@ export const log = msg => convertToArray(msg)
  * @returns {void}
  */
 export const logError = msg => convertToArray(msg)
-    .filter(Boolean)
     .forEach(elem => console.error(elem));

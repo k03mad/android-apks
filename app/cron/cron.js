@@ -3,7 +3,7 @@ import {Cron} from 'recron';
 import {cronStyle} from '../../utils/colors.js';
 import {log} from '../../utils/logs.js';
 import config from './config.js';
-import providers from './providers/_index.js';
+import * as providers from './providers/_index.js';
 import {downloadApk} from './utils/download.js';
 
 /** */

@@ -1,7 +1,6 @@
 import compression from 'compression';
 import express from 'express';
 import {engine} from 'express-handlebars';
-import {rateLimit} from 'express-rate-limit';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
@@ -27,12 +26,7 @@ export default () => {
     app.set('view engine', config.handlebars.ext);
     app.set('views', config.handlebars.views);
 
-    routes.forEach(route => {
-        const path = getRoutePath(route);
-        path && app.use(path, rateLimit(config.rates));
-
-        app.use(route);
-    });
+    routes.forEach(route => app.use(route));
 
     app.listen(env.server.port, () => log(
         Object.values(routes)

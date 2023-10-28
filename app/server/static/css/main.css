@@ -7,10 +7,13 @@
     --font: 12px;
 
     --black: #19181D;
+    --magenta: #956485;
     --gray: #778899;
+    --grayDark: #606d7a;
     --blue: #8282FF;
     --blueDark: #414168;
     --green: #819b93;
+    --greenDark: #5c716b;
 }
 
 html {
@@ -26,24 +29,32 @@ a {
 
 table {
     font-size: var(--font);
-    color: var(--gray);
+    color: var(--greenDark);
     border: solid;
     border-radius: 10px;
     border-spacing: 1em 0em;
 }
 
-tr {
-    color: var(--green);;
-}
-
-td:nth-child(2) {
+table td:nth-child(3) {
     border-bottom: 1px solid var(--blueDark);
 }
 
-.mirror {
+table td.label {
+    color: var(--green);
+}
+
+table td a.mirror {
     color: var(--blueDark);
+}
+
+table tr.type {
+    color: var(--magenta);
 }
 
 .info {
     color: var(--gray)
+}
+
+.info_data {
+    color: var(--grayDark)
 }

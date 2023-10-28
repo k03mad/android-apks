@@ -64,6 +64,7 @@ const getApkFilesInfo = async folder => {
 
     const data = await Promise.all(
         paths
+            .sort((a, b) => a.localeCompare(b))
             .filter(elem => elem.endsWith('.apk'))
             .map(async path => {
                 let orig, output;
@@ -95,16 +96,17 @@ const getApkFilesInfo = async folder => {
 
     const byType = {};
 
-    data
-        .filter(({version}) => version)
-        .sort((a, b) => a.label.localeCompare(b.label))
-        .forEach(elem => {
-            if (byType[elem.type]) {
-                byType[elem.type].push(elem);
-            } else {
-                byType[elem.type] = [elem];
-            }
-        });
+    data.forEach(elem => {
+        if (byType[elem.type]) {
+            byType[elem.type].push(elem);
+        } else {
+            byType[elem.type] = [elem];
+        }
+    });
+
+    for (const elem in byType) {
+        byType[elem].sort((a, b) => a?.label?.localeCompare(b?.label));
+    }
 
     return {apk: byType, count: data.length};
 };
