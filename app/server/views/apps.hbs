@@ -1,19 +1,15 @@
-<hr>
-
 <table>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
     {{#each files.apk}}
         {{#each this}}
             <tr>
                 <td>{{this.label}} {{this.version}}</td>
-                <td class="file">{{this.file}}</td>
-                <td>
-                    {{#if this.orig}}
-                        <a href="{{this.orig}}">скачать</a>
-                    {{/if}}
-                </td>
+                <td><a href="{{this.orig}}">{{this.file}}</a></td>
                 <td>
                     {{#if this.relativePath}}
-                        <a href="{{this.relativePath}}">зеркало</a>
+                        <a class="mirror" href="{{this.relativePath}}">[зеркало]</a>
                     {{/if}}
                 </td>
             </tr>
@@ -24,16 +20,14 @@
     {{/each}}
 </table>
 
-<hr>
-
 <div class="info">
     <p>
-        Обновление приложений:
-        <span class="timestamp">{{data.texts.timestamp}} :: {{files.count}}/{{data.texts.providers.count}}</span>
+        Обновление:
+        <span>{{data.texts.timestamp}} :: {{files.count}}/{{data.texts.providers.count}}</span>
         <br>
         Визиты:
     </p>
-    <p>
+    <p class="ua">
         {{#each data.visitors.useragents}}
             > {{this}}
             <br>

@@ -3,39 +3,47 @@
     src: url('/fonts/FiraCode-VF.woff2') format('woff2');
 }
 
-* {
-    font-size: 12px;
+:root {
+    --font: 12px;
+
+    --black: #19181D;
+    --gray: #778899;
+    --blue: #8282FF;
+    --blueDark: #414168;
+    --green: #819b93;
 }
 
 html {
-    background: #19181D;
     font-family: Fira, Arial;
+    font-size: var(--font);
+    background: var(--black);
 }
 
 a {
     text-decoration: none;
-    color: #8282FF;
+    color: var(--blue)
 }
 
 table {
-    color: #819b93;
+    font-size: var(--font);
+    color: var(--gray);
+    border: solid;
+    border-radius: 10px;
     border-spacing: 10 1;
 }
 
-hr {
-    border: 1;
-    border-color: #646f79;
-    margin: 1em 0;
+tr {
+    color: var(--green);;
 }
 
-.file {
-    color: #64746f;
+td:nth-child(2) {
+    border-bottom: 1px solid var(--blueDark);
+}
+
+.mirror {
+    color: var(--blueDark);
 }
 
 .info {
-    color: #778899;
-}
-
-.timestamp {
-    color: #646f79;
+    color: var(--gray)
 }

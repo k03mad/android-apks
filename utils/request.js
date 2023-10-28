@@ -1,6 +1,6 @@
-import {randomNumberFromInterval} from './number.js';
+import _ from 'lodash';
 
-const uaChromeVersion = () => randomNumberFromInterval(100, 120);
+const uaChromeVersion = () => _.random(100, 120);
 
 const ua = () => ({
     desktop: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '

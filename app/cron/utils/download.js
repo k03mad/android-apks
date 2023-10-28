@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 
+import _ from 'lodash';
 import moment from 'moment';
 import pMap from 'p-map';
 
@@ -37,7 +38,7 @@ export const downloadApk = async (providers, skipClean) => {
     }
 
     await pMap(
-        providersData.filter(Boolean).flat(),
+        _.shuffle(providersData.filter(Boolean).flat()),
 
         async ({link, opts, providerName}) => {
             try {
@@ -45,7 +46,7 @@ export const downloadApk = async (providers, skipClean) => {
                 const file = await download(folder, link, opts);
                 await fs.writeFile(`${folder}/${file.split('/').at(-1)}.log`, link);
             } catch (err) {
-                logError([providerName, link, err.stack]);
+                logError([providerName, link, err]);
             }
         },
 

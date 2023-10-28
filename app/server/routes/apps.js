@@ -1,8 +1,9 @@
 import fs from 'node:fs/promises';
 
 import express from 'express';
+import {globby} from 'globby';
 
-import {getApkFilesInfo} from '../../../utils/aapt.js';
+import {aaptDumpBadging, aaptDumpBadgingParse} from '../../../utils/aapt.js';
 import {logError} from '../../../utils/logs.js';
 import cronConfig from '../../cron/config.js';
 import serverConfig from '../config.js';
@@ -10,7 +11,6 @@ import serverConfig from '../config.js';
 const router = express.Router();
 
 const PAGE = {
-    header: 'ANDROID APKS',
     ua: {
         count: 100,
         storage: new Set(),
@@ -53,6 +53,60 @@ const getPageData = async req => {
             useragents: [...PAGE.ua.storage].sort(),
         },
     };
+};
+
+/**
+ * @param {string} folder
+ * @returns {Promise<Array<{label: string, version: string, relativePath: string, file: string}>>}
+ */
+const getApkFilesInfo = async folder => {
+    const paths = await globby(folder);
+
+    const data = await Promise.all(
+        paths
+            .filter(elem => elem.endsWith('.apk'))
+            .map(async path => {
+                let orig, output;
+
+                try {
+                    output = await aaptDumpBadging(path);
+                } catch (err) {
+                    output = err.stdout;
+                }
+
+                try {
+                    orig = await fs.readFile(`${path}.log`);
+                } catch (err) {
+                    logError(err);
+                }
+
+                const relativePath = path.replace(serverConfig.static.root, '');
+                const splitted = path.split('/');
+
+                const file = splitted.at(-1);
+                const type = splitted.at(-2);
+
+                return {
+                    relativePath, file, type, orig,
+                    ...aaptDumpBadgingParse(output),
+                };
+            }),
+    );
+
+    const byType = {};
+
+    data
+        .filter(({version}) => version)
+        .sort((a, b) => a.label.localeCompare(b.label))
+        .forEach(elem => {
+            if (byType[elem.type]) {
+                byType[elem.type].push(elem);
+            } else {
+                byType[elem.type] = [elem];
+            }
+        });
+
+    return {apk: byType, count: data.length};
 };
 
 export default router.get(
