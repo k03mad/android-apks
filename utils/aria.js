@@ -31,7 +31,7 @@ export const download = async (dir, url, opts = {}) => {
 
     const cmd = `cd ${dir} && aria2c ${getAriaArgs(opts.ua)} ${url}`;
     debug.extend('cmd')(cmd);
-    const output = await run(`cd ${dir} && aria2c ${getAriaArgs(opts.ua)} ${url}`);
+    const output = await run(cmd);
 
     const apkPath = output?.match(/\|(\/.+\.apk)/)?.[1];
     debug.extend('apk')(apkPath);
