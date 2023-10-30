@@ -5,6 +5,7 @@ import {getUa} from '../../../utils/request.js';
 
 const LINKS = [
     {link: 'https://disk.2gis.com/android/Latest/2GIS.apk', opts: {ua: 'curl'}},
+    {link: 'https://github.com/yuliskov/SmartTube/releases/download/latest/smarttube_stable.apk'},
     {link: 'https://kpdl.cc/k.apk'},
     {link: 'https://telegram.org/dl/android/apk'},
 ];
