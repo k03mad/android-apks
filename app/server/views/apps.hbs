@@ -10,6 +10,11 @@
             <tr>
                 <td class="label">{{this.label}} {{this.version}}</td>
                 <td>{{this.name}}</td>
+                {{#if this.size}}
+                    <td>{{this.size}}</td>
+                {{else}}
+                    <td>—</td>
+                {{/if}}
                 {{#if this.orig}}
                     <td><a href="{{this.orig}}">{{this.file}}</a></td>
                 {{else}}
@@ -19,7 +24,7 @@
                     {{#if this.relativePath}}
                         <a class="mirror" href="{{this.relativePath}}">[зеркало]</a>
                     {{else}}
-                        [-------]
+                        —
                     {{/if}}
                 </td>
             </tr>

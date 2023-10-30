@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 
 import express from 'express';
 import {globby} from 'globby';
+import prettyBytes from 'pretty-bytes';
 
 import {aaptDumpBadging, aaptDumpBadgingParse} from '../../../utils/aapt.js';
 import {logError} from '../../../utils/logs.js';
@@ -67,12 +68,19 @@ const getApkFilesInfo = async folder => {
             .sort((a, b) => a.localeCompare(b))
             .filter(elem => elem.endsWith('.apk'))
             .map(async path => {
-                let orig, output;
+                let orig, output, size;
 
                 try {
                     output = await aaptDumpBadging(path);
                 } catch (err) {
                     output = err.stdout;
+                }
+
+                try {
+                    const stat = await fs.stat(path);
+                    size = prettyBytes(stat.size);
+                } catch (err) {
+                    logError(err);
                 }
 
                 try {
@@ -88,7 +96,7 @@ const getApkFilesInfo = async folder => {
                 const type = splitted.at(-2);
 
                 return {
-                    relativePath, file, type, orig,
+                    relativePath, file, type, orig, size,
                     ...aaptDumpBadgingParse(output),
                 };
             }),

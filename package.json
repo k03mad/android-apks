@@ -25,6 +25,7 @@
     "moment": "2.29.4",
     "morgan": "1.10.0",
     "p-map": "6.0.0",
+    "pretty-bytes": "6.1.1",
     "recron": "1.1.5"
   },
   "devDependencies": {

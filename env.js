@@ -8,6 +8,9 @@ const env = {
     scripts: {
         skipClean: process.env.npm_config_skip_clean,
     },
+    github: {
+        token: process.env.GITHUB_AAPKS_TOKEN,
+    },
     log: {
         path: './process.log',
     },

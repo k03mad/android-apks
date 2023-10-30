@@ -12,6 +12,10 @@
 — aapt\
 — aria2c
 
+## Переменные окружения
+
+— GITHUB_AAPKS_TOKEN (personal access token, для приложений с GitHub)
+
 ## Запуск
 
 ```bash
