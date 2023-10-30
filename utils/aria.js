@@ -13,8 +13,9 @@ const getAriaArgs = uaType => [
     '--max-connection-per-server=5',
     '--min-split-size=1M',
     '--check-certificate=false',
-    '--allow-overwrite=false',
     '--auto-file-renaming=false',
+    '--max-tries=5',
+    '--retry-wait=5',
     `--user-agent="${getUa(uaType)}"`,
 ].join(' ');
 
@@ -26,7 +27,6 @@ const getAriaArgs = uaType => [
  */
 export const download = async (dir, url, opts = {}) => {
     debug.extend('url')(url);
-    debug.extend('dir')(dir);
     await fs.mkdir(dir, {recursive: true});
 
     const cmd = `cd ${dir} && aria2c ${getAriaArgs(opts.ua)} ${url}`;
