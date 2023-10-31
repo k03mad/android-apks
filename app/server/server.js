@@ -2,7 +2,7 @@ import compression from 'compression';
 import express from 'express';
 import {create} from 'express-handlebars';
 import handlebars from 'handlebars';
-import handlebarsHelpers from 'handlebars-helpers';
+import registerHandlebarsHelpers from 'handlebars-helpers';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import prettify from 'prettify';
@@ -13,11 +13,10 @@ import {log} from '../../utils/logs.js';
 import config from './config.js';
 import routesIndex from './routes/_index.js';
 
-const hbs = create({extname: config.handlebars.ext, handlebars});
-
-handlebarsHelpers();
+registerHandlebarsHelpers();
 prettify.register(handlebars);
 
+const hbs = create({extname: config.handlebars.ext, handlebars});
 const routes = Object.values(routesIndex);
 const getRoutePath = route => route.stack?.[0].route.path;
 
