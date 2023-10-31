@@ -51,7 +51,7 @@ table td.link {
     border-bottom: 1px solid var(--blueDark);
 }
 
-table td a.mirror {
+table td a.mirror, .error__link {
     color: var(--blueDark);
 }
 
