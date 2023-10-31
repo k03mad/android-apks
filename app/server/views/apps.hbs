@@ -64,9 +64,10 @@
         <p>
             Не удалось скачать:
             <br>
-            <span class="info__data">
+            {{#each data.visitors.useragents}}
                 — <a href="{{data.texts.providers.errorLinks}}">{{data.texts.providers.errorLinks}}</a>
-            </span>
+                <br>
+            {{/each}}
         </p>
     {{/if}}
     <p>
