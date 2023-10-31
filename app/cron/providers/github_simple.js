@@ -1,8 +1,8 @@
 import {getApkFromGhOrg} from './shared/github-release.js';
 
-const REPO_ORG = 'SimpleMobileTools';
+const orgs = {name: 'SimpleMobileTools', re: {exclude: /proprietary/}};
 
 /**
  * @returns {Promise<Array<{link: string}>>}
  */
-export default () => getApkFromGhOrg(REPO_ORG);
+export default () => getApkFromGhOrg(orgs);

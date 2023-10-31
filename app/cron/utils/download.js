@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 
+import _debug from 'debug';
 import _ from 'lodash';
 import moment from 'moment';
 import ms from 'ms';
@@ -12,6 +13,8 @@ import {retry} from '../../../utils/fn.js';
 import {logError} from '../../../utils/logs.js';
 import serverConfig from '../../server/config.js';
 import cronConfig from '../config.js';
+
+const debug = _debug('mad:download');
 
 /**
  * @param {object} providers
@@ -45,8 +48,12 @@ export const downloadApk = async (providers, skipClean) => {
         await fs.rm(serverConfig.static.apk, {force: true, recursive: true});
     }
 
+    let counter = 0;
+
+    const providersFormatted = _.shuffle(providersData.filter(Boolean).flat());
+
     await pMap(
-        _.shuffle(providersData.filter(Boolean).flat()),
+        providersFormatted,
 
         async ({link, opts, providerName}) => {
             let file;
@@ -55,6 +62,9 @@ export const downloadApk = async (providers, skipClean) => {
                 const folder = `${serverConfig.static.apk}/${providerName}`;
                 file = await retry(() => download(folder, link, opts));
                 await fs.writeFile(`${folder}/${file.split('/').at(-1)}.log`, link);
+
+                counter++;
+                debug('%o/%o', counter, providersFormatted.length);
             } catch (err) {
                 try {
                     await fs.mkdir(cronConfig.logs.errors.download.folder, {recursive: true});
