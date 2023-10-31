@@ -17,18 +17,11 @@
                     {{/if}}
                 </td>
 
-
-                {{#if this.name}}
-                    {{#if this.arch}}
-                        <td title="{{this.arch}}">
-                    {{else}}
-                        <td>
-                    {{/if}}
+                <td>
+                    {{#if this.name}}
                         {{this.name}}
-                    </td>
-                {{else}}
-                    <td></td>
-                {{/if}}
+                    {{/if}}
+                </td>
 
                 <td class="size">
                     {{#if this.size}}
@@ -38,22 +31,18 @@
 
                 {{#if this.orig}}
                     {{#if this.file}}
-                        {{#if this.arch}}
-                            <td title="{{this.arch}}" class="link">
-                        {{else}}
-                            <td class="link">
-                        {{/if}}
+                        <td {{#if this.arch}}title="{{this.arch}}"{{/if}} class="link">
                             <a href="{{this.orig}}">{{this.file}}</a>
                         </td>
                     {{else}}
                         <td></td>
                     {{/if}}
                 {{else}}
-                    {{#if this.file}}
-                        <td>{{this.file}}</td>
-                    {{else}}
-                        <td></td>
-                    {{/if}}
+                    <td>
+                        {{#if this.file}}
+                            {{this.file}}
+                        {{/if}}
+                    </td>
                 {{/if}}
 
                 <td>
@@ -75,13 +64,25 @@
     <p>
         Обновлено:
         <br>
-        <span class="info_data">{{data.texts.timestamp}} :: {{files.count}}/{{data.texts.providers.count}}</span>
+        <span class="info__data">
+            {{data.texts.timestamp}}
+            [apk: {{files.count}}{{#if data.texts.providers.count}}/{{data.texts.providers.count}}{{/if}}]
+        </span>
     </p>
+    {{#if data.texts.providers.errorLinks}}
+        <p>
+            Не удалось скачать:
+            <br>
+            <span class="info__data">
+                <a href="{{data.texts.providers.errorLinks}}">— {{data.texts.providers.errorLinks}}</a>
+            </span>
+        </p>
+    {{/if}}
     <p>
         Посетители:
         <br>
         {{#each data.visitors.useragents}}
-            <span class="info_data">— {{this}}</span>
+            <span class="info__data">— {{this}}</span>
             <br>
         {{/each}}
     </p>

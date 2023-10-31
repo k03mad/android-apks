@@ -7,7 +7,7 @@ const providers = {..._providers};
 
 if (env.scripts.provider) {
     for (const key in providers) {
-        if (key !== env.scripts.provider) {
+        if (!key.includes(env.scripts.provider)) {
             delete providers[key];
         }
     }

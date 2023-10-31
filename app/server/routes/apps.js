@@ -33,7 +33,7 @@ const getPageData = async req => {
         PAGE.ua.storage.delete([...PAGE.ua.storage][0]);
     }
 
-    let providersCount, timestamp;
+    let errorLinks, providersCount, timestamp;
 
     try {
         [timestamp, providersCount] = await Promise.all([
@@ -44,11 +44,18 @@ const getPageData = async req => {
         logError(err);
     }
 
+    try {
+        const errorLogs = await globby(cronConfig.logs.errors.download.folder);
+        errorLinks = await Promise.all(errorLogs.map(log => fs.readFile(log, {encoding: 'utf8'})));
+    } catch (err) {
+        logError(err);
+    }
+
     return {
         texts: {
             header: PAGE.header,
             timestamp,
-            providers: {count: providersCount},
+            providers: {count: providersCount, errorLinks},
         },
         visitors: {
             useragents: [...PAGE.ua.storage].sort(),

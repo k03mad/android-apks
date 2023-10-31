@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import _ from 'lodash';
 import moment from 'moment';
 import ms from 'ms';
+import {nanoid} from 'nanoid';
 import pMap from 'p-map';
 
 import {download} from '../../../utils/aria.js';
@@ -36,6 +37,8 @@ export const downloadApk = async (providers, skipClean) => {
     const providersData = await getData(providers);
 
     await fs.mkdir(cronConfig.logs.folder, {recursive: true});
+    await fs.rm(cronConfig.logs.folder, {recursive: true});
+    await fs.mkdir(cronConfig.logs.folder, {recursive: true});
     await fs.writeFile(cronConfig.logs.providers.file, String(providersData.flat().length));
 
     if (!skipClean) {
@@ -53,6 +56,13 @@ export const downloadApk = async (providers, skipClean) => {
                 file = await retry(() => download(folder, link, opts));
                 await fs.writeFile(`${folder}/${file.split('/').at(-1)}.log`, link);
             } catch (err) {
+                try {
+                    await fs.mkdir(cronConfig.logs.errors.download.folder, {recursive: true});
+                    await fs.writeFile(`${cronConfig.logs.errors.download.folder}/${nanoid()}.log`, link);
+                } catch (err_) {
+                    logError(err_);
+                }
+
                 logError(err);
             }
         },

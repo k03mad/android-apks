@@ -17,5 +17,10 @@ export default {
         providers: {
             file: `${LOGS_FOLDER}/providers.log`,
         },
+        errors: {
+            download: {
+                folder: `${LOGS_FOLDER}/errors/download`,
+            },
+        },
     },
 };
