@@ -15,5 +15,9 @@ export const aaptDumpBadgingParse = output => {
 
     const version = output?.match(/versionName='(.+?)'/)?.[1];
     const name = output?.match(/name='(.+?)'/)?.[1];
-    return {label, version, name};
+
+    const nativeCode = output?.match(/native-code: '(.+)'/)?.[1];
+    const arch = nativeCode?.split(/\s+|'/).filter(Boolean).sort().join(', ');
+
+    return {label, version, name, arch};
 };

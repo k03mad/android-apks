@@ -3,28 +3,64 @@
         <td>&nbsp;</td>
     </tr>
     {{#each files.apk}}
-        <tr class="type">
-            <td>{{this.[0].type}}</td>
+        <tr class="provider">
+            <td>{{this.[0].provider}}</td>
         <tr>
         {{#each this}}
             <tr>
-                <td class="label">{{this.label}} {{this.version}}</td>
-                <td>{{this.name}}</td>
-                {{#if this.size}}
-                    <td>{{this.size}}</td>
+                <td class="label">
+                    {{#if this.label}}
+                        {{this.label}}
+                        {{#if this.version}}
+                            {{this.version}}
+                        {{/if}}
+                    {{/if}}
+                </td>
+
+
+                {{#if this.name}}
+                    {{#if this.arch}}
+                        <td title="{{this.arch}}">
+                    {{else}}
+                        <td>
+                    {{/if}}
+                        {{this.name}}
+                    </td>
                 {{else}}
-                    <td>—</td>
+                    <td></td>
                 {{/if}}
+
+                <td class="size">
+                    {{#if this.size}}
+                        {{this.size}}
+                    {{/if}}
+                </td>
+
                 {{#if this.orig}}
-                    <td><a href="{{this.orig}}">{{this.file}}</a></td>
+                    {{#if this.file}}
+                        {{#if this.arch}}
+                            <td title="{{this.arch}}" class="link">
+                        {{else}}
+                            <td class="link">
+                        {{/if}}
+                            <a href="{{this.orig}}">{{this.file}}</a>
+                        </td>
+                    {{else}}
+                        <td></td>
+                    {{/if}}
                 {{else}}
-                    <td>{{this.file}}</td>
+                    {{#if this.file}}
+                        <td>{{this.file}}</td>
+                    {{else}}
+                        <td></td>
+                    {{/if}}
                 {{/if}}
+
                 <td>
                     {{#if this.relativePath}}
-                        <a class="mirror" href="{{this.relativePath}}">[зеркало]</a>
-                    {{else}}
-                        —
+                        {{#if this.orig}}
+                            <a class="mirror" href="{{this.relativePath}}">[зеркало]</a>
+                        {{/if}}
                     {{/if}}
                 </td>
             </tr>
@@ -37,12 +73,12 @@
 
 <div class="info">
     <p>
-        Обновление:
+        Обновлено:
         <br>
         <span class="info_data">{{data.texts.timestamp}} :: {{files.count}}/{{data.texts.providers.count}}</span>
     </p>
     <p>
-        Визиты:
+        Посетители:
         <br>
         {{#each data.visitors.useragents}}
             <span class="info_data">— {{this}}</span>

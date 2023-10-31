@@ -35,20 +35,24 @@ table {
     border-spacing: 1em 0em;
 }
 
-table td:nth-child(4) {
-    border-bottom: 1px solid var(--blueDark);
+table tr.provider {
+    color: var(--magenta);
 }
 
 table td.label {
     color: var(--green);
 }
 
-table td a.mirror {
-    color: var(--blueDark);
+table td.size {
+    text-align: right;
 }
 
-table tr.type {
-    color: var(--magenta);
+table td.link {
+    border-bottom: 1px solid var(--blueDark);
+}
+
+table td a.mirror {
+    color: var(--blueDark);
 }
 
 .info {

@@ -58,7 +58,13 @@ const getPageData = async req => {
 
 /**
  * @param {string} folder
- * @returns {Promise<Array<{label: string, version: string, relativePath: string, file: string}>>}
+ * @returns {Promise<{
+ * apk: {
+ * label: string, version: string, name: string, arch: string,
+ * relativePath: string, file: string, provider: string, orig: string, size: string
+ * },
+ * count: number
+ * }>}
  */
 const getApkFilesInfo = async folder => {
     const paths = await globby(folder);
@@ -78,7 +84,7 @@ const getApkFilesInfo = async folder => {
 
                 try {
                     const stat = await fs.stat(path);
-                    size = prettyBytes(stat.size);
+                    size = prettyBytes(stat.size, {maximumFractionDigits: 0}).replace(' ', ' ');
                 } catch (err) {
                     logError(err);
                 }
@@ -93,30 +99,30 @@ const getApkFilesInfo = async folder => {
                 const splitted = path.split('/');
 
                 const file = splitted.at(-1);
-                const type = splitted.at(-2);
+                const provider = `./${splitted.at(-2).replace(/_\d+_/, '').replaceAll('_', '/')}`;
 
                 return {
-                    relativePath, file, type, orig, size,
+                    relativePath, file, provider, orig, size,
                     ...aaptDumpBadgingParse(output),
                 };
             }),
     );
 
-    const byType = {};
+    const byProvider = {};
 
     data.forEach(elem => {
-        if (byType[elem.type]) {
-            byType[elem.type].push(elem);
+        if (byProvider[elem.provider]) {
+            byProvider[elem.provider].push(elem);
         } else {
-            byType[elem.type] = [elem];
+            byProvider[elem.provider] = [elem];
         }
     });
 
-    for (const elem in byType) {
-        byType[elem].sort((a, b) => a?.label?.localeCompare(b?.label));
+    for (const elem in byProvider) {
+        byProvider[elem].sort((a, b) => a?.label?.localeCompare(b?.label));
     }
 
-    return {apk: byType, count: data.length};
+    return {apk: byProvider, count: data.length};
 };
 
 export default router.get(

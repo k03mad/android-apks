@@ -2,10 +2,12 @@ import fs from 'node:fs/promises';
 
 import _ from 'lodash';
 import moment from 'moment';
+import ms from 'ms';
 import pMap from 'p-map';
 
 import {download} from '../../../utils/aria.js';
 import {convertToArray} from '../../../utils/array.js';
+import {retry} from '../../../utils/fn.js';
 import {logError} from '../../../utils/logs.js';
 import serverConfig from '../../server/config.js';
 import cronConfig from '../config.js';
@@ -16,7 +18,7 @@ import cronConfig from '../config.js';
 export const getData = async providers => await Promise.all(
     Object.entries(providers).map(async ([providerName, getProviderData]) => {
         try {
-            const providerData = await getProviderData();
+            const providerData = await retry(() => getProviderData());
             return convertToArray(providerData).map(elem => ({providerName, ...elem}));
         } catch (err) {
             logError([providerName, err]);
@@ -48,7 +50,7 @@ export const downloadApk = async (providers, skipClean) => {
 
             try {
                 const folder = `${serverConfig.static.apk}/${providerName}`;
-                file = await download(folder, link, opts);
+                file = await retry(() => download(folder, link, opts));
                 await fs.writeFile(`${folder}/${file.split('/').at(-1)}.log`, link);
             } catch (err) {
                 logError(err);
@@ -58,8 +60,10 @@ export const downloadApk = async (providers, skipClean) => {
         {concurrency: cronConfig.download.concurrency},
     );
 
-    const timestamp = `${moment(start).format(cronConfig.logs.timestamp.format.full)} `
-                    + `${((Date.now() - start) / 1000).toFixed(0)}s`;
+    const timestamp = [
+        moment(start).format(cronConfig.logs.timestamp.format.full),
+        ms(Date.now() - start),
+    ].join(' ');
 
     await fs.writeFile(cronConfig.logs.timestamp.file, timestamp);
 };
