@@ -5,20 +5,44 @@
     {{#each files.apk}}
         <tr class="provider">
             <td>{{this.[0].provider}}</td>
-        <tr>
+        </tr>
         {{#each this}}
             <tr>
-                <td class="label">{{#and this.label this.version}}{{this.label}} {{this.version}}{{/and}}</td>
-                <td>{{#if this.name}}{{this.name}}{{/if}}</td>
-                <td class="size">{{#if this.size}}{{this.size}}{{/if}}</td>
+                <td class="label">
+                    {{#and this.label this.version}}
+                        {{this.label}} {{this.version}}
+                    {{/and}}
+                </td>
+
+                <td>
+                    {{#if this.name}}
+                        {{this.name}}
+                    {{/if}}
+                </td>
+
+                <td class="size">
+                    {{#if this.size}}
+                        {{this.size}}
+                    {{/if}}
+                </td>
 
                 {{#and this.orig this.file}}
-                    <td {{#if this.arch}}title="{{this.arch}}"{{/if}} class="link"><a href="{{this.orig}}">{{this.file}}</a></td>
+                    <td {{#if this.arch}}title="{{this.arch}}"{{/if}} class="link">
+                        <a href="{{this.orig}}">{{this.file}}</a>
+                    </td>
                 {{else}}
-                    <td>{{#if this.file}}{{this.file}}{{/if}}</td>
+                    <td>
+                        {{#if this.file}}
+                            {{this.file}}
+                        {{/if}}
+                    </td>
                 {{/and}}
 
-                <td>{{#and this.relativePath this.label}}<a class="mirror" href="{{this.relativePath}}">[зеркало]</a>{{/and}}</td>
+                <td>
+                    {{#and this.relativePath this.label}}
+                        <a class="mirror" href="{{this.relativePath}}">[зеркало]</a>
+                    {{/and}}
+                </td>
             </tr>
         {{/each}}
         <tr>
