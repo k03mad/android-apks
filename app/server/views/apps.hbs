@@ -8,49 +8,17 @@
         <tr>
         {{#each this}}
             <tr>
-                <td class="label">
-                    {{#if this.label}}
-                        {{#if this.version}}
-                            {{this.label}} {{this.version}}
-                        {{/if}}
-                    {{/if}}
-                </td>
+                <td class="label">{{#and this.label this.version}}{{this.label}} {{this.version}}{{/and}}</td>
+                <td>{{#if this.name}}{{this.name}}{{/if}}</td>
+                <td class="size">{{#if this.size}}{{this.size}}{{/if}}</td>
 
-                <td>
-                    {{#if this.name}}
-                        {{this.name}}
-                    {{/if}}
-                </td>
-
-                <td class="size">
-                    {{#if this.size}}
-                        {{this.size}}
-                    {{/if}}
-                </td>
-
-                {{#if this.orig}}
-                    {{#if this.file}}
-                        <td {{#if this.arch}}title="{{this.arch}}"{{/if}} class="link">
-                            <a href="{{this.orig}}">{{this.file}}</a>
-                        </td>
-                    {{else}}
-                        <td></td>
-                    {{/if}}
+                {{#and this.orig this.file}}
+                    <td {{#if this.arch}}title="{{this.arch}}"{{/if}} class="link"><a href="{{this.orig}}">{{this.file}}</a></td>
                 {{else}}
-                    <td>
-                        {{#if this.file}}
-                            {{this.file}}
-                        {{/if}}
-                    </td>
-                {{/if}}
+                    <td>{{#if this.file}}{{this.file}}{{/if}}</td>
+                {{/and}}
 
-                <td>
-                    {{#if this.relativePath}}
-                        {{#if this.orig}}
-                            <a class="mirror" href="{{this.relativePath}}">[зеркало]</a>
-                        {{/if}}
-                    {{/if}}
-                </td>
+                <td>{{#and this.relativePath this.label}}<a class="mirror" href="{{this.relativePath}}">[зеркало]</a>{{/and}}</td>
             </tr>
         {{/each}}
         <tr>
