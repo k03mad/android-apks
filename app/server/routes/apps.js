@@ -47,6 +47,7 @@ const getPageData = async req => {
     try {
         const errorLogs = await globby(cronConfig.logs.errors.download.folder);
         errorLinks = await Promise.all(errorLogs.map(log => fs.readFile(log, {encoding: 'utf8'})));
+        errorLinks.sort();
     } catch (err) {
         logError(err);
     }
