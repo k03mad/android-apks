@@ -3,7 +3,7 @@ import {request} from '@k03mad/request';
 import {logError} from '../../../utils/logs.js';
 
 const links = [
-    {link: 'https://disk.2gis.com/android/Latest/2GIS.apk', opts: {ua: 'curl'}},
+    {link: 'https://disk.2gis.com/android/Latest/2GIS.apk', opts: {ua: 'curl', proxy: true}},
     {link: 'https://kpdl.cc/k.apk'},
     {link: 'https://telegram.org/dl/android/apk'},
 ];

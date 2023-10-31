@@ -2,12 +2,13 @@ import fs from 'node:fs/promises';
 
 import _debug from 'debug';
 
+import env from '../env.js';
 import {getUa} from './request.js';
 import {run} from './shell.js';
 
 const debug = _debug('mad:aria');
 
-const getAriaArgs = uaType => [
+const getAriaArgs = opts => [
     '--continue=true',
     '--split=5',
     '--max-connection-per-server=5',
@@ -16,20 +17,21 @@ const getAriaArgs = uaType => [
     '--auto-file-renaming=false',
     '--max-tries=5',
     '--retry-wait=5',
-    `--user-agent="${getUa(uaType)}"`,
-].join(' ');
+    `--user-agent="${getUa(opts.ua || 'mobile')}"`,
+    opts.proxy && env.aria.proxy ? `--all-proxy="${env.aria.proxy}"` : '',
+].filter(Boolean).join(' ');
 
 /**
  * @param {string} dir
  * @param {string} url
  * @param {object} [opts]
- * @param {'desktop'|'mobile'|'empty'} [opts.ua]
+ * @param {'desktop'|'mobile'|'curl'|'empty'} [opts.ua]
+ * @param {boolean} [opts.proxy]
  */
 export const download = async (dir, url, opts = {}) => {
-    debug.extend('url')(url);
     await fs.mkdir(dir, {recursive: true});
 
-    const cmd = `cd ${dir} && aria2c ${getAriaArgs(opts.ua)} ${url}`;
+    const cmd = `cd ${dir} && aria2c ${getAriaArgs(opts)} ${url}`;
     debug.extend('cmd')(cmd);
     const output = await run(cmd);
 

@@ -16,6 +16,9 @@ const env = {
     log: {
         path: './process.log',
     },
+    aria: {
+        proxy: process.env.ARIA_AAPKS_PROXY,
+    },
 };
 
 export default env;
