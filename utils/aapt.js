@@ -1,23 +1,37 @@
+import fs from 'node:fs/promises';
+
+import prettyBytes from 'pretty-bytes';
+
+import {logError} from './logs.js';
 import {run} from './shell.js';
 
 /**
  * @param {string} apkFilePath
- * @returns {Promise<string>}
  */
-export const aaptDumpBadging = apkFilePath => run(`aapt dump badging ${apkFilePath}`);
+export const getApkFileInfo = async apkFilePath => {
+    let aapt, size;
 
-/**
- * @param {string} output
- */
-export const aaptDumpBadgingParse = output => {
-    const label = output?.match(/application-label-ru:'(.+)'/)?.[1]
-               || output?.match(/application-label:'(.+)'/)?.[1];
+    try {
+        aapt = await run(`aapt dump badging ${apkFilePath}`);
+    } catch (err) {
+        aapt = err.stdout;
+    }
 
-    const version = output?.match(/versionName='(.+?)'/)?.[1];
-    const name = output?.match(/name='(.+?)'/)?.[1];
+    try {
+        const stat = await fs.stat(apkFilePath);
+        size = prettyBytes(stat.size, {maximumFractionDigits: 0}).replace(' ', ' ');
+    } catch (err) {
+        logError(err);
+    }
 
-    const nativeCode = output?.match(/native-code: '(.+)'/)?.[1];
+    const label = aapt?.match(/application-label-ru:'(.+)'/)?.[1]
+               || aapt?.match(/application-label:'(.+)'/)?.[1];
+
+    const version = aapt?.match(/versionName='(.+?)'/)?.[1];
+    const pkg = aapt?.match(/name='(.+?)'/)?.[1];
+
+    const nativeCode = aapt?.match(/native-code: '(.+)'/)?.[1];
     const arch = nativeCode?.split(/\s+|'/).filter(Boolean).sort().join(', ');
 
-    return {label, version, name, arch};
+    return {label, version, pkg, arch, size};
 };

@@ -27,16 +27,22 @@ const getAriaArgs = opts => [
  * @param {object} [opts]
  * @param {'desktop'|'mobile'|'curl'|'empty'} [opts.ua]
  * @param {boolean} [opts.proxy]
+ * @param {string} [opts.ext]
  */
 export const download = async (dir, url, opts = {}) => {
-    await fs.mkdir(dir, {recursive: true});
+    const debugAria = debug.extend('aria');
 
     const cmd = `cd ${dir} && aria2c ${getAriaArgs(opts)} ${url}`;
-    debug.extend('cmd')(cmd);
+    debugAria.extend('cmd')(cmd);
+
+    await fs.mkdir(dir, {recursive: true});
     const output = await run(cmd);
 
-    const apkPath = output?.match(/\|(\/.+\.apk)/)?.[1];
-    debug.extend('apk')(apkPath);
+    if (opts.ext) {
+        const filePathRe = new RegExp(`\\|(/.+\\.${opts.ext})`);
+        const filePath = output?.match(filePathRe)?.[1];
+        debugAria.extend('file')(filePath);
 
-    return apkPath;
+        return filePath;
+    }
 };

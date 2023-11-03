@@ -13,9 +13,4 @@ export default {
         views: `${SERVER_FOLDER}/views`,
         ext: '.hbs',
     },
-    rates: {
-        windowMs: 1000,
-        limit: 5,
-        message: 429,
-    },
 };

@@ -13,9 +13,6 @@ const env = {
     github: {
         token: process.env.GITHUB_AAPKS_TOKEN,
     },
-    log: {
-        path: './process.log',
-    },
     aria: {
         proxy: process.env.ARIA_AAPKS_PROXY,
     },
