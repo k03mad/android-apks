@@ -8,7 +8,7 @@ import {logError} from '../../../utils/logs.js';
 import serverConfig from '../../server/config.js';
 import cronConfig from '../config.js';
 import {downloadApkFile, getProvidersData} from './helpers/fetch.js';
-import {getTimestamp, sortJsonData} from './helpers/json.js';
+import {getTimestamp, sortData} from './helpers/json.js';
 
 const debug = _debug('mad:task');
 
@@ -62,7 +62,7 @@ export default async (providers, skipClean) => {
         {concurrency: cronConfig.download.concurrency},
     );
 
-    sortJsonData(json);
+    sortData(json);
     json.timestamp = getTimestamp(start);
 
     await fs.writeFile(cronConfig.json.file, JSON.stringify(json, 0, 2));

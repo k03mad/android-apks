@@ -28,7 +28,7 @@ export const getTimestamp = start => {
  * @param {object} json.apk
  * @param {Array<string>} json.errors
  */
-export const sortJsonData = json => {
+export const sortData = json => {
     // app labels
     Object
         .keys(json.apk)
