@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import {getApkFileInfo} from '../../../../utils/aapt.js';
 import {download} from '../../../../utils/aria.js';
 import {convertToArray} from '../../../../utils/array.js';
@@ -21,7 +23,8 @@ export const getProvidersData = async providers => {
         }),
     );
 
-    return data.filter(Boolean).flat();
+    const flattenProvidersData = data.filter(Boolean).flat();
+    return _.uniqWith(flattenProvidersData, _.isEqual);
 };
 
 /**

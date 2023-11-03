@@ -32,7 +32,7 @@ export const sortData = json => {
     // app labels
     Object
         .keys(json.apk)
-        .forEach(elem => json.apk[elem].sort((a, b) => a.label.localeCompare(b.label)));
+        .forEach(elem => json.apk[elem].sort((a, b) => a.label?.localeCompare(b.label)));
 
     // app providers
     json.apk = Object

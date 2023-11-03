@@ -14,7 +14,7 @@ const getAriaArgs = opts => [
     '--max-connection-per-server=5',
     '--min-split-size=1M',
     '--check-certificate=false',
-    '--auto-file-renaming=false',
+    '--allow-overwrite=true',
     '--max-tries=5',
     '--retry-wait=5',
     `--user-agent="${getUa(opts.ua || 'mobile')}"`,
@@ -30,10 +30,8 @@ const getAriaArgs = opts => [
  * @param {string} [opts.ext]
  */
 export const download = async (dir, url, opts = {}) => {
-    const debugAria = debug.extend('aria');
-
     const cmd = `cd ${dir} && aria2c ${getAriaArgs(opts)} ${url}`;
-    debugAria.extend('cmd')(cmd);
+    debug.extend('cmd')(cmd);
 
     await fs.mkdir(dir, {recursive: true});
     const output = await run(cmd);
@@ -41,7 +39,7 @@ export const download = async (dir, url, opts = {}) => {
     if (opts.ext) {
         const filePathRe = new RegExp(`\\|(/.+\\.${opts.ext})`);
         const filePath = output?.match(filePathRe)?.[1];
-        debugAria.extend('file')(filePath);
+        debug.extend('file')(filePath);
 
         return filePath;
     }

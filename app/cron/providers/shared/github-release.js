@@ -23,7 +23,7 @@ export const getApkFromGhRepos = async repos => {
             }
 
             if (re?.exclude) {
-                const reExcludeFiltered = filtered.filter(elem => re.exclude.test(elem));
+                const reExcludeFiltered = filtered.filter(elem => !re.exclude.test(elem));
 
                 if (reExcludeFiltered.length > 0) {
                     filtered = reExcludeFiltered;

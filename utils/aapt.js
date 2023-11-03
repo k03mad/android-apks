@@ -19,7 +19,7 @@ export const getApkFileInfo = async apkFilePath => {
 
     try {
         const stat = await fs.stat(apkFilePath);
-        size = prettyBytes(stat.size, {maximumFractionDigits: 0}).replace(' ', ' ');
+        size = prettyBytes(stat.size, {maximumFractionDigits: 0}).split(' ');
     } catch (err) {
         logError(err);
     }
