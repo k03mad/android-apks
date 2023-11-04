@@ -8,7 +8,6 @@ const repos = [
     {name: 'massivemadness/Squircle-CE', re: {include: /fdroid/}},
     {name: 'organicmaps/organicmaps'},
     {name: 'polymorphicshade/NewPipe'},
-    {name: 'ReVanced/revanced-manager'},
     {name: 'streetcomplete/StreetComplete'},
     {name: 'TeamNewPipe/NewPipe'},
     {name: 'termux/termux-app', re: {include: /arm64/}},
