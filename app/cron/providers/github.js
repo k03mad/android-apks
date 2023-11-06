@@ -12,6 +12,10 @@ const repos = [
     {name: 'TeamNewPipe/NewPipe'},
     {name: 'termux/termux-app', re: {include: /arm64/}},
     {name: 'yuliskov/SmartTube', re: {include: /arm64/}},
+    {name: 'AdAway/AdAway'},
+    {name: 'celzero/rethink-app'},
+    {name: 'markusfisch/BinaryEye'},
+    {name: 'Chooloo/koler'},
 ];
 
 /**

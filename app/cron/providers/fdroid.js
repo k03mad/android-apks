@@ -3,7 +3,12 @@ import {request} from '@k03mad/request';
 const REQUEST_URL = 'https://f-droid.org/packages/';
 const RESPONSE_LINK_RE = /[^"]+apk/g;
 
-const packages = ['com.foxdebug.acode'];
+const packages = [
+    'com.foxdebug.acode',
+    'com.aurora.store',
+    'ws.xsoh.etar',
+    'org.jitsi.meet',
+];
 
 /**
  * @returns {Promise<Array<{link: string}>>}
