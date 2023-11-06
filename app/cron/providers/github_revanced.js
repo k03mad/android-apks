@@ -1,13 +1,12 @@
-import {getApkFromGhRepos} from './shared/github-release.js';
+import {getApkFromGhUsers} from './shared/github-release.js';
 
-const repos = [
-    {name: 'inotia00/revanced-manager'},
-    {name: 'inotia00/VancedMicroG'},
-    {name: 'NoName-exe/revanced', re: {include: /arm64|all/}},
-    {name: 'revanced/revanced-manager'},
+const users = [
+    {name: 'inotia00'},
+    {name: 'revanced'},
+    {name: 'NoName-exe'},
 ];
 
 /**
  * @returns {Promise<Array<{link: string}>>}
  */
-export default () => getApkFromGhRepos(repos);
+export default () => getApkFromGhUsers(users);

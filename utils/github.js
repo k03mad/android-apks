@@ -19,3 +19,9 @@ export const getReleases = repo => request(`https://api.github.com/repos/${repo}
  * @returns {Promise<object>}
  */
 export const getOrgRepos = org => request(`https://api.github.com/orgs/${org}/repos`, reqOpts);
+
+/**
+ * @param {string} user
+ * @returns {Promise<object>}
+ */
+export const getUserRepos = user => request(`https://api.github.com/users/${user}/repos`, reqOpts);
