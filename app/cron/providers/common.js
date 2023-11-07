@@ -13,7 +13,7 @@ const links = [
 const parse = [
     {
         req: 'https://get.videolan.org/vlc-android/last/',
-        re: /"(VLC.+arm64-v8a\.apk)"/,
+        re: /href="(.+arm64.+.apk)"/,
         opts: {ua: 'curl'},
     },
     {
