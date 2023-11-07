@@ -21,7 +21,7 @@ export const getApkFileInfo = async apkFilePath => {
         const stat = await fs.stat(apkFilePath);
         const [value, unit] = prettyBytes(stat.size, {maximumFractionDigits: 0}).split(' ');
 
-        const remoteDate = new Date(stat.birthtime).toLocaleDateString();
+        const remoteDate = new Date(stat.mtime).toLocaleDateString();
         const currentDate = new Date().toLocaleDateString();
 
         if (remoteDate !== currentDate) {

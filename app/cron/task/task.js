@@ -65,5 +65,5 @@ export default async (providers, skipClean) => {
     sortData(json);
     json.timestamp = getTimestamp(start);
 
-    await fs.writeFile(cronConfig.json.file, JSON.stringify(json, 0, 2));
+    await fs.writeFile(cronConfig.json.file, JSON.stringify(json));
 };
