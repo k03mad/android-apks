@@ -10,11 +10,10 @@ const debug = _debug('mad:aria');
 
 const getAriaArgs = opts => [
     '--continue=true',
+    '--allow-overwrite=true',
     '--split=5',
     '--max-connection-per-server=5',
     '--min-split-size=1M',
-    '--check-certificate=false',
-    '--allow-overwrite=true',
     '--max-tries=5',
     '--retry-wait=5',
     `--user-agent="${getUa(opts.ua || 'mobile')}"`,
