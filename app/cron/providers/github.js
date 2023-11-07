@@ -10,6 +10,7 @@ const repos = [
     {name: 'M66B/NetGuard'},
     {name: 'markusfisch/BinaryEye'},
     {name: 'massivemadness/Squircle-CE', re: {include: /fdroid/}},
+    {name: 'MuntashirAkon/AppManager'},
     {name: 'organicmaps/organicmaps'},
     {name: 'polymorphicshade/NewPipe'},
     {name: 'streetcomplete/StreetComplete'},

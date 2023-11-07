@@ -15,6 +15,7 @@
     --blueDark: #414168;
     --green: #819b93;
     --greenDark: #5c716b;
+    --greenDarker: #39423f;
 }
 
 html {
@@ -30,7 +31,7 @@ a {
 
 table {
     font-size: var(--font);
-    color: var(--greenDark);
+    color: var(--greenDarker);
     border: solid;
     border-radius: 10px;
     border-spacing: 1em 0em;
@@ -42,6 +43,10 @@ table tr.provider {
 
 table td.label {
     color: var(--green);
+}
+
+table td.pkg {
+    color: var(--greenDark);
 }
 
 table td.size {

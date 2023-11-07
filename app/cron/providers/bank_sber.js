@@ -7,6 +7,10 @@ const REQUEST_URL = 'https://apps.sber.ru/apps/';
 const RESPONSE_APP_PAGE_LINK_RE = /chpu":"(.+?)"/g;
 const RESPONSE_APP_DOWNLOAD_LINK_RE = /[^"]+apk/g;
 
+const opts = {
+    skipCheckCert: true,
+};
+
 /**
  * @returns {Promise<Array<{link: string}>>}
  */
@@ -29,5 +33,5 @@ export default async () => {
 
     return [...new Set(appDownloadLinks.filter(Boolean).flat())]
         .filter(link => link.startsWith('http'))
-        .map(link => ({link}));
+        .map(link => ({link, opts}));
 };

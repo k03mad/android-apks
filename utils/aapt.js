@@ -9,7 +9,7 @@ import {run} from './shell.js';
  * @param {string} apkFilePath
  */
 export const getApkFileInfo = async apkFilePath => {
-    let aapt, size;
+    let aapt, date, size;
 
     try {
         aapt = await run(`aapt dump badging ${apkFilePath}`);
@@ -19,7 +19,16 @@ export const getApkFileInfo = async apkFilePath => {
 
     try {
         const stat = await fs.stat(apkFilePath);
-        size = prettyBytes(stat.size, {maximumFractionDigits: 0}).split(' ');
+        const [value, unit] = prettyBytes(stat.size, {maximumFractionDigits: 0}).split(' ');
+
+        const remoteDate = new Date(stat.birthtime).toLocaleDateString();
+        const currentDate = new Date().toLocaleDateString();
+
+        if (remoteDate !== currentDate) {
+            date = remoteDate;
+        }
+
+        size = {value, unit};
     } catch (err) {
         logError(err);
     }
@@ -33,5 +42,5 @@ export const getApkFileInfo = async apkFilePath => {
     const nativeCode = aapt?.match(/native-code: '(.+)'/)?.[1];
     const arch = nativeCode?.split(/\s+|'/).filter(Boolean).sort().join(', ');
 
-    return {label, version, pkg, arch, size};
+    return {label, version, pkg, arch, size, date};
 };

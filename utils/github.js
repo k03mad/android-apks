@@ -4,7 +4,8 @@ import env from '../env.js';
 
 const reqOpts = {
     headers: {
-        authorization: env.github.token ? `Bearer ${env.github.token}` : '',
+        'Authorization': env.github.token ? `Bearer ${env.github.token}` : '',
+        'X-GitHub-Api-Version': '2022-11-28',
     },
 };
 

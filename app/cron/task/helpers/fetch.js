@@ -36,11 +36,14 @@ export const getProvidersData = async providers => {
 export const downloadApkFile = async ({link, opts, providerName}) => {
     const providerSaveFolder = `${serverConfig.static.apk}/${providerName}`;
 
-    const downloadedApkPath = await retry(() => download(providerSaveFolder, link, {...opts, ext: 'apk'}));
+    const downloadedApkPath = await retry(
+        () => download(link, {...opts, ext: 'apk', dir: providerSaveFolder}),
+    );
+
     const info = await getApkFileInfo(downloadedApkPath);
 
     const fileName = downloadedApkPath.split('/').at(-1);
-    const relativeDownloadLink = downloadedApkPath.replace(new RegExp(`.+${serverConfig.static.root}`), '');
+    const relativeDownloadLink = downloadedApkPath.replace(serverConfig.static.root, '');
 
     return {...info, fileName, origDownloadLink: link, relativeDownloadLink};
 };

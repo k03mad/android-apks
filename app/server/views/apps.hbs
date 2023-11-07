@@ -14,16 +14,22 @@
                     {{/and}}
                 </td>
 
-                <td>
+                <td class="pkg">
                     {{#if this.pkg}}
                         {{this.pkg}}
                     {{/if}}
                 </td>
 
-                <td class="size">
-                    {{#if this.size}}
-                        {{this.size.[0]}}&nbsp;{{this.size.[1]}}
+                <td>
+                    {{#if this.date}}
+                        {{this.date}}
                     {{/if}}
+                </td>
+
+                <td class="size">
+                    {{#and this.size.value this.size.unit}}
+                        {{this.size.value}}&nbsp;{{this.size.unit}}
+                    {{/and}}
                 </td>
 
                 {{#and this.origDownloadLink this.fileName}}
