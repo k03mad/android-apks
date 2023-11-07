@@ -4,10 +4,11 @@ const REQUEST_URL = 'https://f-droid.org/packages/';
 const RESPONSE_LINK_RE = /[^"]+apk/g;
 
 const packages = [
-    'com.foxdebug.acode',
     'com.aurora.store',
-    'ws.xsoh.etar',
+    'com.foxdebug.acode',
+    'org.fdroid.fdroid',
     'org.jitsi.meet',
+    'ws.xsoh.etar',
 ];
 
 /**
