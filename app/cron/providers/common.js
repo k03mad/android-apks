@@ -29,7 +29,7 @@ const parse = [
 ];
 
 /**
- * @returns {Promise<Array<{link: string, opts: {ua: string}}>>}
+ * @returns {Promise<Array<{link: string, opts: object}>>}
  */
 export default async () => {
     await Promise.all(parse.map(async ({opts, re, relative, req}) => {

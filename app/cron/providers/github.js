@@ -1,4 +1,4 @@
-import {getApkFromGhOrgs, getApkFromGhRepos} from './shared/github-release.js';
+import {getApkFromGhRepos} from './shared/github-release.js';
 
 const repos = [
     {name: 'AdAway/AdAway'},
@@ -19,16 +19,7 @@ const repos = [
     {name: 'yuliskov/SmartTube', re: {include: /arm64/}},
 ];
 
-const orgs = [{name: 'darkmoonight', re: {include: /arm64.+(release|floss)/}}];
-
 /**
- * @returns {Promise<Array<{link: string}>>}
+ * @returns {Promise<Array<{link: string, opts: object}>>}
  */
-export default async () => {
-    const data = await Promise.all([
-        getApkFromGhRepos(repos),
-        getApkFromGhOrgs(orgs),
-    ]);
-
-    return data.flat();
-};
+export default () => getApkFromGhRepos(repos);

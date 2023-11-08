@@ -6,6 +6,6 @@ const repos = [
 ];
 
 /**
- * @returns {Promise<Array<{link: string}>>}
+ * @returns {Promise<Array<{link: string, opts: object}>>}
  */
 export default () => getApkFromGhRepos(repos);

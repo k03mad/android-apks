@@ -12,7 +12,7 @@ const opts = {
 };
 
 /**
- * @returns {Promise<Array<{link: string}>>}
+ * @returns {Promise<Array<{link: string, opts: object}>>}
  */
 export default async () => {
     const {body: mainPageBody} = await request(REQUEST_URL);
