@@ -37,7 +37,7 @@ const getAriaArgs = opts => [
  */
 export const download = async (url, opts = {}) => {
     const cmd = `aria2c ${getAriaArgs(opts)} ${url}`;
-    debug.extend('cmd')(cmd);
+    debug.extend('cmd')('%o', cmd);
 
     if (opts.dir) {
         await fs.mkdir(opts.dir, {recursive: true});
@@ -48,7 +48,7 @@ export const download = async (url, opts = {}) => {
     if (opts.ext) {
         const filePathRe = new RegExp(`path[\\s\\S]+\\|(.+${opts.ext})`);
         const filePath = output?.match(filePathRe)?.[1];
-        debug.extend('downloaded')(filePath);
+        debug.extend('downloaded')('%o', filePath);
 
         return filePath;
     }
