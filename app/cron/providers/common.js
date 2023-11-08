@@ -15,10 +15,16 @@ const parse = [
         req: 'https://get.videolan.org/vlc-android/last/',
         re: /href="(.+arm64.+.apk)"/,
         opts: {ua: 'curl'},
+        relative: true,
     },
     {
         req: 'https://download.wireguard.com/android-client/',
         re: /href="(.+.apk)"/,
+        relative: true,
+    },
+    {
+        req: 'https://televizo.net/',
+        re: /href="(.+)">APK \(ALL DEVICES\)/,
     },
 ];
 
@@ -26,12 +32,14 @@ const parse = [
  * @returns {Promise<Array<{link: string, opts: {ua: string}}>>}
  */
 export default async () => {
-    await Promise.all(parse.map(async ({opts, re, req}) => {
+    await Promise.all(parse.map(async ({opts, re, relative, req}) => {
         try {
             const {body} = await request(req);
-            const apk = body?.match(re)?.[1];
 
-            links.push({link: req + apk, opts});
+            const url = body?.match(re)?.[1];
+            const link = relative ? req + url : url;
+
+            links.push({link, opts});
         } catch (err) {
             logError(err);
         }

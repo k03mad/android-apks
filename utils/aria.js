@@ -48,7 +48,7 @@ export const download = async (url, opts = {}) => {
     if (opts.ext) {
         const filePathRe = new RegExp(`path[\\s\\S]+\\|(.+${opts.ext})`);
         const filePath = output?.match(filePathRe)?.[1];
-        debug.extend('file')(filePath);
+        debug.extend('downloaded')(filePath);
 
         return filePath;
     }

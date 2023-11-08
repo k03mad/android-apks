@@ -15,6 +15,7 @@ export const getApkFileInfo = async apkFilePath => {
         aapt = await run(`aapt dump badging ${apkFilePath}`);
     } catch (err) {
         aapt = err.stdout;
+        logError(err);
     }
 
     try {

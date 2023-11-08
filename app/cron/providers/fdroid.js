@@ -4,8 +4,10 @@ const REQUEST_URL = 'https://f-droid.org/packages/';
 const RESPONSE_LINK_RE = /[^"]+apk/g;
 
 const packages = [
+    'com.atharok.barcodescanner',
     'com.aurora.store',
     'com.foxdebug.acode',
+    'eu.depau.etchdroid',
     'org.fdroid.fdroid',
     'org.jitsi.meet',
     'ws.xsoh.etar',
