@@ -4,7 +4,7 @@
     </tr>
     {{#each apk}}
         <tr class="provider">
-            <td>{{@key}}</td>
+            <td>[{{@key}}]</td>
         </tr>
         {{#each this}}
             <tr>
@@ -66,7 +66,10 @@
 <div class="raw">
     {{#each apk}}
         {{#each this}}
-            <p>{{this.label}} {{this.version}}</p>
+            <br>
+            {{this.pkg}} {{this.version}}
+            <br>
+            {{this.label}} {{this.version}}
         {{/each}}
     {{/each}}
 </div>
