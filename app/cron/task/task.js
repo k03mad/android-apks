@@ -17,7 +17,7 @@ const debug = _debug('mad:task');
  * @param {boolean} skipClean
  */
 export default async (providers, skipClean) => {
-    const start = Date.now();
+    const startDate = new Date();
     const providersData = await getProvidersData(providers);
 
     if (!skipClean) {
@@ -65,7 +65,7 @@ export default async (providers, skipClean) => {
     );
 
     sortData(json);
-    json.timestamp = getTimestamp(start);
+    json.timestamp = getTimestamp(startDate);
 
     await fs.writeFile(cronConfig.json.file, JSON.stringify(json));
 };

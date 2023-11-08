@@ -11,17 +11,13 @@ const formatProviderName = providerName => `./${
 }`;
 
 /**
- * @param {number} start
+ * @param {Date} startDate
  */
-export const getTimestamp = start => {
-    const date = new Date();
-
-    return [
-        date.toLocaleDateString(),
-        date.toLocaleTimeString(),
-        `+${ms(Date.now() - start)}`,
-    ].join(' ');
-};
+export const getTimestamp = startDate => [
+    startDate.toLocaleDateString(),
+    startDate.toLocaleTimeString(),
+    `+${ms(Date.now() - startDate.getTime())}`,
+].join(' ');
 
 /**
  * @param {object} json
