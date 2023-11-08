@@ -41,7 +41,8 @@ table .provider {
     color: var(--magenta);
 }
 
-table .label, table .version {
+table .label,
+table .version {
     color: var(--green);
 }
 
@@ -61,7 +62,8 @@ table .link {
     border-bottom: 1px solid var(--blueDark);
 }
 
-table a.mirror, .info .link {
+table a.mirror,
+.info .link {
     color: var(--blueDark);
 }
 
