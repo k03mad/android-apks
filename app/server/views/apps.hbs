@@ -9,9 +9,15 @@
         {{#each this}}
             <tr>
                 <td class="label">
-                    {{#and this.label this.version}}
-                        {{this.label}} {{this.version}}
-                    {{/and}}
+                    {{#if this.label}}
+                        {{this.label}}
+                    {{/if}}
+                </td>
+
+                <td class="version" {{#if this.arch}}title="{{this.arch}}"{{/if}}>
+                    {{#if this.version}}
+                        {{this.version}}
+                    {{/if}}
                 </td>
 
                 <td class="pkg">
@@ -20,7 +26,7 @@
                     {{/if}}
                 </td>
 
-                <td>
+                <td class="date">
                     {{#if this.date}}
                         {{this.date}}
                     {{/if}}
@@ -33,11 +39,11 @@
                 </td>
 
                 {{#and this.origDownloadLink this.fileName}}
-                    <td {{#if this.arch}}title="{{this.arch}}"{{/if}} class="link">
+                    <td class="link">
                         <a href="{{this.origDownloadLink}}">{{this.fileName}}</a>
                     </td>
                 {{else}}
-                    <td>
+                    <td class="file">
                         {{#if this.fileName}}
                             {{this.fileName}}
                         {{/if}}
@@ -57,19 +63,27 @@
     {{/each}}
 </table>
 
+<div class="raw">
+    {{#each apk}}
+        {{#each this}}
+            <p>{{this.label}} {{this.version}}</p>
+        {{/each}}
+    {{/each}}
+</div>
+
 <div class="info">
     <p>
         Обновлено:
         <br>
-        <span class="info__data">— {{timestamp}}</span>
+        <span class="data">— {{timestamp}}</span>
     </p>
     {{#if errors}}
         <p>
             Не удалось скачать:
             <br>
             {{#each errors}}
-                <span class="info__data">
-                    — <a class="error__link" href="{{this}}">{{this}}</a>
+                <span class="data">
+                    — <a class="link" href="{{this}}">{{this}}</a>
                 </span>
                 <br>
             {{/each}}
@@ -79,7 +93,7 @@
         Посетители:
         <br>
         {{#each ua}}
-            <span class="info__data">— {{this}}</span>
+            <span class="data">— {{this}}</span>
             <br>
         {{/each}}
     </p>
