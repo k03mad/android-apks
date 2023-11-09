@@ -58,11 +58,11 @@ table .size {
     text-align: right;
 }
 
-table .link_main a {
+table .link {
     border-bottom: 1px solid var(--blueDark);
 }
 
-.link_extra a {
+.link_extra {
     color: var(--blueDark);
 }
 

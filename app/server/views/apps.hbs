@@ -39,7 +39,7 @@
                 </td>
 
                 {{#and this.origDownloadLink this.fileName}}
-                    <td class="link_main">
+                    <td class="link">
                         <a href="{{this.origDownloadLink}}">{{this.fileName}}</a>
                     </td>
                 {{else}}
@@ -50,15 +50,15 @@
                     </td>
                 {{/and}}
 
-                <td class="link_extra">
+                <td>
                     {{#if this.relativeDownloadLink}}
-                        <a href="{{this.relativeDownloadLink}}">[apk mirror]</a>
+                        <a class="link_extra" href="{{this.relativeDownloadLink}}">[apk mirror]</a>
                     {{/if}}
                 </td>
 
-                <td class="link_extra">
+                <td>
                     {{#if this.homepage}}
-                        <a href="{{this.homepage}}">[homepage]</a>
+                        <a class="link_extra" href="{{this.homepage}}">[homepage]</a>
                     {{/if}}
                 </td>
             </tr>
@@ -82,24 +82,24 @@
 
 <div class="info">
     <p>
-        Updated:
+        Updated
         <br>
         <span class="data">— {{timestamp}}</span>
     </p>
     {{#if errors}}
         <p>
-            Errors:
+            Errors
             <br>
             {{#each errors}}
                 <span class="data">
-                    — <a class="link" href="{{this}}">{{this}}</a>
+                    — <a class="link_extra" href="{{this}}">{{this}}</a>
                 </span>
                 <br>
             {{/each}}
         </p>
     {{/if}}
     <p>
-        Visits:
+        Visits
         <br>
         {{#each ua}}
             <span class="data">— {{this}}</span>
