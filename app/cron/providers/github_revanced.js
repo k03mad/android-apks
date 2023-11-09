@@ -1,4 +1,4 @@
-import {getApkFromGhRepos} from './shared/github-release.js';
+import {getApkFromGhRepos} from './shared/github.js';
 
 const repos = [
     {name: 'inotia00/VancedMicroG'},

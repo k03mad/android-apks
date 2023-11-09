@@ -6,6 +6,9 @@
         <tr>
             <td class="provider">{{@key}}</td>
         </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
         {{#each this}}
             <tr>
                 <td class="label">
@@ -39,7 +42,7 @@
                 </td>
 
                 {{#and this.origDownloadLink this.fileName}}
-                    <td class="link">
+                    <td class="main_link">
                         <a href="{{this.origDownloadLink}}">{{this.fileName}}</a>
                     </td>
                 {{else}}
@@ -52,18 +55,18 @@
 
                 <td>
                     {{#if this.relativeDownloadLink}}
-                        <a class="link_extra" href="{{this.relativeDownloadLink}}">[mirror]</a>
+                        <a href="{{this.relativeDownloadLink}}">[mirror]</a>
                     {{/if}}
                 </td>
 
                 <td>
                     {{#if this.homepage}}
-                        <a class="link_extra" href="{{this.homepage}}">[home]</a>
+                        <a href="{{this.homepage}}">[home]</a>
                     {{/if}}
                 </td>
             </tr>
         {{/each}}
-        <tr>
+        <tr class="empty">
             <td>&nbsp;</td>
         </tr>
     {{/each}}
@@ -92,7 +95,7 @@
             <br>
             {{#each errors}}
                 <span class="data">
-                    — <a class="link_extra" href="{{this}}">{{this}}</a>
+                    — <a href="{{this}}">{{this}}</a>
                 </span>
                 <br>
             {{/each}}

@@ -1,4 +1,4 @@
-import {getApkFromGhOrgs} from './shared/github-release.js';
+import {getApkFromGhOrgs} from './shared/github.js';
 
 const orgs = [{name: 'AdguardTeam'}];
 

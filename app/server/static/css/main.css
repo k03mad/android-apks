@@ -26,7 +26,7 @@ html {
 
 a {
     text-decoration: none;
-    color: var(--blue)
+    color: var(--blueDark)
 }
 
 table {
@@ -58,12 +58,12 @@ table .size {
     text-align: right;
 }
 
-table .link {
+table .main_link {
     border-bottom: 1px solid var(--blueDark);
 }
 
-.link_extra {
-    color: var(--blueDark);
+table .main_link a {
+    color: var(--blue);
 }
 
 .raw {

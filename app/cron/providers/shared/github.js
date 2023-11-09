@@ -4,7 +4,7 @@ const APPS_FILTER_DEFAULT_RE = /apk$/;
 
 /**
  * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} repos
- * @returns {Promise<Array<{link: string}>>}
+ * @returns {Promise<Array<{link: string, homepage: string}>>}
  */
 export const getApkFromGhRepos = async repos => {
     const links = await Promise.all(repos.flat().map(async ({name, re}) => {
