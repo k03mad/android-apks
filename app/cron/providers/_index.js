@@ -2,10 +2,10 @@
 /* eslint-disable simple-import-sort/exports */
 
 export {default as _01_common} from './common.js';
-export {default as _02_store} from './store.js';
-export {default as _03_telegram} from './telegram.js';
-export {default as _04_huawei} from './huawei.js';
-export {default as _05_fdroid} from './fdroid.js';
+export {default as _02_telegram} from './telegram.js';
+export {default as _03_store} from './store.js';
+export {default as _04_store_huawei} from './store_huawei.js';
+export {default as _05_store_fdroid} from './store_fdroid.js';
 export {default as _06_github} from './github.js';
 export {default as _07_github_adguard} from './github_adguard.js';
 export {default as _08_github_darkmoonight} from './github_darkmoonight.js';
