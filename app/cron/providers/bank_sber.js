@@ -11,9 +11,7 @@ const opts = {
     skipCheckCert: true,
 };
 
-/**
- * @returns {Promise<Array<{link: string, opts: object}>>}
- */
+/** */
 export default async () => {
     const {body: mainPageBody} = await request(REQUEST_URL);
 
@@ -31,7 +29,8 @@ export default async () => {
         }),
     );
 
-    return [...new Set(appDownloadLinks.filter(Boolean).flat())]
-        .filter(link => link.startsWith('http'))
-        .map(link => ({link, opts}));
+    return appDownloadLinks
+        .flat()
+        .filter(link => link?.startsWith('http'))
+        .map(link => ({link, opts, homepage: REQUEST_URL}));
 };

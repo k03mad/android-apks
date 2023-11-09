@@ -10,6 +10,7 @@ const repos = [
     {name: 'M66B/NetGuard'},
     {name: 'markusfisch/BinaryEye'},
     {name: 'massivemadness/Squircle-CE', re: {include: /fdroid/}},
+    {name: 'moezbhatti/qksms'},
     {name: 'MuntashirAkon/AppManager'},
     {name: 'organicmaps/organicmaps'},
     {name: 'polymorphicshade/NewPipe'},
@@ -19,7 +20,5 @@ const repos = [
     {name: 'yuliskov/SmartTube', re: {include: /arm64/}},
 ];
 
-/**
- * @returns {Promise<Array<{link: string, opts: object}>>}
- */
+/** */
 export default () => getApkFromGhRepos(repos);

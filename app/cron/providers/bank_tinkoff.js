@@ -7,12 +7,10 @@ const REQUEST_OPTS = {headers: {'user-agent': getUa('mobile')}};
 
 const RESPONSE_LINK_RE = /[^"]+apk/g;
 
-/**
- * @returns {Promise<Array<{link: string}>>}
- */
+/** */
 export default async () => {
     const {body} = await request(REQUEST_URL, REQUEST_OPTS);
 
     const links = body.match(RESPONSE_LINK_RE);
-    return [...new Set(links)].map(link => ({link}));
+    return links.map(link => ({link, homepage: REQUEST_URL}));
 };

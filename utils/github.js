@@ -9,20 +9,25 @@ const reqOpts = {
     },
 };
 
+export const urls = {
+    api: 'https://api.github.com',
+    web: 'https://github.com',
+};
+
 /**
  * @param {string} repo
  * @returns {Promise<object>}
  */
-export const getReleases = repo => request(`https://api.github.com/repos/${repo}/releases`, reqOpts);
+export const getReleases = repo => request(`${urls.api}/repos/${repo}/releases`, reqOpts);
 
 /**
  * @param {string} org
  * @returns {Promise<object>}
  */
-export const getOrgRepos = org => request(`https://api.github.com/orgs/${org}/repos`, reqOpts);
+export const getOrgRepos = org => request(`${urls.api}/orgs/${org}/repos`, reqOpts);
 
 /**
  * @param {string} user
  * @returns {Promise<object>}
  */
-export const getUserRepos = user => request(`https://api.github.com/users/${user}/repos`, reqOpts);
+export const getUserRepos = user => request(`${urls.api}/users/${user}/repos`, reqOpts);

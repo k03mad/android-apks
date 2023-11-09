@@ -39,7 +39,7 @@
                 </td>
 
                 {{#and this.origDownloadLink this.fileName}}
-                    <td class="link">
+                    <td class="link_main">
                         <a href="{{this.origDownloadLink}}">{{this.fileName}}</a>
                     </td>
                 {{else}}
@@ -50,10 +50,16 @@
                     </td>
                 {{/and}}
 
-                <td>
-                    {{#and this.relativeDownloadLink this.label}}
-                        <a class="mirror" href="{{this.relativeDownloadLink}}">[зеркало]</a>
-                    {{/and}}
+                <td class="link_extra">
+                    {{#if this.relativeDownloadLink}}
+                        <a href="{{this.relativeDownloadLink}}">[apk mirror]</a>
+                    {{/if}}
+                </td>
+
+                <td class="link_extra">
+                    {{#if this.homepage}}
+                        <a href="{{this.homepage}}">[homepage]</a>
+                    {{/if}}
                 </td>
             </tr>
         {{/each}}
@@ -76,13 +82,13 @@
 
 <div class="info">
     <p>
-        Обновлено:
+        Updated:
         <br>
         <span class="data">— {{timestamp}}</span>
     </p>
     {{#if errors}}
         <p>
-            Не удалось скачать:
+            Errors:
             <br>
             {{#each errors}}
                 <span class="data">
@@ -93,7 +99,7 @@
         </p>
     {{/if}}
     <p>
-        Посетители:
+        Visits:
         <br>
         {{#each ua}}
             <span class="data">— {{this}}</span>

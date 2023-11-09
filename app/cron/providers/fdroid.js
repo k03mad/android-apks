@@ -8,19 +8,21 @@ const packages = [
     'com.aurora.store',
     'com.foxdebug.acode',
     'eu.depau.etchdroid',
+    'net.osmand.plus',
     'org.fdroid.fdroid',
     'org.jitsi.meet',
     'ws.xsoh.etar',
 ];
 
-/**
- * @returns {Promise<Array<{link: string}>>}
- */
+/** */
 export default async () => {
     const links = await Promise.all(packages.map(async pkg => {
-        const {body} = await request(REQUEST_URL + pkg);
-        return body?.match(RESPONSE_LINK_RE)?.find(link => link.includes(pkg));
+        const homepage = REQUEST_URL + pkg;
+
+        const {body} = await request(homepage);
+        const link = body?.match(RESPONSE_LINK_RE)?.find(href => href.includes(pkg));
+        return {link, homepage};
     }));
 
-    return [...new Set(links.filter(Boolean))].map(link => ({link}));
+    return links.filter(elem => elem.link);
 };

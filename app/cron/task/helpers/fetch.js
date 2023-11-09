@@ -23,7 +23,7 @@ export const getProvidersData = async providers => {
         }),
     );
 
-    const flattenProvidersData = data.filter(Boolean).flat();
+    const flattenProvidersData = data.flat().filter(Boolean);
     return _.uniqWith(flattenProvidersData, _.isEqual);
 };
 
@@ -32,8 +32,9 @@ export const getProvidersData = async providers => {
  * @param {string} apk.providerName
  * @param {string} apk.link
  * @param {object} apk.opts
+ * @param {string} apk.homepage
  */
-export const downloadApkFile = async ({link, opts, providerName}) => {
+export const downloadApkFile = async ({homepage, link, opts, providerName}) => {
     const providerSaveFolder = `${serverConfig.static.apk}/${providerName}`;
 
     const downloadedApkPath = await retry(
@@ -45,5 +46,5 @@ export const downloadApkFile = async ({link, opts, providerName}) => {
     const fileName = downloadedApkPath.split('/').at(-1);
     const relativeDownloadLink = downloadedApkPath.replace(serverConfig.static.root, '');
 
-    return {...info, fileName, origDownloadLink: link, relativeDownloadLink};
+    return {...info, fileName, homepage, origDownloadLink: link, relativeDownloadLink};
 };

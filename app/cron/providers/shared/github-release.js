@@ -1,4 +1,4 @@
-import {getOrgRepos, getReleases, getUserRepos} from '../../../../utils/github.js';
+import {getOrgRepos, getReleases, getUserRepos, urls} from '../../../../utils/github.js';
 
 const APPS_FILTER_DEFAULT_RE = /apk$/;
 
@@ -7,34 +7,34 @@ const APPS_FILTER_DEFAULT_RE = /apk$/;
  * @returns {Promise<Array<{link: string}>>}
  */
 export const getApkFromGhRepos = async repos => {
-    const links = await Promise.all(repos.map(async ({name, re}) => {
+    const links = await Promise.all(repos.flat().map(async ({name, re}) => {
         const {body} = await getReleases(name);
 
         const apkUrls = body?.[0]?.assets?.map(asset => asset?.browser_download_url) || [];
-        let filtered = apkUrls.filter(elem => APPS_FILTER_DEFAULT_RE.test(elem));
+        let filteredLinks = apkUrls.filter(elem => APPS_FILTER_DEFAULT_RE.test(elem));
 
-        if (filtered.length > 1) {
+        if (filteredLinks.length > 1) {
             if (re?.include) {
-                const reIncludeFiltered = filtered.filter(elem => re.include.test(elem));
+                const reIncludeFiltered = filteredLinks.filter(elem => re.include.test(elem));
 
                 if (reIncludeFiltered.length > 0) {
-                    filtered = reIncludeFiltered;
+                    filteredLinks = reIncludeFiltered;
                 }
             }
 
             if (re?.exclude) {
-                const reExcludeFiltered = filtered.filter(elem => !re.exclude.test(elem));
+                const reExcludeFiltered = filteredLinks.filter(elem => !re.exclude.test(elem));
 
                 if (reExcludeFiltered.length > 0) {
-                    filtered = reExcludeFiltered;
+                    filteredLinks = reExcludeFiltered;
                 }
             }
         }
 
-        return filtered;
+        return filteredLinks.map(link => ({link, homepage: `${urls.web}/${name}`}));
     }));
 
-    return [...new Set(links.flat().filter(Boolean))].map(link => ({link}));
+    return links.flat().filter(elem => elem.link);
 };
 
 /**
@@ -47,7 +47,7 @@ export const getApkFromGhOrgs = async orgs => {
         return body.map(elem => ({name: `${name}/${elem.name}`, re}));
     }));
 
-    return getApkFromGhRepos(repos.flat());
+    return getApkFromGhRepos(repos);
 };
 
 /**
@@ -60,5 +60,5 @@ export const getApkFromGhUsers = async orgs => {
         return body.map(elem => ({name: `${name}/${elem.name}`, re}));
     }));
 
-    return getApkFromGhRepos(repos.flat());
+    return getApkFromGhRepos(repos);
 };

@@ -58,12 +58,11 @@ table .size {
     text-align: right;
 }
 
-table .link {
+table .link_main a {
     border-bottom: 1px solid var(--blueDark);
 }
 
-table a.mirror,
-.info .link {
+.link_extra a {
     color: var(--blueDark);
 }
 

@@ -1,6 +1,6 @@
 import {getApkFromGhOrgs} from './shared/github-release.js';
 
-const orgs = [{name: 'SimpleMobileTools', re: {exclude: /proprietary/}}];
+const orgs = [{name: 'AdguardTeam'}];
 
 /** */
 export default () => getApkFromGhOrgs(orgs);
