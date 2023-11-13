@@ -6,6 +6,7 @@ const repos = [
     {name: 'celzero/rethink-app'},
     {name: 'Chooloo/koler'},
     {name: 'deckerst/aves', re: {include: /libre-arm64/}},
+    {name: 'imranr98/obtainium'},
     {name: 'libre-tube/LibreTube', re: {include: /arm64/}},
     {name: 'M66B/NetGuard'},
     {name: 'markusfisch/BinaryEye'},
