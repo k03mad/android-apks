@@ -7,7 +7,7 @@ const RESPONSE_LINK_RE = /[^"]+apk/g;
  * @param {Array<string>} packages
  * @returns {Promise<Array<{link: string, homepage: string}>>}
  */
-export const getApkFromPackages = async packages => {
+export const getApkFromFdPackages = async packages => {
     const links = await Promise.all(packages.map(async pkg => {
         const homepage = REQUEST_URL + pkg;
 

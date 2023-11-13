@@ -6,11 +6,14 @@ const REQUEST_URL = 'https://www.tinkoff.ru/apps/';
 const REQUEST_OPTS = {headers: {'user-agent': getUa('mobile')}};
 
 const RESPONSE_LINK_RE = /[^"]+apk/g;
+const APKS_RE = /invest|bank/i;
 
 /** */
 export default async () => {
     const {body} = await request(REQUEST_URL, REQUEST_OPTS);
 
     const links = body.match(RESPONSE_LINK_RE);
-    return links.map(link => ({link, homepage: REQUEST_URL}));
+    return links
+        .filter(link => APKS_RE.test(link))
+        .map(link => ({link, homepage: REQUEST_URL}));
 };
