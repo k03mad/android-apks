@@ -24,10 +24,8 @@ const fdPkg = [
 
 /** */
 export default async () => {
-    const fromStores = await Promise.all([
-        getApkFromAgIds(agIds),
-        getApkFromFdPackages(fdPkg),
-    ]);
+    const ag = getApkFromAgIds(agIds);
+    const fd = await getApkFromFdPackages(fdPkg);
 
-    return [direct, fromStores].flat();
+    return [direct, ag, fd].flat();
 };

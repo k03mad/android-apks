@@ -9,6 +9,6 @@ const getApkLinks = id => ({
 
 /**
  * @param {Array<string>} ids
- * @returns {Promise<Array<{link: string, homepage: string}>>}
+ * @returns {Array<{link: string, homepage: string}>}
  */
 export const getApkFromAgIds = ids => ids.map(id => getApkLinks(id));
