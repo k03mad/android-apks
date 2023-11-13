@@ -5,7 +5,6 @@ const repos = [
     {name: 'libre-tube/LibreTube', re: {include: /arm64/}},
     {name: 'NoName-exe/revanced-extended', re: {include: /all/}},
     {name: 'polymorphicshade/NewPipe'},
-    {name: 'revanced/revanced-manager'},
     {name: 'yuliskov/SmartTube', re: {include: /arm64/}},
 ];
 
