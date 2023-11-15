@@ -5,5 +5,4 @@ export default () => getApkFromFdPackages([
     'com.atharok.barcodescanner',
     'com.foxdebug.acode',
     'net.osmand.plus',
-    'org.jitsi.meet',
 ]);
