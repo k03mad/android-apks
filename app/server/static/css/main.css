@@ -22,7 +22,6 @@ html {
     font-family: Fira, monospace;
     font-size: var(--font);
     background: var(--black);
-    white-space: nowrap;
 }
 
 a {
