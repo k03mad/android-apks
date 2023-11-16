@@ -4,11 +4,7 @@ import ms from 'ms';
  * @param {string} providerName
  * @returns {string}
  */
-const formatProviderName = providerName => `./${
-    providerName
-        .replace(/_\d+_/, '')
-        .replaceAll('_', '/')
-}`;
+const formatProviderName = providerName => `./${providerName.replaceAll('_', '/')}`;
 
 /**
  * @param {Date} startDate
