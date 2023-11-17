@@ -34,7 +34,7 @@ export const getApkFromGhRepos = async repos => {
         return filteredLinks.map(link => ({link, homepage: `${urls.web}/${name}`}));
     }));
 
-    return links.flat().filter(elem => elem.link);
+    return links.flat().filter(elem => elem?.link);
 };
 
 /**
