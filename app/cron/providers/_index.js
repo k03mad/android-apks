@@ -2,8 +2,8 @@
 /* eslint-disable simple-import-sort/exports */
 
 export {default as _01_common} from './common.js';
-export {default as _02_common_telegram} from './common_telegram.js';
-export {default as _03_common_store} from './common_store.js';
+export {default as _02_common_store} from './common_store.js';
+export {default as _03_common_telegram} from './common_telegram.js';
 export {default as _04_fdroid} from './fdroid.js';
 export {default as _05_github} from './github.js';
 export {default as _06_github_adguard} from './github_adguard.js';
