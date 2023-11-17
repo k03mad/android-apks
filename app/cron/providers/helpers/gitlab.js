@@ -16,19 +16,11 @@ export const getApkFromGlRepos = async repos => {
 
         if (apkUrls.length > 1) {
             if (re?.include) {
-                const reIncludeFiltered = apkUrls.filter(elem => re.include.test(elem));
-
-                if (reIncludeFiltered.length > 0) {
-                    apkUrls = reIncludeFiltered;
-                }
+                apkUrls = apkUrls.filter(elem => re.include.test(elem));
             }
 
             if (re?.exclude) {
-                const reExcludeFiltered = apkUrls.filter(elem => !re.exclude.test(elem));
-
-                if (reExcludeFiltered.length > 0) {
-                    apkUrls = reExcludeFiltered;
-                }
+                apkUrls = apkUrls.filter(elem => !re.exclude.test(elem));
             }
         }
 

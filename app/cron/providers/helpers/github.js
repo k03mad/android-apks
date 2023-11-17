@@ -15,19 +15,11 @@ export const getApkFromGhRepos = async repos => {
 
         if (filteredLinks.length > 1) {
             if (re?.include) {
-                const reIncludeFiltered = filteredLinks.filter(elem => re.include.test(elem));
-
-                if (reIncludeFiltered.length > 0) {
-                    filteredLinks = reIncludeFiltered;
-                }
+                filteredLinks = filteredLinks.filter(elem => re.include.test(elem));
             }
 
             if (re?.exclude) {
-                const reExcludeFiltered = filteredLinks.filter(elem => !re.exclude.test(elem));
-
-                if (reExcludeFiltered.length > 0) {
-                    filteredLinks = reExcludeFiltered;
-                }
+                filteredLinks = filteredLinks.filter(elem => !re.exclude.test(elem));
             }
         }
 
