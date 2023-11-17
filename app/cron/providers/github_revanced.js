@@ -1,6 +1,18 @@
-import {getApkFromGhUsers} from './helpers/github.js';
+import {getApkFromGhRepos, getApkFromGhUsers} from './helpers/github.js';
 
-const users = [{name: 'NoName-exe'}];
+const repos = [
+    {name: 'inotia00/mMicroG', re: {include: /arm64/}},
+    {name: 'inotia00/VancedMicroG'},
+];
+
+const users = [{name: 'NoName-exe', re: {include: /all|arm64/}}];
 
 /** */
-export default () => getApkFromGhUsers(users);
+export default async () => {
+    const data = await Promise.all([
+        getApkFromGhRepos(repos),
+        getApkFromGhUsers(users),
+    ]);
+
+    return data.flat();
+};
