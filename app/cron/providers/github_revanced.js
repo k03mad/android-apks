@@ -5,7 +5,7 @@ const repos = [
     {name: 'inotia00/VancedMicroG'},
 ];
 
-const users = [{name: 'NoName-exe', re: {include: /all|arm64/}}];
+const users = [{name: 'NoName-exe', re: {include: /all|arm64/, exclude: /youtube.+mnml/}}];
 
 /** */
 export default async () => {
