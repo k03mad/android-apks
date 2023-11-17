@@ -1,22 +1,12 @@
-import {getApkFromGhOrgs, getApkFromGhUsers} from './helpers/github.js';
+import {getApkFromGhRepos} from './helpers/github.js';
 
 /** */
-export default async () => {
-    const links = await Promise.all([
-        getApkFromGhUsers([
-            {name: 'MuntashirAkon'},
-            {name: 'imranr98'},
-            {name: 'kyujin-cho'},
-            {name: 'massivemadness'},
-        ]),
-        getApkFromGhOrgs([
-            {name: 'EtchDroid'},
-            {name: 'organicmaps'},
-            {name: 'RikkaApps'},
-            {name: 'streetcomplete'},
-            {name: 'termux'},
-        ]),
-    ]);
-
-    return links.flat();
-};
+export default () => getApkFromGhRepos([
+    {name: 'EtchDroid/EtchDroid'},
+    {name: 'imranr98/obtainium', re: {include: /arm64/}},
+    {name: 'kyujin-cho/pixel-volte-patch'},
+    {name: 'massivemadness/Squircle-CE', re: {include: /fdroid/}},
+    {name: 'MuntashirAkon/AppManager'},
+    {name: 'organicmaps/organicmaps'},
+    {name: 'RikkaApps/Shizuku'},
+]);
