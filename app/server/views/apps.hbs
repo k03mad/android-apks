@@ -51,14 +51,14 @@
                 {{/and}}
 
                 <td>
-                    {{#if this.homepage}}
-                        <a href="{{this.homepage}}">[h]</a>
-                    {{/if}}
-                </td>
-                <td>
-                    {{#if this.relativeDownloadLink}}
-                        <a href="{{this.relativeDownloadLink}}">[m]</a>
-                    {{/if}}
+                    <nobr>
+                        {{#if this.homepage}}
+                            <a href="{{this.homepage}}">[h]</a>
+                        {{/if}}
+                        {{#if this.relativeDownloadLink}}
+                            <a href="{{this.relativeDownloadLink}}">[m]</a>
+                        {{/if}}
+                    </nobr>
                 </td>
             </tr>
         {{/each}}
