@@ -6,6 +6,11 @@ const reqOpts = {
         'Authorization': env.github.token ? `Bearer ${env.github.token}` : '',
         'X-GitHub-Api-Version': '2022-11-28',
     },
+    searchParams: {
+        sort: 'updated',
+        direction: 'desc',
+        per_page: 100,
+    },
 };
 
 export const urls = {
