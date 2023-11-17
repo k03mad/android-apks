@@ -19,6 +19,5 @@ const agIds = [
 /** */
 export default () => {
     const ag = getApkFromAgIds(agIds);
-
     return [direct, ag].flat();
 };

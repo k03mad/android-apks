@@ -17,5 +17,5 @@ const repos = [
 /** */
 export default async () => {
     const ghLinks = await getApkFromGhRepos(repos);
-    return [...ghLinks, ...links];
+    return [ghLinks, links].flat();
 };

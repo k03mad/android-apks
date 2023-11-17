@@ -1,14 +1,24 @@
-import {getApkFromGhRepos} from './helpers/github.js';
+import {getApkFromGhRepos, getApkFromGhUsers} from './helpers/github.js';
 
 const repos = [
-    {name: 'inotia00/mMicroG', re: {include: /arm64/}},
-    {name: 'inotia00/VancedMicroG'},
     {name: 'libre-tube/LibreTube', re: {include: /arm64/}},
-    {name: 'NoName-exe/revanced-extended', re: {include: /all/}},
     {name: 'polymorphicshade/NewPipe'},
     {name: 'revanced/revanced-manager'},
+    {name: 'TeamNewPipe/NewPipe'},
     {name: 'yuliskov/SmartTube', re: {include: /arm64/}},
 ];
 
+const users = [
+    {name: 'NoName-exe'},
+    {name: 'inotia00'},
+];
+
 /** */
-export default () => getApkFromGhRepos(repos);
+export default async () => {
+    const data = await Promise.all([
+        getApkFromGhRepos(repos),
+        getApkFromGhUsers(users),
+    ]);
+
+    return data.flat();
+};
