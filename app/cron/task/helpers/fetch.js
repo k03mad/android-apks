@@ -29,16 +29,13 @@ export const getProvidersData = async providers => {
 
 /**
  * @param {object} apk
- * @param {string} apk.providerName
  * @param {string} apk.link
  * @param {object} apk.opts
  * @param {string} apk.homepage
  */
-export const downloadApkFile = async ({homepage, link, opts, providerName}) => {
-    const providerSaveFolder = `${serverConfig.static.apk}/${providerName}`;
-
+export const downloadApkFile = async ({homepage, link, opts}) => {
     const downloadedApkPath = await retry(
-        () => download(link, {...opts, ext: 'apk', dir: providerSaveFolder}),
+        () => download(link, {...opts, ext: 'apk', dir: serverConfig.static.apk}),
     );
 
     const info = await getApkFileInfo(downloadedApkPath);
