@@ -1,6 +1,5 @@
-import {request} from '@k03mad/request';
-
 import {logError} from '../../../utils/logs.js';
+import {req} from '../../../utils/request.js';
 
 const links = [
     {
@@ -36,7 +35,7 @@ const parse = [
 export default async () => {
     await Promise.all(parse.map(async ({homepage, opts, re, relative}) => {
         try {
-            const {body} = await request(homepage);
+            const {body} = await req(homepage);
 
             const url = body?.match(re)?.[1];
             const link = relative ? homepage + url : url;

@@ -1,6 +1,5 @@
-import {request} from '@k03mad/request';
-
 import {logError} from '../../../utils/logs.js';
+import {req} from '../../../utils/request.js';
 
 const REQUEST_URL = 'https://apps.sber.ru/apps/';
 
@@ -13,7 +12,7 @@ const opts = {
 
 /** */
 export default async () => {
-    const {body: mainPageBody} = await request(REQUEST_URL);
+    const {body: mainPageBody} = await req(REQUEST_URL);
 
     const appPageLinks = [...mainPageBody.matchAll(RESPONSE_APP_PAGE_LINK_RE)]
         .map(elem => elem?.[1]);
@@ -21,7 +20,7 @@ export default async () => {
     const appDownloadLinks = await Promise.all(
         appPageLinks.filter(Boolean).map(async appPageLink => {
             try {
-                const {body: appPageBody} = await request(REQUEST_URL + appPageLink);
+                const {body: appPageBody} = await req(REQUEST_URL + appPageLink);
                 return appPageBody.match(RESPONSE_APP_DOWNLOAD_LINK_RE);
             } catch (err) {
                 logError([appPageLink, err]);

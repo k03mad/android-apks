@@ -1,4 +1,4 @@
-import {request} from '@k03mad/request';
+import {req} from '../../../../utils/request.js';
 
 const REQUEST_URL = 'https://f-droid.org/packages/';
 const RESPONSE_LINK_RE = /[^"]+apk/g;
@@ -11,7 +11,7 @@ export const getApkFromFdPackages = async packages => {
     const links = await Promise.all(packages.map(async pkg => {
         const homepage = REQUEST_URL + pkg;
 
-        const {body} = await request(homepage);
+        const {body} = await req(homepage);
         const link = body?.match(RESPONSE_LINK_RE)?.find(href => href.includes(pkg));
         return {link, homepage};
     }));

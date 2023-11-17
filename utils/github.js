@@ -1,6 +1,5 @@
-import {request} from '@k03mad/request';
-
 import env from '../env.js';
+import {req} from './request.js';
 
 const reqOpts = {
     headers: {
@@ -18,16 +17,16 @@ export const urls = {
  * @param {string} repo
  * @returns {Promise<object>}
  */
-export const getReleases = repo => request(`${urls.api}/repos/${repo}/releases`, reqOpts);
+export const getReleases = repo => req(`${urls.api}/repos/${repo}/releases`, reqOpts);
 
 /**
  * @param {string} org
  * @returns {Promise<object>}
  */
-export const getOrgRepos = org => request(`${urls.api}/orgs/${org}/repos`, reqOpts);
+export const getOrgRepos = org => req(`${urls.api}/orgs/${org}/repos`, reqOpts);
 
 /**
  * @param {string} user
  * @returns {Promise<object>}
  */
-export const getUserRepos = user => request(`${urls.api}/users/${user}/repos`, reqOpts);
+export const getUserRepos = user => req(`${urls.api}/users/${user}/repos`, reqOpts);
