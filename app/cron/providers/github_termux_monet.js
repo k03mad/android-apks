@@ -1,6 +1,6 @@
-import {getApkFromGhOrgs} from './helpers/github.js';
+import {getApkFromGhUsers} from './helpers/github.js';
 
 const orgs = [{name: 'HardcodedCat'}];
 
 /** */
-export default () => getApkFromGhOrgs(orgs);
+export default () => getApkFromGhUsers(orgs);
