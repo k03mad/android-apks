@@ -9,7 +9,6 @@ export default () => getApkFromGhRepos([
     {name: 'MuntashirAkon/AppManager'},
     {name: 'organicmaps/organicmaps'},
     {name: 'RikkaApps/Shizuku'},
-    {name: 'SimpleMobileTools/Simple-Gallery', re: {include: /foss/}},
     {name: 'streetcomplete/StreetComplete'},
     {name: 'termux/termux-app', re: {include: /arm64/}},
 ]);

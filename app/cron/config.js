@@ -1,5 +1,5 @@
 export default {
-    interval: '10 */10 * * *',
+    interval: '0 4 * * *',
     download: {
         concurrency: 2,
     },

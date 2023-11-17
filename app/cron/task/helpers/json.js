@@ -1,5 +1,11 @@
 import ms from 'ms';
 
+const formatProviderName = providerName => `./${
+    providerName
+        .replace(/_\d+_/, '')
+        .replaceAll('_', '/')
+}`;
+
 /**
  * @param {Date} startDate
  */
@@ -25,7 +31,7 @@ export const sortData = json => {
         .keys(json.apk)
         .sort()
         .reduce((obj, providerName) => {
-            obj[providerName] = json.apk[providerName];
+            obj[formatProviderName(providerName)] = json.apk[providerName];
             return obj;
         }, {});
 

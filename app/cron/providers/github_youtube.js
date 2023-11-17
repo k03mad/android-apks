@@ -4,6 +4,7 @@ const repos = [
     {name: 'inotia00/VancedMicroG'},
     {name: 'NoName-exe/revanced-extended', re: {include: /all/}},
     {name: 'polymorphicshade/NewPipe'},
+    {name: 'revanced/revanced-manager'},
     {name: 'yuliskov/SmartTube', re: {include: /arm64/}},
 ];
 

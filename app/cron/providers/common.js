@@ -12,10 +12,6 @@ const links = [
         link: 'https://kpdl.cc/k.apk',
         homepage: 'https://kpdl.cc/faq.html',
     },
-    {
-        link: 'https://telegram.org/dl/android/apk',
-        homepage: 'https://telegram.org/android',
-    },
 ];
 
 const parse = [
