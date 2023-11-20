@@ -11,7 +11,7 @@ const debug = _debug('mad:aria');
 const getAriaArgs = opts => [
     // general
     '--continue=true',
-    '--allow-overwrite=true',
+    '--auto-file-renaming=true',
     '--remote-time=true',
     // connection
     '--split=5',
