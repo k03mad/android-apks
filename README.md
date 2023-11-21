@@ -16,7 +16,7 @@
 
 ### Переменные окружения
 
-— GITHUB_AAPKS_TOKEN: `personal access token`, для приложений с GitHub
+— GITHUB_AAPKS_TOKEN: `personal access token`, для приложений с GitHub\
 — ARIA_AAPKS_PROXY: добавляет в `aria2c` аргумент `--all-proxy` с содержимым переменной
 
 ### Старт
