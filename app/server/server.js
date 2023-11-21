@@ -19,7 +19,7 @@ handlebarsHelpersMinify.register(handlebars, {});
 
 const hbs = create({extname: config.handlebars.ext, handlebars});
 const routes = Object.values(routesIndex);
-const getRoutePath = route => route.stack?.[0].route.path;
+const getRoutePath = route => route.stack?.[0]?.route?.path;
 
 /** */
 export default () => {
