@@ -12,5 +12,4 @@ export default () => getApkFromGhRepos([
     {name: 'organicmaps/organicmaps'},
     {name: 'proninyaroslav/libretorrent', re: {include: /arm64/}},
     {name: 'RikkaApps/Shizuku'},
-    {name: 'schwabe/ics-openvpn'},
 ]);
