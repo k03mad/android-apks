@@ -15,7 +15,7 @@ export const getApkFromParse = async parse => {
             const {body} = await req(homepage);
 
             const url = body?.match(re)?.[1];
-            const link = relative ? new URL(url, homepage) : url;
+            const link = relative ? new URL(url, homepage).href : url;
 
             return {link, opts, homepage};
         } catch (err) {
