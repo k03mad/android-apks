@@ -1,5 +1,7 @@
-/** */
-export default () => [
+import {getApkFromAgIds} from './helpers/huawei.js';
+import {getApkFromParse} from './helpers/parse.js';
+
+const direct = [
     {
         link: 'https://androidapp.mtsbank.ru/appdistr/MTSBank.apk',
         homepage: 'https://www.mtsbank.ru/chastnim-licam/vse-servici/mtsdengi-apk/',
@@ -21,4 +23,31 @@ export default () => [
         homepage: 'https://mobile.open.ru/',
         opts: {ua: 'curl', proxy: true},
     },
+    {
+        link: 'https://www.pochtabank.ru/mobappandroid',
+        homepage: 'https://www.pochtabank.ru/pbo-online',
+    },
 ];
+
+const agIds = [
+    // ru.homecredit.mycredit
+    'C101185761',
+    // ru.ftc.faktura.absolutbank
+    'C104493061',
+];
+
+const parse = [
+    {
+        homepage: 'https://www.vbrr.ru/private/remote-service-app/',
+        re: /href="(.+.apk)"/,
+        relative: true,
+    },
+];
+
+/** */
+export default async () => {
+    const parsed = await getApkFromParse(parse);
+
+    const ag = getApkFromAgIds(agIds);
+    return [direct, parsed, ag].flat();
+};

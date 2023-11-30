@@ -1,6 +1,6 @@
 import {getApkFromGhRepos} from './helpers/github.js';
 
-const links = [
+const direct = [
     {
         link: 'https://telegram.org/dl/android/apk',
         homepage: 'https://telegram.org/android',
@@ -17,5 +17,5 @@ const repos = [
 /** */
 export default async () => {
     const ghLinks = await getApkFromGhRepos(repos);
-    return [ghLinks, links].flat();
+    return [ghLinks, direct].flat();
 };

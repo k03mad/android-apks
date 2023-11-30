@@ -1,7 +1,6 @@
-import {logError} from '../../../utils/logs.js';
-import {req} from '../../../utils/request.js';
+import {getApkFromParse} from './helpers/parse.js';
 
-const links = [
+const direct = [
     {
         link: 'https://disk.2gis.com/android/Latest/2GIS.apk',
         homepage: 'https://apk.2gis.ru/',
@@ -33,18 +32,6 @@ const parse = [
 
 /** */
 export default async () => {
-    await Promise.all(parse.map(async ({homepage, opts, re, relative}) => {
-        try {
-            const {body} = await req(homepage);
-
-            const url = body?.match(re)?.[1];
-            const link = relative ? homepage + url : url;
-
-            links.push({link, opts, homepage});
-        } catch (err) {
-            logError(err);
-        }
-    }));
-
-    return links;
+    const parsed = await getApkFromParse(parse);
+    return [direct, parsed].flat();
 };
