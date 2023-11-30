@@ -21,7 +21,7 @@ const getAriaArgs = opts => [
     '--max-tries=5',
     '--retry-wait=5',
     // args
-    `--user-agent="${getUa(opts.ua || 'mobile')}"`,
+    `--user-agent="${getUa(opts.ua)}"`,
     opts.dir ? `--dir=${opts.dir}` : '',
     opts.skipCheckCert ? '--check-certificate=false' : '',
     opts.proxy && env.aria.proxy ? `--all-proxy="${env.aria.proxy}"` : '',

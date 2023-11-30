@@ -18,3 +18,4 @@ export {default as _14_bank} from './bank.js';
 export {default as _15_bank_alfa} from './bank_alfa.js';
 export {default as _16_bank_tinkoff} from './bank_tinkoff.js';
 export {default as _17_bank_sber} from './bank_sber.js';
+export {default as _18_yandex} from './yandex.js';
