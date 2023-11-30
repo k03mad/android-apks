@@ -45,6 +45,10 @@ export default async (providers, skipClean) => {
                 const apk = await downloadApkFile(providerData);
                 debug.extend('finished')(...debugOpts);
 
+                if (!apk.fileName?.endsWith('.apk')) {
+                    throw new Error('Downloaded not apk file');
+                }
+
                 if (json.apk[providerName]) {
                     json.apk[providerName].push(apk);
                 } else {
