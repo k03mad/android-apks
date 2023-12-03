@@ -5,7 +5,8 @@
 }
 
 :root {
-    --font: 11px;
+    --font: 12px;
+    --fontSmall: 9px;
 
     --black: #19181D;
     --magenta: #956485;
@@ -59,6 +60,7 @@ table .size {
 }
 
 table .main_link {
+    font-size: var(--fontSmall);
     border-bottom: 1px solid var(--blueDark);
 }
 
