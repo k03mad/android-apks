@@ -52,11 +52,21 @@ table .version[title] {
 }
 
 table .pkg {
+    font-size: var(--fontSmall);
     color: var(--greenDark);
 }
 
+table .date {
+    font-size: var(--fontSmall);
+}
+
 table .size {
+    font-size: var(--fontSmall);
     text-align: right;
+}
+
+table .extra_link {
+    font-size: var(--fontSmall);
 }
 
 table .main_link {
