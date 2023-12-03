@@ -26,14 +26,14 @@ export default async providers => {
     const [providersData] = await Promise.all([
         getProvidersData(providers),
         fs.rm(serverConfig.static.apk, {force: true, recursive: true}),
-    ])
+    ]);
 
     await pMap(
         _.shuffle(providersData),
 
         async (providerData, counter) => {
             try {
-                counter++
+                counter++;
 
                 const {link, providerName} = providerData;
 

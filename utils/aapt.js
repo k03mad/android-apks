@@ -9,7 +9,7 @@ import {run} from './shell.js';
  * @param {string} apkFilePath
  */
 export const getApkFileInfo = async apkFilePath => {
-    let aapt, date, size,stat;
+    let aapt, date, size, stat;
 
     try {
         aapt = await run(`aapt dump badging ${apkFilePath}`);
