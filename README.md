@@ -19,9 +19,14 @@
 — GITHUB_AAPKS_TOKEN: `personal access token`, для приложений с GitHub\
 — ARIA_AAPKS_PROXY: добавляет в `aria2c` аргумент `--all-proxy` с содержимым переменной
 
-### Старт
+### Запуск
 
 ```bash
+# предварительно скачать апк-файлы
+# только при первом запуске, далее будут скачиваться по крону
+npm run apk:dl
+
+# старт сервера
 npm run start --port=3030
 open http://localhost:3030/apps
 ```

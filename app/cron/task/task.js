@@ -14,35 +14,32 @@ const debug = _debug('mad:task');
 
 /**
  * @param {object} providers
- * @param {boolean} skipClean
  */
-export default async (providers, skipClean) => {
+export default async providers => {
     const startDate = new Date();
-    const providersData = await getProvidersData(providers);
-
-    if (!skipClean) {
-        await fs.rm(serverConfig.static.apk, {force: true, recursive: true});
-    }
 
     const json = {
         apk: {},
         errors: [],
     };
 
-    let counter = 0;
+    const [providersData] = await Promise.all([
+        getProvidersData(providers),
+        fs.rm(serverConfig.static.apk, {force: true, recursive: true}),
+    ])
 
     await pMap(
         _.shuffle(providersData),
 
-        async providerData => {
+        async (providerData, counter) => {
             try {
-                counter++;
+                counter++
 
                 const {link, providerName} = providerData;
 
                 const debugOpts = ['[%o/%o] %o', counter, providersData.length, link];
                 debug.extend('started')(...debugOpts);
-                const apk = await downloadApkFile(providerData);
+                const apk = await downloadApkFile({...providerData, extraDir: String(counter)});
                 debug.extend('finished')(...debugOpts);
 
                 if (!apk.fileName?.endsWith('.apk')) {

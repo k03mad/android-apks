@@ -15,7 +15,7 @@ if (env.scripts.provider) {
 }
 
 if (env.scripts.type === 'dl') {
-    await task(providers, env.scripts.skipClean);
+    await task(providers);
 } else {
     const providersData = await getProvidersData(providers);
     log(providersData);

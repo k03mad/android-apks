@@ -5,8 +5,8 @@
 }
 
 :root {
-    --font: 10px;
-    --fontBig: 12px;
+    --font: 12px;
+    --fontSmall: 10px;
 
     --black: #19181D;
     --magenta: #956485;
@@ -23,6 +23,7 @@ html {
     font-family: Fira, monospace;
     font-size: var(--font);
     background: var(--black);
+    white-space: nowrap;
 }
 
 a {
@@ -39,17 +40,15 @@ table {
 }
 
 table .provider {
-    font-size: var(--fontBig);
     color: var(--magenta);
 }
 
 table .label {
-    font-size: var(--fontBig);
     color: var(--green);
 }
 
 table .version {
-    color: var(--greenDark);
+    color: var(--green);
 }
 
 table .version[title] {
@@ -65,11 +64,16 @@ table .size {
 }
 
 table .main_link {
+    font-size: var(--fontSmall);
     border-bottom: 1px solid var(--blueDark);
 }
 
 table .main_link a {
     color: var(--blue);
+}
+
+table .extra_link {
+    font-size: var(--fontSmall);
 }
 
 .raw {
