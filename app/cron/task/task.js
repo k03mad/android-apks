@@ -42,7 +42,10 @@ export default async providers => {
                 const apk = await downloadApkFile({...providerData, extraDir: String(counter)});
                 debug.extend('finished')(...debugOpts);
 
-                if (!apk.fileName?.endsWith('.apk')) {
+                if (
+                    !apk.fileName?.endsWith('.apk')
+                  || apk.size.raw < 51_200
+                ) {
                     throw new Error('Downloaded not apk file');
                 }
 

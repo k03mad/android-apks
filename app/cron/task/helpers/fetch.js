@@ -38,7 +38,11 @@ export const getProvidersData = async providers => {
  */
 export const downloadApkFile = async ({extraDir = '', homepage, link, opts}) => {
     const downloadedApkPath = await retry(
-        () => download(link, {...opts, ext: 'apk', dir: path.join(serverConfig.static.apk, extraDir)}),
+        () => download(link, {
+            ...opts,
+            ext: 'apk',
+            dir: path.join(serverConfig.static.apk, extraDir),
+        }),
     );
 
     const info = await getApkFileInfo(downloadedApkPath);

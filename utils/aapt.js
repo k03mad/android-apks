@@ -9,7 +9,7 @@ import {run} from './shell.js';
  * @param {string} apkFilePath
  */
 export const getApkFileInfo = async apkFilePath => {
-    let aapt, date, size;
+    let aapt, date, size,stat;
 
     try {
         aapt = await run(`aapt dump badging ${apkFilePath}`);
@@ -19,17 +19,21 @@ export const getApkFileInfo = async apkFilePath => {
     }
 
     try {
-        const stat = await fs.stat(apkFilePath);
+        stat = await fs.stat(apkFilePath);
         const [value, unit] = prettyBytes(stat.size, {maximumFractionDigits: 0}).split(' ');
 
+        size = {value, unit, raw: stat.size};
+    } catch (err) {
+        logError(err);
+    }
+
+    try {
         const remoteDate = new Date(stat.mtime).toLocaleDateString();
         const currentDate = new Date().toLocaleDateString();
 
         if (remoteDate !== currentDate) {
             date = remoteDate;
         }
-
-        size = {value, unit};
     } catch (err) {
         logError(err);
     }
