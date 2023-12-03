@@ -5,8 +5,8 @@
 }
 
 :root {
-    --font: 12px;
-    --fontSmall: 9px;
+    --font: 10px;
+    --fontBig: 12px;
 
     --black: #19181D;
     --magenta: #956485;
@@ -39,12 +39,17 @@ table {
 }
 
 table .provider {
+    font-size: var(--fontBig);
     color: var(--magenta);
 }
 
-table .label,
-table .version {
+table .label {
+    font-size: var(--fontBig);
     color: var(--green);
+}
+
+table .version {
+    color: var(--greenDark);
 }
 
 table .version[title] {
@@ -52,25 +57,14 @@ table .version[title] {
 }
 
 table .pkg {
-    font-size: var(--fontSmall);
     color: var(--greenDark);
 }
 
-table .date {
-    font-size: var(--fontSmall);
-}
-
 table .size {
-    font-size: var(--fontSmall);
     text-align: right;
 }
 
-table .extra_link {
-    font-size: var(--fontSmall);
-}
-
 table .main_link {
-    font-size: var(--fontSmall);
     border-bottom: 1px solid var(--blueDark);
 }
 
