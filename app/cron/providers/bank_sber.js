@@ -16,10 +16,6 @@ const direct = [
         link: 'https://sbermarket.ru/api/gw/app-configs/api/v1/mobile-applications/sbermarket.apk',
         homepage: 'https://sbermarket.ru/download',
     },
-    {
-        link: 'https://sbml.ru/r/android',
-        homepage: 'https://sbermobile.ru/lk/',
-    },
 ];
 
 const agIds = [
@@ -47,7 +43,7 @@ export default async () => {
 
     const links = appDownloadLinks
         .flat()
-        .filter(link => link?.startsWith('http') && !link.startsWith('https://sbermobile.ru'))
+        .filter(link => link?.startsWith('http'))
         .map(link => ({link, opts, homepage: REQUEST_URL}));
 
     const ag = getApkFromAgIds(agIds);
