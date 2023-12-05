@@ -44,7 +44,7 @@ export default async providers => {
 
                 if (
                     !apk.fileName?.endsWith('.apk')
-                  || apk.size.raw < cronConfig.apk.minSizeB
+                    || apk.size.raw < cronConfig.apk.minSizeB
                 ) {
                     throw new Error('Downloaded not apk file');
                 }

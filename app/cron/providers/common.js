@@ -1,3 +1,4 @@
+import {getApkFromAgIds} from './helpers/huawei.js';
 import {getApkFromParse} from './helpers/parse.js';
 
 const direct = [
@@ -30,8 +31,15 @@ const parse = [
     },
 ];
 
+const agIds = [
+    // ru.rzd.pass
+    'C101979029',
+];
+
 /** */
 export default async () => {
     const parsed = await getApkFromParse(parse);
-    return [direct, parsed].flat();
+    const ag = getApkFromAgIds(agIds);
+
+    return [direct, parsed, ag].flat();
 };

@@ -40,7 +40,7 @@ export const getApkFileInfo = async apkFilePath => {
 
     const label = (
         aapt?.match(/application-label-ru:'(.+)'/)?.[1]
-     || aapt?.match(/application-label:'(.+)'/)?.[1]
+        || aapt?.match(/application-label:'(.+)'/)?.[1]
     // &shy;
     )?.replace(/\u00AD/g, '');
 
