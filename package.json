@@ -32,7 +32,7 @@
     "recron": "1.1.5"
   },
   "devDependencies": {
-    "@k03mad/eslint-config": "14.10.2",
+    "@k03mad/eslint-config": "14.11.0",
     "@microsoft/eslint-formatter-sarif": "3.0.0",
     "@stylistic/eslint-plugin": "1.5.0",
     "eslint": "8.55.0",
