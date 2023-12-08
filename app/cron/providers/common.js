@@ -8,18 +8,12 @@ const direct = [
         opts: {ua: 'curl', proxy: true},
     },
     {
-        link: 'https://kpdl.cc/k.apk',
-        homepage: 'https://kpdl.cc/faq.html',
+        link: 'https://telegram.org/dl/android/apk',
+        homepage: 'https://telegram.org/android',
     },
 ];
 
 const parse = [
-    {
-        homepage: 'https://get.videolan.org/vlc-android/last/',
-        re: /href="(.+arm64.+.apk)"/,
-        opts: {ua: 'curl'},
-        relative: true,
-    },
     {
         homepage: 'https://download.wireguard.com/android-client/',
         re: /href="(.+.apk)"/,
