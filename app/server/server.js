@@ -26,11 +26,12 @@ export default () => {
     const app = express();
 
     env.debug && app.use(morgan('combined'));
-    app.use(express.static(config.static.root));
 
     app.use(helmet());
+    app.use(express.static(config.static.apk));
     app.use(compression());
     app.use(minify());
+    app.use(express.static(config.static.root));
 
     app.engine(config.handlebars.ext, hbs.engine);
     app.set('view engine', config.handlebars.ext);

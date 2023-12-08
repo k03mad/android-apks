@@ -49,7 +49,7 @@ export const downloadApkFile = async ({extraDir = '', homepage, link, opts, prov
     const info = await getApkFileInfo(downloadedApkPath);
 
     const fileName = downloadedApkPath.split('/').at(-1);
-    const relativeDownloadLink = downloadedApkPath.replace(serverConfig.static.root, '');
+    const relativeDownloadLink = downloadedApkPath.replace(serverConfig.static.apk, '');
 
     return {...info, fileName, homepage, origDownloadLink: link, relativeDownloadLink};
 };
