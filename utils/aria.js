@@ -11,7 +11,6 @@ const debug = _debug('mad:aria');
 const getAriaArgs = opts => [
     // general
     '--continue=true',
-    '--auto-file-renaming=true',
     '--remote-time=true',
     // connection
     '--split=5',
@@ -30,7 +29,7 @@ const getAriaArgs = opts => [
 /**
  * @param {string} url
  * @param {object} [opts]
- * @param {'desktop'|'mobile'|'curl'|'empty'} [opts.ua]
+ * @param {'desktop'|'mobile'|'curl'|'aria'|'empty'} [opts.ua]
  * @param {boolean} [opts.proxy]
  * @param {string} [opts.ext]
  * @param {boolean} [opts.skipCheckCert]

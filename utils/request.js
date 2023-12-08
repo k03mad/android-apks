@@ -5,6 +5,7 @@ import {retry} from './promise.js';
 
 const chromeVersion = () => `${_.random(100, 120)}.0.${_.random(5000, 6000)}.${_.random(2000, 3000)}`;
 const curlVersion = () => `${_.random(5, 9)}.${_.random(1, 9)}.0`;
+const ariaVersion = () => `${_.random(1, 2)}.${_.random(10, 60)}.0`;
 
 const ua = () => ({
     desktop: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
@@ -18,6 +19,8 @@ const ua = () => ({
     + 'Mobile Safari/537.36',
 
     curl: `curl/${curlVersion()}`,
+
+    aria: `aria/${ariaVersion()}`,
 
     empty: '',
 });
