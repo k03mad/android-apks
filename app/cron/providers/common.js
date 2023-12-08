@@ -7,10 +7,6 @@ const direct = [
         homepage: 'https://apk.2gis.ru/',
         opts: {ua: 'curl', proxy: true},
     },
-    {
-        link: 'https://telegram.org/dl/android/apk',
-        homepage: 'https://telegram.org/android',
-    },
 ];
 
 const parse = [
