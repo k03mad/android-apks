@@ -1,4 +1,4 @@
-import {getApkFromApPkgs} from './helpers/apkpure.js';
+import {getApkFromApIds} from './helpers/apkpure.js';
 import {getApkFromAgIds} from './helpers/huawei.js';
 import {getApkFromParse} from './helpers/parse.js';
 
@@ -22,7 +22,7 @@ const parse = [
     },
 ];
 
-const apPkgs = ['com.xiaomi.smarthome'];
+const apIds = ['mi-home/com.xiaomi.smarthome'];
 
 const agIds = [
     // ru.rzd.pass
@@ -32,8 +32,8 @@ const agIds = [
 /** */
 export default async () => {
     const parsed = await getApkFromParse(parse);
+    const ap = getApkFromApIds(apIds);
     const ag = getApkFromAgIds(agIds);
-    const ap = getApkFromApPkgs(apPkgs);
 
-    return [direct, parsed, ag, ap].flat();
+    return [direct, parsed, ap, ag].flat();
 };

@@ -1,15 +1,19 @@
 /**
- * @param {string} pkg
+ * @param {string} id
  * @returns {Promise<{link: string, homepage: string}>}
  */
-const getApkLinks = pkg => ({
-    homepage: `https://apkpure.com/search?q=${pkg}`,
-    link: `https://d.apkpure.com/b/APK/${pkg}?version=latest`,
-    opts: {ua: 'aria'},
-});
+const getApkLinks = id => {
+    const [, pkg] = id.split('/');
+
+    return {
+        homepage: `https://apkpure.com/${id}`,
+        link: `https://d.apkpure.com/b/APK/${pkg}?version=latest`,
+        opts: {ua: 'aria'},
+    };
+};
 
 /**
- * @param {Array<string>} pkgs
+ * @param {Array<string>} ids
  * @returns {Array<{link: string, homepage: string}>}
  */
-export const getApkFromApPkgs = pkgs => pkgs.map(pkg => getApkLinks(pkg));
+export const getApkFromApIds = ids => ids.map(id => getApkLinks(id));
