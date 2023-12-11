@@ -8,7 +8,15 @@ const providers = {..._providers};
 
 if (env.scripts.provider) {
     for (const key in providers) {
-        if (!key.includes(env.scripts.provider)) {
+        let eq = false;
+
+        env.scripts.provider.split(',').forEach(provider => {
+            if (key === provider) {
+                eq = true;
+            }
+        });
+
+        if (!eq) {
             delete providers[key];
         }
     }

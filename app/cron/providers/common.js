@@ -20,6 +20,10 @@ const parse = [
         homepage: 'https://televizo.net/',
         re: /href="(.+)">APK \(ALL DEVICES\)/,
     },
+    {
+        homepage: 'https://питание.дети/mobile',
+        re: /href="(.+.apk)\s?"/,
+    },
 ];
 
 const apIds = ['mi-home/com.xiaomi.smarthome'];

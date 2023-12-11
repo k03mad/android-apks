@@ -11,6 +11,7 @@ export {default as common_store} from './common_store.js';
 export {default as fdroid} from './fdroid.js';
 export {default as github} from './github.js';
 export {default as github_darkmoonight} from './github_darkmoonight.js';
+export {default as github_fossify} from './github_fossify.js';
 export {default as github_microg} from './github_microg.js';
 export {default as github_revanced} from './github_revanced.js';
 export {default as github_simple} from './github_simple.js';
