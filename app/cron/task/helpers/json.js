@@ -60,7 +60,7 @@ export const addObtainiumLinks = json => {
                                     url: `${env.server.domain}/apps`,
                                     author: 'A-APKS',
                                     name: elem.label,
-                                    installedVersion: elem.version,
+                                    installedVersion: null,
                                     latestVersion: elem.version,
                                     apkUrls: JSON.stringify([
                                         [
