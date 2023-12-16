@@ -2,6 +2,7 @@ import ms from 'ms';
 
 import env from '../../../../env.js';
 import cronConfig from '../../config.js';
+import {getObtainiumImportHtmlApp, getObtainiumImportSupportedLink} from './obtainium.js';
 
 const formatProviderName = providerName => `./${
     providerName
@@ -53,54 +54,11 @@ export const addObtainiumLinks = json => {
             .forEach(providerName => {
                 json.apk[providerName].forEach(elem => {
                     elem.obtainium = {
-                        mirror: `obtainium://app/${encodeURIComponent(
-                            JSON.stringify({
-                                id: elem.pkg,
-                                url: `${env.server.domain}/apps`,
-                                author: 'A-APKS',
-                                name: elem.label,
-                                installedVersion: null,
-                                latestVersion: elem.version,
-                                apkUrls: JSON.stringify([
-                                    [
-                                        `${env.server.domain}/${elem.download?.mirror}`,
-                                        `${env.server.domain}/${elem.download?.mirror}`,
-                                    ],
-                                ]),
-                                preferredApkIndex: 0,
-                                additionalSettings: JSON.stringify(
-                                    {
-                                        sortByFileNamesNotLinks: false,
-                                        reverseSort: false,
-                                        supportFixedAPKURL: false,
-                                        customLinkFilterRegex: `${elem.pkg}_(.+).apk$`,
-                                        intermediateLinkRegex: '',
-                                        versionExtractionRegEx: `${elem.pkg}_(.+).apk$`,
-                                        matchGroupToUse: '1',
-                                        versionExtractWholePage: false,
-                                        trackOnly: false,
-                                        versionDetection: 'noVersionDetection',
-                                        apkFilterRegEx: '',
-                                        autoApkFilterByArch: true,
-                                        appName: '',
-                                        exemptFromBackgroundUpdates: false,
-                                        skipUpdateNotifications: false,
-                                        about: '',
-                                    },
-                                ),
-                                lastUpdateCheck: 1_000_000_000_000_000,
-                                pinned: false,
-                                categories: [],
-                                releaseDate: null,
-                                changeLog: null,
-                                overrideSource: 'HTML',
-                                allowIdChange: false,
-                            }),
-                        )}`,
+                        mirror: getObtainiumImportHtmlApp(elem),
                     };
 
                     if (elem.homepage?.match(cronConfig.obtainium.supportedProvidersLinksRe)) {
-                        elem.obtainium.original = elem.homepage.replace(/^http(s)?:\/\//, 'obtainium://add/');
+                        elem.obtainium.original = getObtainiumImportSupportedLink(elem.homepage);
                     }
                 });
             });
