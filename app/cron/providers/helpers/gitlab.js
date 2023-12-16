@@ -1,4 +1,5 @@
 import {getReleases, urls} from '../../../../utils/gitlab.js';
+import {getObtainiumImportAdd} from './obtainium.js';
 
 const APPS_FILTER_DEFAULT_RE = /\((.+\.apk)\)/;
 
@@ -24,7 +25,13 @@ export const getApkFromGlRepos = async repos => {
             }
         }
 
-        return apkUrls.map(link => ({link, homepage: `${urls.web}/${name}`}));
+        const homepage = `${urls.web}/${name}`;
+
+        return apkUrls.map(link => ({
+            link,
+            homepage,
+            obtainium: getObtainiumImportAdd(homepage),
+        }));
     }));
 
     return links.flat().filter(elem => elem.link);

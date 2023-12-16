@@ -1,4 +1,5 @@
 import {getOrgRepos, getReleases, getUserRepos, urls} from '../../../../utils/github.js';
+import {getObtainiumImportAdd} from './obtainium.js';
 
 const APPS_FILTER_DEFAULT_RE = /apk$/;
 
@@ -23,10 +24,12 @@ export const getApkFromGhRepos = async repos => {
             }
         }
 
+        const homepage = `${urls.web}/${name}`;
+
         return filteredLinks.map(link => ({
             link,
-            homepage: `${urls.web}/${name}`,
-            obtainium: `obtainium://add/github.com/${name}`,
+            homepage,
+            obtainium: getObtainiumImportAdd(homepage),
         }));
     }));
 

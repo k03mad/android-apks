@@ -40,25 +40,19 @@
 
                 <td class="main_link">
                     {{#if this.origDownloadLink}}
-                        <a href="{{this.origDownloadLink}}">download</a>
+                        <a href="{{this.origDownloadLink}}" title="download apk from original url">download</a>
                     {{/if}}
                 </td>
 
                 <td class="extra_link">
                     {{#if this.relativeDownloadLink}}
-                        <a href="{{this.relativeDownloadLink}}">mirror</a>
+                        <a href="{{this.relativeDownloadLink}}" title="download apk from mirror url">[mir]</a>
                     {{/if}}
-                </td>
-
-                <td class="extra_link">
                     {{#if this.homepage}}
-                        <a href="{{this.homepage}}">homepage</a>
+                        <a href="{{this.homepage}}" title="home page">[hp]</a>
                     {{/if}}
-                </td>
-
-                <td class="extra_link">
                     {{#if this.obtainium}}
-                        <a href="{{this.obtainium}}">obtainium</a>
+                        <a href="{{this.obtainium}}" title="obtainium import">[obm]</a>
                     {{/if}}
                 </td>
             </tr>
