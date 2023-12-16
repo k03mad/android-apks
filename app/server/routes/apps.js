@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import express from 'express';
 
 import cronConfig from '../../cron/config.js';
+import serverConfig from '../../server/config.js';
 
 const router = express.Router();
 const userAgents = new Set();
@@ -26,10 +27,10 @@ const getPageData = async req => {
 };
 
 export default router.get(
-    '/apps', async (req, res, next) => {
+    `/${serverConfig.url.appsPath}`, async (req, res, next) => {
         try {
             const data = await getPageData(req);
-            res.render('apps', data);
+            res.render(serverConfig.url.appsPath, data);
         } catch (err) {
             next(err);
         }

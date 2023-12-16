@@ -1,4 +1,5 @@
 import env from '../../../../env.js';
+import serverConfig from '../../../server/config.js';
 
 const obtainiumProto = {
     add: 'obtainium://add/',
@@ -21,7 +22,7 @@ export const getObtainiumImportSupportedLink = link => link.replace(/^http(s)?:\
 export const getObtainiumImportHtmlApp = apkElem => {
     const obtainiumImportObject = {
         id: apkElem.pkg,
-        url: `${env.server.domain}/apps`,
+        url: `${env.server.domain}/${serverConfig.url.appsPath}`,
         author: 'A-APKS',
         name: apkElem.label,
         installedVersion: null,

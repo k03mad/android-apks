@@ -43,6 +43,6 @@ export default () => {
         Object.values(routes)
             .map(elem => getRoutePath(elem))
             .filter(elem => Boolean(elem) && elem !== '*')
-            .map(elem => `route enabled: ${linkStyle(config.url + elem)}`),
+            .map(elem => `route enabled: ${linkStyle(config.url.local + elem)}`),
     ));
 };

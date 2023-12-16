@@ -39,7 +39,7 @@ export default async providers => {
 
                 const debugOpts = ['[%o/%o] %o', counter, providersData.length, link];
                 debug.extend('started')(...debugOpts);
-                const apk = await downloadApkFile({...providerData, extraDir: String(counter)});
+                const apk = await downloadApkFile(providerData);
                 debug.extend('finished')(...debugOpts);
 
                 if (json.apk[providerName]) {
