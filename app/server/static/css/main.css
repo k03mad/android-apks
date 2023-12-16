@@ -69,6 +69,7 @@ table .main_link a {
 table .main_link,
 table .extra_link {
     font-size: var(--fontSmall);
+    white-space: nowrap;
 }
 
 .raw {
