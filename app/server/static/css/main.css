@@ -39,6 +39,7 @@ table {
 }
 
 table .provider {
+    font-size: var(--fontSmall);
     color: var(--magenta);
 }
 
