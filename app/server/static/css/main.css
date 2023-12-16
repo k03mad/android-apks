@@ -59,16 +59,6 @@ table .pkg {
     color: var(--greenDark);
 }
 
-@media only screen and (max-width: 800px) {
-    table .pkg {
-        display: none;
-    }
-}
-
-table .size {
-    text-align: right;
-}
-
 table .main_link a {
     color: var(--blue);
 }
@@ -85,4 +75,13 @@ table .extra_link {
 
 .info .data {
     color: var(--grayDark)
+}
+
+@media only screen and (max-width: 800px) {
+    table .version,
+    table .pkg,
+    table .date,
+    table .size {
+        display: none;
+    }
 }
