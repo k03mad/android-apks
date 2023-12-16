@@ -37,14 +37,13 @@ export const getProvidersData = async providers => {
  * @param {object} [apk.opts]
  * @param {string} [apk.extraDir]
  * @param {string} [apk.homepage]
- * @param {string} apk.providerName
  */
-export const downloadApkFile = async ({extraDir = '', homepage, link, opts, providerName}) => {
+export const downloadApkFile = async ({extraDir = '', homepage, link, opts}) => {
     const downloadedApkPath = await retry(
         () => download(link, {
             ...opts,
             ext: 'apk',
-            dir: path.join(serverConfig.static.apk, providerName, extraDir),
+            dir: path.join(serverConfig.static.download.apk, extraDir),
         }),
     );
 
@@ -56,7 +55,7 @@ export const downloadApkFile = async ({extraDir = '', homepage, link, opts, prov
     const renamedFilePath = path.join(...downloadedApkPathSplit, `${info.pkg}_${info.version}.apk`);
     await fs.rename(downloadedApkPath, renamedFilePath);
 
-    const relativeDownloadLink = renamedFilePath.replace(serverConfig.static.apk, '');
+    const relativeDownloadLink = renamedFilePath.replace(serverConfig.static.download.folder, '');
 
     if (
         !originalFileName?.endsWith('.apk')

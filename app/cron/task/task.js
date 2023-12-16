@@ -25,7 +25,7 @@ export default async providers => {
 
     const [providersData] = await Promise.all([
         getProvidersData(providers),
-        fs.rm(serverConfig.static.apk, {force: true, recursive: true}),
+        fs.rm(serverConfig.static.download.folder, {force: true, recursive: true}),
     ]);
 
     await pMap(

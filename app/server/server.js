@@ -28,7 +28,7 @@ export default () => {
     env.debug && app.use(morgan('combined'));
 
     app.use(helmet());
-    app.use(express.static(config.static.apk));
+    app.use(express.static(config.static.download.folder));
     app.use(compression());
     app.use(minify());
     app.use(express.static(config.static.root));
