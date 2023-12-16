@@ -1,3 +1,4 @@
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import _ from 'lodash';
@@ -49,8 +50,13 @@ export const downloadApkFile = async ({extraDir = '', homepage, link, obtainium,
 
     const info = await getApkFileInfo(downloadedApkPath);
 
-    const fileName = downloadedApkPath.split('/').at(-1);
-    const relativeDownloadLink = downloadedApkPath.replace(serverConfig.static.apk, '');
+    const downloadedApkPathSplit = downloadedApkPath.split('/');
+    const fileName = downloadedApkPathSplit.pop();
+    const renamedFilePath = path.join(...downloadedApkPathSplit, `${info.pkg}_${info.version}.apk`);
 
-    return {...info, fileName, homepage, obtainium, origDownloadLink: link, relativeDownloadLink};
+    await fs.rename(downloadedApkPath, renamedFilePath);
+
+    const relativeDownloadLink = renamedFilePath.replace(serverConfig.static.apk, '');
+
+    return {...info, fileName, renamedFilePath, homepage, obtainium, origDownloadLink: link, relativeDownloadLink};
 };
