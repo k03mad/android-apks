@@ -11,7 +11,6 @@ const debug = _debug('mad:parse');
  * @param {object} parse.opts
  * @param {RegExp} parse.re
  * @param {boolean} parse.relative
- * @returns {Promise<Array<{link: string, opts: {ua: string, proxy: boolean}, homepage: string}>>}
  */
 export const getApkFromParse = async parse => {
     const links = await Promise.all(parse.map(async ({homepage, opts, re, relative}) => {

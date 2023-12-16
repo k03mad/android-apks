@@ -1,11 +1,9 @@
 import {getOrgRepos, getReleases, getUserRepos, urls} from '../../../../utils/github.js';
-import {getObtainiumImportAdd} from './obtainium.js';
 
 const APPS_FILTER_DEFAULT_RE = /apk$/;
 
 /**
  * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} repos
- * @returns {Promise<Array<{link: string, homepage: string, obtainium: string}>>}
  */
 export const getApkFromGhRepos = async repos => {
     const links = await Promise.all(repos.flat().map(async ({name, re}) => {
@@ -29,7 +27,6 @@ export const getApkFromGhRepos = async repos => {
         return filteredLinks.map(link => ({
             link,
             homepage,
-            obtainium: getObtainiumImportAdd(homepage),
         }));
     }));
 
@@ -51,7 +48,6 @@ export const getApkFromGhOrgs = async orgs => {
 
 /**
  * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} orgs
- * @returns {Promise<Array<{name: string, re: {include: RegExp, exclude: RegExp}}>>}
  */
 export const getApkFromGhUsers = async orgs => {
     const repos = await Promise.all(orgs.map(async ({name, re}) => {

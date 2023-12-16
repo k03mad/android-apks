@@ -2,6 +2,7 @@ process.env.NODE_ENV = 'production';
 
 const env = {
     server: {
+        domain: process.env.AAPKS_DOMAIN,
         port: process.env.npm_config_port || 13_010,
     },
     debug: process.env.DEBUG,
@@ -10,10 +11,10 @@ const env = {
         type: process.env.TYPE,
     },
     github: {
-        token: process.env.GITHUB_AAPKS_TOKEN,
+        token: process.env.AAPKS_GITHUB_TOKEN,
     },
     aria: {
-        proxy: process.env.ARIA_AAPKS_PROXY,
+        proxy: process.env.AAPKS_ARIA_PROXY,
     },
 };
 

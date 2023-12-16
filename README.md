@@ -16,8 +16,9 @@
 
 ### Переменные окружения
 
-— GITHUB_AAPKS_TOKEN: `personal access token`, для приложений с GitHub\
-— ARIA_AAPKS_PROXY: добавляет в `aria2c` аргумент `--all-proxy` с содержимым переменной
+— AAPKS_DOMAIN: домен, по которому доступен сервер, для ссылок импорта в Obtainium (например: `http://ваш-домен:3030`)\
+— AAPKS_GITHUB_TOKEN: `personal access token`, для приложений с GitHub\
+— AAPKS_ARIA_PROXY: добавляет в `aria2c` аргумент `--all-proxy` с содержимым переменной
 
 ### Запуск
 
@@ -30,16 +31,3 @@ npm run apk:dl
 npm run start --port=3030
 open http://localhost:3030/apps
 ```
-
-## Obtainium
-
-### Общие настройки
-
-— URL-источник: `http://ваш-домен:3030/apps`\
-— Группа для извлечения версии: `1`\
-— Применять регулярное выражение версии ко всей страницы
-
-### Пример фильтра для приложений
-
-— Фильтр ссылок: `tinkoff-bank.+apk$`\
-— Извлечение версии: `>Тинькофф ([\d.]+)`

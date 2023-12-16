@@ -1,12 +1,10 @@
 import {req} from '../../../../utils/request.js';
-import {getObtainiumImportAdd} from './obtainium.js';
 
 const REQUEST_URL = 'https://f-droid.org/packages/';
 const RESPONSE_LINK_RE = /[^"]+apk/g;
 
 /**
  * @param {Array<string>} packages
- * @returns {Promise<Array<{link: string, homepage: string}>>}
  */
 export const getApkFromFdPackages = async packages => {
     const links = await Promise.all(packages.map(async pkg => {
@@ -18,7 +16,6 @@ export const getApkFromFdPackages = async packages => {
         return {
             link,
             homepage,
-            obtainium: getObtainiumImportAdd(homepage),
         };
     }));
 

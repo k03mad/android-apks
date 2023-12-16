@@ -1,11 +1,9 @@
 import {getReleases, urls} from '../../../../utils/gitlab.js';
-import {getObtainiumImportAdd} from './obtainium.js';
 
 const APPS_FILTER_DEFAULT_RE = /\((.+\.apk)\)/;
 
 /**
  * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} repos
- * @returns {Promise<Array<{link: string, homepage: string}>>}
  */
 export const getApkFromGlRepos = async repos => {
     const links = await Promise.all(repos.flat().map(async ({name, re}) => {
@@ -30,7 +28,6 @@ export const getApkFromGlRepos = async repos => {
         return apkUrls.map(link => ({
             link,
             homepage,
-            obtainium: getObtainiumImportAdd(homepage),
         }));
     }));
 

@@ -9,6 +9,7 @@ import {convertToArray} from '../../../../utils/array.js';
 import {logError} from '../../../../utils/logs.js';
 import {retry} from '../../../../utils/promise.js';
 import serverConfig from '../../../server/config.js';
+import cronConfig from '../../config.js';
 
 /**
  * @param {object} providers
@@ -37,9 +38,8 @@ export const getProvidersData = async providers => {
  * @param {string} [apk.extraDir]
  * @param {string} [apk.homepage]
  * @param {string} apk.providerName
- * @param {string} [apk.obtainium]
  */
-export const downloadApkFile = async ({extraDir = '', homepage, link, obtainium, opts, providerName}) => {
+export const downloadApkFile = async ({extraDir = '', homepage, link, opts, providerName}) => {
     const downloadedApkPath = await retry(
         () => download(link, {
             ...opts,
@@ -51,12 +51,26 @@ export const downloadApkFile = async ({extraDir = '', homepage, link, obtainium,
     const info = await getApkFileInfo(downloadedApkPath);
 
     const downloadedApkPathSplit = downloadedApkPath.split('/');
-    const fileName = downloadedApkPathSplit.pop();
-    const renamedFilePath = path.join(...downloadedApkPathSplit, `${info.pkg}_${info.version}.apk`);
+    const originalFileName = downloadedApkPathSplit.pop();
 
+    const renamedFilePath = path.join(...downloadedApkPathSplit, `${info.pkg}_${info.version}.apk`);
     await fs.rename(downloadedApkPath, renamedFilePath);
 
     const relativeDownloadLink = renamedFilePath.replace(serverConfig.static.apk, '');
 
-    return {...info, fileName, renamedFilePath, homepage, obtainium, origDownloadLink: link, relativeDownloadLink};
+    if (
+        !originalFileName?.endsWith('.apk')
+        || info?.size?.raw < cronConfig.apk.minSizeB
+    ) {
+        throw new Error('Downloaded not apk file');
+    }
+
+    return {
+        ...info,
+        homepage,
+        download: {
+            original: link,
+            mirror: relativeDownloadLink,
+        },
+    };
 };

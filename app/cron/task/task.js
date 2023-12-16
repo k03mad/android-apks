@@ -8,7 +8,7 @@ import {logError} from '../../../utils/logs.js';
 import serverConfig from '../../server/config.js';
 import cronConfig from '../config.js';
 import {downloadApkFile, getProvidersData} from './helpers/fetch.js';
-import {getTimestamp, sortData} from './helpers/json.js';
+import {addObtainiumLinks, getTimestamp, sortData} from './helpers/json.js';
 
 const debug = _debug('mad:task');
 
@@ -42,13 +42,6 @@ export default async providers => {
                 const apk = await downloadApkFile({...providerData, extraDir: String(counter)});
                 debug.extend('finished')(...debugOpts);
 
-                if (
-                    !apk.fileName?.endsWith('.apk')
-                    || apk.size.raw < cronConfig.apk.minSizeB
-                ) {
-                    throw new Error('Downloaded not apk file');
-                }
-
                 if (json.apk[providerName]) {
                     json.apk[providerName].push(apk);
                 } else {
@@ -69,6 +62,7 @@ export default async providers => {
     );
 
     sortData(json);
+    addObtainiumLinks(json);
     json.timestamp = getTimestamp(startDate);
 
     await fs.writeFile(cronConfig.json.file, JSON.stringify(json));
