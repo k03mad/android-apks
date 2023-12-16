@@ -73,10 +73,6 @@ table .extra_link {
     white-space: nowrap;
 }
 
-.raw {
-    display: none;
-}
-
 .info {
     color: var(--gray)
 }

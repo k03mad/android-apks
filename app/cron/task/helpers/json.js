@@ -62,12 +62,13 @@ export const addObtainiumLinks = json => {
                                     name: elem.label,
                                     installedVersion: null,
                                     latestVersion: elem.version,
-                                    apkUrls: JSON.stringify([
-                                        [
-                                            `${env.server.domain}/${elem.download?.mirror}`,
-                                            `${env.server.domain}/${elem.download?.mirror}`,
-                                        ],
-                                    ]),
+                                    apkUrls: null,
+                                    // apkUrls: JSON.stringify([
+                                    //     [
+                                    //         `${env.server.domain}/${elem.download?.mirror}`,
+                                    //         `${env.server.domain}/${elem.download?.mirror}`,
+                                    //     ],
+                                    // ]),
                                     preferredApkIndex: 0,
                                     additionalSettings: JSON.stringify(
                                         {
