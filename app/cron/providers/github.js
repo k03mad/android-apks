@@ -2,6 +2,7 @@ import {getApkFromGhRepos} from './helpers/github.js';
 
 /** */
 export default () => getApkFromGhRepos([
+    {name: 'Aefyr/SAI'},
     {name: 'Chooloo/koler'},
     {name: 'EtchDroid/EtchDroid'},
     {name: 'imranr98/obtainium', re: {include: /arm64/}},

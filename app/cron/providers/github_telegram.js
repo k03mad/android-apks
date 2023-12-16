@@ -10,6 +10,7 @@ const direct = [
 const repos = [
     {name: 'arsLan4k1390/Cherrygram', re: {include: /arm64/, exclude: /huawei/i}},
     {name: 'forkgram/TelegramAndroid'},
+    {name: 'moeCrafters/moeGramX', re: {include: /arm64/}},
     {name: 'Nekogram/Nekogram', re: {include: /arm64/}},
     {name: 'NekoX-Dev/NekoX', re: {include: /full-arm64.+release.apk/}},
     {name: 'NextAlone/Nagram', re: {include: /arm64/, exclude: /nogcm/i}},

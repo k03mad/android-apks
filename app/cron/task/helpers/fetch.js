@@ -32,12 +32,13 @@ export const getProvidersData = async providers => {
 /**
  * @param {object} apk
  * @param {string} apk.link
- * @param {object} apk.opts
- * @param {string} apk.extraDir
- * @param {string} apk.homepage
+ * @param {object} [apk.opts]
+ * @param {string} [apk.extraDir]
+ * @param {string} [apk.homepage]
  * @param {string} apk.providerName
+ * @param {string} [apk.obtainium]
  */
-export const downloadApkFile = async ({extraDir = '', homepage, link, opts, providerName}) => {
+export const downloadApkFile = async ({extraDir = '', homepage, link, obtainium, opts, providerName}) => {
     const downloadedApkPath = await retry(
         () => download(link, {
             ...opts,
@@ -51,5 +52,5 @@ export const downloadApkFile = async ({extraDir = '', homepage, link, opts, prov
     const fileName = downloadedApkPath.split('/').at(-1);
     const relativeDownloadLink = downloadedApkPath.replace(serverConfig.static.apk, '');
 
-    return {...info, fileName, homepage, origDownloadLink: link, relativeDownloadLink};
+    return {...info, fileName, homepage, obtainium, origDownloadLink: link, relativeDownloadLink};
 };

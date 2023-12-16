@@ -4,7 +4,7 @@ const APPS_FILTER_DEFAULT_RE = /apk$/;
 
 /**
  * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} repos
- * @returns {Promise<Array<{link: string, homepage: string}>>}
+ * @returns {Promise<Array<{link: string, homepage: string, obtainium: string}>>}
  */
 export const getApkFromGhRepos = async repos => {
     const links = await Promise.all(repos.flat().map(async ({name, re}) => {
@@ -23,7 +23,11 @@ export const getApkFromGhRepos = async repos => {
             }
         }
 
-        return filteredLinks.map(link => ({link, homepage: `${urls.web}/${name}`}));
+        return filteredLinks.map(link => ({
+            link,
+            homepage: `${urls.web}/${name}`,
+            obtainium: `obtainium://add/github.com/${name}`,
+        }));
     }));
 
     return links.flat().filter(elem => elem?.link);

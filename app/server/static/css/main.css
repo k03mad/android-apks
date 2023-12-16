@@ -62,15 +62,11 @@ table .size {
     text-align: right;
 }
 
-table .main_link {
-    font-size: var(--fontSmall);
-    border-bottom: 1px solid var(--blueDark);
-}
-
 table .main_link a {
     color: var(--blue);
 }
 
+table .main_link,
 table .extra_link {
     font-size: var(--fontSmall);
 }
