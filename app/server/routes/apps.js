@@ -8,13 +8,22 @@ import serverConfig from '../../server/config.js';
 const router = express.Router();
 const userAgents = new Set();
 
+let modTime, parsedData;
+
 /**
  * @param {object} req
  * @param {object} [req.headers]
  */
 const getPageData = async req => {
-    const dataFile = await fs.readFile(cronConfig.json.file);
-    const data = JSON.parse(dataFile);
+    const {mtime} = await fs.stat(cronConfig.json.file);
+
+    if (String(mtime) !== String(modTime)) {
+        const dataFile = await fs.readFile(cronConfig.json.file);
+
+        parsedData = JSON.parse(dataFile);
+        // eslint-disable-next-line require-atomic-updates
+        modTime = mtime;
+    }
 
     const ua = req.headers?.['user-agent'];
 
@@ -22,8 +31,8 @@ const getPageData = async req => {
         userAgents.add(ua);
     }
 
-    data.ua = [...userAgents].sort();
-    return data;
+    parsedData.ua = [...userAgents].sort();
+    return parsedData;
 };
 
 export default router.get(
