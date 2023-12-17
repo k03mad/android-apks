@@ -1,8 +1,6 @@
 import compression from 'compression';
 import express from 'express';
-import {create} from 'express-handlebars';
-import minify from 'express-minify';
-import handlebars from 'handlebars';
+import {engine} from 'express-handlebars';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
@@ -12,7 +10,6 @@ import {log} from '../../utils/logs.js';
 import config from './config.js';
 import routesIndex from './routes/_index.js';
 
-const hbs = create({extname: config.handlebars.ext, handlebars});
 const routes = Object.values(routesIndex);
 const getRoutePath = route => route.stack?.[0]?.route?.path;
 
@@ -25,10 +22,9 @@ export default () => {
     app.use(helmet());
     app.use(express.static(config.static.download.folder));
     app.use(compression());
-    app.use(minify());
     app.use(express.static(config.static.root));
 
-    app.engine(config.handlebars.ext, hbs.engine);
+    app.engine(config.handlebars.ext, engine({extname: config.handlebars.ext}));
     app.set('view engine', config.handlebars.ext);
     app.set('views', config.handlebars.views);
 
