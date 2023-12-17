@@ -1,0 +1,27 @@
+<div class="info">
+    <p>
+        Updated
+        <br>
+        <span class="data">— {{timestamp}}</span>
+    </p>
+    {{#if errors}}
+        <p>
+            Errors
+            <br>
+            {{#each errors}}
+                <span class="data">
+                    — <a href="{{this}}">{{this}}</a>
+                </span>
+                <br>
+            {{/each}}
+        </p>
+    {{/if}}
+    <p>
+        Visits
+        <br>
+        {{#each ua}}
+            <span class="data">— {{this}}</span>
+            <br>
+        {{/each}}
+    </p>
+</div>
