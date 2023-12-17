@@ -6,10 +6,24 @@ const obtainiumProto = {
     app: 'obtainium://app/',
 };
 
+const supportedProvidersDomains = [
+    'https://apkpure.com',
+    'https://appgallery.huawei.com',
+    'https://f-droid.org',
+    'https://github.com',
+    'https://gitlab.com',
+];
+
 /**
  * @param {string} link
  */
-export const getObtainiumImportSupportedLink = link => link.replace(/^http(s)?:\/\//, obtainiumProto.add);
+export const getObtainiumImportSupportedLink = link => {
+    for (const domain of supportedProvidersDomains) {
+        if (link.startsWith(domain)) {
+            return link.replace(/^https:\/\//, obtainiumProto.add);
+        }
+    }
+};
 
 /**
  * @param {object} apkElem

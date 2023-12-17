@@ -24,6 +24,11 @@ const parse = [
         homepage: 'https://питание.дети/mobile',
         re: /href="(.+.apk)\s?"/,
     },
+    {
+        homepage: 'https://www.whatsapp.com/android',
+        re: /href="(https:\/\/scontent.+)" data.+Android_PackageInstaller/,
+        replace: {from: /&amp;/g, to: '&'},
+    },
 ];
 
 const apIds = ['mi-home/com.xiaomi.smarthome'];

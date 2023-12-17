@@ -9,7 +9,4 @@ export default {
     json: {
         file: './app/data.json',
     },
-    obtainium: {
-        supportedProvidersLinksRe: /^https:\/\/(apkpure.com|f-droid.org|github.com|gitlab.com|appgallery.huawei.com)/,
-    },
 };

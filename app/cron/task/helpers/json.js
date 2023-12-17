@@ -1,7 +1,6 @@
 import ms from 'ms';
 
 import env from '../../../../env.js';
-import cronConfig from '../../config.js';
 import {getObtainiumImportHtmlApp, getObtainiumImportSupportedLink} from './obtainium.js';
 
 const formatProviderName = providerName => `./${
@@ -57,8 +56,10 @@ export const addObtainiumLinks = json => {
                         mirror: getObtainiumImportHtmlApp(elem),
                     };
 
-                    if (elem.homepage?.match(cronConfig.obtainium.supportedProvidersLinksRe)) {
-                        elem.obtainium.original = getObtainiumImportSupportedLink(elem.homepage);
+                    const originalSupportedLink = getObtainiumImportSupportedLink(elem.homepage);
+
+                    if (originalSupportedLink) {
+                        elem.obtainium.original = originalSupportedLink;
                     }
                 });
             });

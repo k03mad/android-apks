@@ -35,7 +35,7 @@ const getAriaArgs = opts => [
  * @param {boolean} [opts.skipCheckCert]
  */
 export const download = async (url, opts = {}) => {
-    const cmd = `aria2c ${getAriaArgs(opts)} ${url}`;
+    const cmd = `aria2c ${getAriaArgs(opts)} "${url}"`;
     debug.extend('cmd')('%o', cmd);
 
     if (opts.dir) {
