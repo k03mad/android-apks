@@ -1,7 +1,7 @@
 @font-face {
     font-family: Fira;
     font-display: swap;
-    src: url('/font/FiraCode-VF.woff2') format('woff2');
+    src: url('/apps/font/FiraCode-VF.woff2') format('woff2');
 }
 
 :root {

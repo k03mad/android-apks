@@ -1,6 +1,7 @@
 import compression from 'compression';
 import express from 'express';
 import {engine} from 'express-handlebars';
+import minify from 'express-minify';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
@@ -20,8 +21,9 @@ export default () => {
     env.debug && app.use(morgan('combined'));
 
     app.use(helmet());
-    app.use(express.static(config.static.download.folder));
     app.use(compression());
+    app.use(minify());
+
     app.use(express.static(config.static.root));
 
     app.engine(config.handlebars.ext, engine({extname: config.handlebars.ext}));

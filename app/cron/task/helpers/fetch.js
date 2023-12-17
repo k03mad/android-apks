@@ -42,7 +42,7 @@ export const downloadApkFile = async ({homepage, link, opts}) => {
         () => download(link, {
             ...opts,
             ext: 'apk',
-            dir: serverConfig.static.download.apk,
+            dir: serverConfig.static.apk,
         }),
     );
 
@@ -54,7 +54,7 @@ export const downloadApkFile = async ({homepage, link, opts}) => {
     const renamedFilePath = path.join(...downloadedApkPathSplit, `${info.pkg}_${info.version}.apk`);
     await fs.rename(downloadedApkPath, renamedFilePath);
 
-    const relativeDownloadLink = renamedFilePath.replace(serverConfig.static.download.folder, '');
+    const relativeDownloadLink = renamedFilePath.replace(serverConfig.static.root, '');
 
     if (
         !originalFileName?.endsWith('.apk')
