@@ -3,8 +3,6 @@ import express from 'express';
 import {create} from 'express-handlebars';
 import minify from 'express-minify';
 import handlebars from 'handlebars';
-import handlebarsHelpersMinify from 'handlebars-helper-minify';
-import handlebarsHelpers from 'handlebars-helpers';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
@@ -13,9 +11,6 @@ import {linkStyle} from '../../utils/colors.js';
 import {log} from '../../utils/logs.js';
 import config from './config.js';
 import routesIndex from './routes/_index.js';
-
-handlebarsHelpers();
-handlebarsHelpersMinify.register(handlebars, {});
 
 const hbs = create({extname: config.handlebars.ext, handlebars});
 const routes = Object.values(routesIndex);

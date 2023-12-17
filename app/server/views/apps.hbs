@@ -33,9 +33,11 @@
                 </td>
 
                 <td class="size">
-                    {{#and this.size.value this.size.unit}}
-                        {{this.size.value}}&#8239;{{this.size.unit}}
-                    {{/and}}
+                    {{#if this.size.value}}
+                        {{#if this.size.unit}}
+                            {{this.size.value}}&#8239;{{this.size.unit}}
+                        {{/if}}
+                    {{/if}}
                 </td>
 
                 <td class="main_link">
