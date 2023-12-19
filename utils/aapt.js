@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 
 import prettyBytes from 'pretty-bytes';
 
+import {getDateYMD} from './date.js';
 import {logError} from './logs.js';
 import {run} from './shell.js';
 
@@ -28,10 +29,9 @@ export const getApkFileInfo = async apkFilePath => {
     }
 
     try {
-        const remoteDate = new Date(stat.mtime).toLocaleDateString();
-        const currentDate = new Date().toLocaleDateString();
+        const remoteDate = getDateYMD(stat.mtime);
 
-        if (remoteDate !== currentDate) {
+        if (remoteDate !== getDateYMD()) {
             date = remoteDate;
         }
     } catch (err) {
