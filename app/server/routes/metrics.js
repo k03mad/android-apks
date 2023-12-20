@@ -43,7 +43,8 @@ const gauge = new client.Gauge({
             const providers = Object.keys(apk);
             const apps = Object.values(apk).flat();
 
-            addLabels(this, 'timestamp', timestamp).set(1);
+            addLabels(this, 'timestamp', timestamp.pretty).set(1);
+            addLabels(this, 'duration').set(timestamp.duration);
             addLabels(this, 'providers-count').set(providers.length);
             addLabels(this, 'apps-count').set(apps.length);
 
