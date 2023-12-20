@@ -2,8 +2,8 @@ import {getApkFromTopicIds} from './helpers/4pda.js';
 
 /** */
 export default () => getApkFromTopicIds([
-    // чей номер
+    // ru.agc.whosenumber
     1_071_145,
-    // 4pda клиент
-    // 673_755,
+    // ru.fourpda.client
+    673_755,
 ]);
