@@ -23,7 +23,7 @@ register.setDefaultLabels({
 const gauge = new client.Gauge({
     name: 'aapks',
     help: 'aapks-metrics',
-    labelNames: ['type', 'ext', 'label', 'version', 'date'],
+    labelNames: ['type', 'ext', 'ext2', 'ext3'],
 
     async collect() {
         try {
@@ -36,18 +36,18 @@ const gauge = new client.Gauge({
             const providers = Object.keys(apk);
             const apps = Object.values(apk).flat();
 
-            this.labels('timestamp', timestamp, null, null, null).set(1);
-            this.labels('providers-count', null, null, null, null).set(providers.length);
-            this.labels('apps-count', null, null, null, null).set(apps.length);
+            this.labels('timestamp', timestamp, null, null).set(1);
+            this.labels('providers-count', null, null, null).set(providers.length);
+            this.labels('apps-count', null, null, null).set(apps.length);
 
             apps.forEach(app => {
-                this.labels('apps', null, app.label, app.version, app.date || 0).set(Number(app.size.value));
+                this.labels('apps', app.label, app.version, app.date || 0).set(Number(app.size.value));
             });
 
-            this.labels('errors-count', null, null, null, null).set(errors.length);
+            this.labels('errors-count', null, null, null).set(errors.length);
 
             errors.forEach(error => {
-                this.labels('errors', error, null, null, null).set(1);
+                this.labels('errors', error, null, null).set(1);
             });
         } catch (err) {
             logError(err);
