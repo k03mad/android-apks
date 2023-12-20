@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import ms from 'ms';
 
 import env from '../../../../env.js';
@@ -31,22 +32,26 @@ export const getTimestamp = startDate => {
  * @param {Array<string>} json.errors
  */
 export const sortData = json => {
+    const cloneJson = _.cloneDeep(json);
+
     // app labels
     Object
-        .keys(json.apk)
-        .forEach(providerName => json.apk[providerName].sort((a, b) => a.label?.localeCompare(b.label)));
+        .keys(cloneJson.apk)
+        .forEach(providerName => cloneJson.apk[providerName].sort((a, b) => a.label?.localeCompare(b.label)));
 
     // app providers
-    json.apk = Object
-        .keys(json.apk)
+    cloneJson.apk = Object
+        .keys(cloneJson.apk)
         .sort()
         .reduce((obj, providerName) => {
-            obj[formatProviderName(providerName)] = json.apk[providerName];
+            obj[formatProviderName(providerName)] = cloneJson.apk[providerName];
             return obj;
         }, {});
 
     // app errors
-    json.errors.sort();
+    cloneJson.errors.sort();
+
+    return cloneJson;
 };
 
 /**
@@ -55,10 +60,12 @@ export const sortData = json => {
  */
 export const addObtainiumLinks = json => {
     if (env.server.domain) {
+        const cloneJson = _.cloneDeep(json);
+
         Object
-            .keys(json.apk)
+            .keys(cloneJson.apk)
             .forEach(providerName => {
-                json.apk[providerName].forEach(elem => {
+                cloneJson.apk[providerName].forEach(elem => {
                     elem.obtainium = {
                         mirror: getObtainiumImportHtmlApp(elem),
                     };
@@ -70,5 +77,9 @@ export const addObtainiumLinks = json => {
                     }
                 });
             });
+
+        return cloneJson;
     }
+
+    return json;
 };

@@ -62,9 +62,9 @@ export default async providers => {
         {concurrency: cronConfig.download.concurrency},
     );
 
-    sortData(json);
-    addObtainiumLinks(json);
-    json.timestamp = getTimestamp(startDate);
+    let data = sortData(json);
+    data = addObtainiumLinks(data);
+    data.timestamp = getTimestamp(startDate);
 
-    await fs.writeFile(cronConfig.json.file, JSON.stringify(json));
+    await fs.writeFile(cronConfig.json.file, JSON.stringify(data));
 };
