@@ -1,7 +1,5 @@
 import fs from 'node:fs/promises';
 
-import prettyBytes from 'pretty-bytes';
-
 import {getDateYMD} from './date.js';
 import {logError} from './logs.js';
 import {run} from './shell.js';
@@ -21,9 +19,12 @@ export const getApkFileInfo = async apkFilePath => {
 
     try {
         stat = await fs.stat(apkFilePath);
-        const [value, unit] = prettyBytes(stat.size, {maximumFractionDigits: 0}).split(' ');
 
-        size = {value, unit, raw: stat.size};
+        size = {
+            value: (stat.size / 1024 / 1024).toFixed(0),
+            unit: 'MiB',
+            raw: stat.size,
+        };
     } catch (err) {
         logError(err);
     }
