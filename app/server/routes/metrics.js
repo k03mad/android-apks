@@ -41,7 +41,7 @@ const gauge = new client.Gauge({
             this.labels('apps-count', null, null, null, null, null).set(apps.length);
 
             apps.forEach(app => {
-                this.labels('apps', null, app.label, app.version, `${app.size.value} ${app.size.unit}`, app.date || null).set(1);
+                this.labels('apps', null, app.label, app.version, `${app.size.value} ${app.size.unit}`, app.date || 0).set(1);
             });
 
             this.labels('errors-count', null, null, null, null, null).set(errors.length);
