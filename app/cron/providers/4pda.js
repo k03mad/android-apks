@@ -8,4 +8,5 @@ export default () => getApkFromTopicIds([
     673_755,
     1_059_651,
     275_433,
+    300_836,
 ]);
