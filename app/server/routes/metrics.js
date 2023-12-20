@@ -22,7 +22,6 @@ register.setDefaultLabels({
 
 const labelNames = ['type', 'ext', 'ext2', 'ext3', 'ext4'];
 
-// fill with nulls
 const addLabels = (ctx, ...labels) => ctx.labels(
     ...labels,
     ...Array.from({length: labelNames.length - labels.length}).map(() => null),
