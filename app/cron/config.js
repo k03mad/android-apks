@@ -1,5 +1,5 @@
 export default {
-    interval: '0 3 * * *',
+    interval: '45 5,17 * * *',
     apk: {
         minSizeB: 51_200,
     },
