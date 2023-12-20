@@ -7,4 +7,5 @@ export default () => getApkFromTopicIds([
     // ru.fourpda.client
     673_755,
     1_059_651,
+    275_433,
 ]);
