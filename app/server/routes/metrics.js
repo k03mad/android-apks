@@ -20,10 +20,18 @@ register.setDefaultLabels({
     port: env.server.port,
 });
 
+const labelNames = ['type', 'ext', 'ext2', 'ext3', 'ext4'];
+
+// fill with nulls
+const addLabels = (ctx, ...labels) => ctx.labels(
+    ...labels,
+    ...Array.from({length: labelNames.length - labels.length}).map(() => null),
+);
+
 const gauge = new client.Gauge({
-    name: 'aapks',
-    help: 'aapks-metrics',
-    labelNames: ['type', 'ext', 'ext2', 'ext3'],
+    name: 'a_apks',
+    help: 'a_apks-metrics',
+    labelNames: ['type', 'ext', 'ext2', 'ext3', 'ext4'],
 
     async collect() {
         try {
@@ -36,18 +44,18 @@ const gauge = new client.Gauge({
             const providers = Object.keys(apk);
             const apps = Object.values(apk).flat();
 
-            this.labels('timestamp', timestamp, null, null).set(1);
-            this.labels('providers-count', null, null, null).set(providers.length);
-            this.labels('apps-count', null, null, null).set(apps.length);
+            addLabels(this, 'timestamp', timestamp).set(1);
+            addLabels(this, 'providers-count').set(providers.length);
+            addLabels(this, 'apps-count').set(apps.length);
 
             apps.forEach(app => {
-                this.labels('apps', app.label, app.version, app.date || 0).set(Number(app.size.value));
+                addLabels(this, 'apps', app.label, app.pkg, app.version, app.date || '-').set(Number(app.size.value));
             });
 
-            this.labels('errors-count', null, null, null).set(errors.length);
+            addLabels(this, 'errors-count').set(errors.length);
 
             errors.forEach(error => {
-                this.labels('errors', error, null, null).set(1);
+                addLabels(this, 'errors', error).set(1);
             });
         } catch (err) {
             logError(err);
