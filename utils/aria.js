@@ -21,7 +21,8 @@ const getAriaArgs = opts => [
     '--retry-wait=5',
     // args
     `--user-agent="${getUa(opts.ua)}"`,
-    opts.dir ? `--dir=${opts.dir}` : '',
+    opts.header ? `--header="${opts.header}"` : '',
+    opts.dir ? `--dir="${opts.dir}"` : '',
     opts.skipCheckCert ? '--check-certificate=false' : '',
     opts.proxy && env.aria.proxy ? `--all-proxy="${env.aria.proxy}"` : '',
 ].filter(Boolean).join(' ');
@@ -33,6 +34,7 @@ const getAriaArgs = opts => [
  * @param {boolean} [opts.proxy]
  * @param {string} [opts.ext]
  * @param {boolean} [opts.skipCheckCert]
+ * @param {string} [opts.header]
  */
 export const download = async (url, opts = {}) => {
     const cmd = `aria2c ${getAriaArgs(opts)} "${url}"`;

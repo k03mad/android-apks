@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 
+export {default as _4pda} from './4pda.js';
 export {default as common} from './common.js';
 export {default as common_bank} from './common_bank.js';
 export {default as common_bank_alfa} from './common_bank_alfa.js';

@@ -16,9 +16,11 @@
 
 ### Переменные окружения
 
-— AAPKS_DOMAIN: домен, по которому доступен сервер, для ссылок импорта в Obtainium (например: `http://ваш-домен:3030`)\
+— AAPKS_DOMAIN: внешний домен, по которому доступен сервер, для ссылок импорта в Obtainium (например: `https://my-apks-domain.ru:3030`)\
 — AAPKS_GITHUB_TOKEN: `personal access token`, для приложений с GitHub\
-— AAPKS_ARIA_PROXY: добавляет в `aria2c` аргумент `--all-proxy` с содержимым переменной
+— AAPKS_ARIA_PROXY: добавляет в `aria2c` аргумент `--all-proxy` с содержимым переменной\
+— AAPKS_4PDA_MEMBER_ID: кука `member_id`, для приложений с 4PDA\
+— AAPKS_4PDA_PASS_HASH: кука `pass_hash`, для приложений с 4PDA
 
 ### Запуск
 

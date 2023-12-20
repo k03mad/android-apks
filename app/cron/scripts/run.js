@@ -2,9 +2,10 @@ import env from '../../../env.js';
 import {log} from '../../../utils/logs.js';
 import * as _providers from '../providers/_index.js';
 import {getProvidersData} from '../task/helpers/fetch.js';
+import {removeStartUnderline} from '../task/helpers/providers.js';
 import task from '../task/task.js';
 
-const providers = {..._providers};
+const providers = removeStartUnderline({..._providers});
 
 if (env.scripts.provider) {
     for (const key in providers) {
