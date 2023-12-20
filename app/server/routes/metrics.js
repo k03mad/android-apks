@@ -23,7 +23,7 @@ register.setDefaultLabels({
 const gauge = new client.Gauge({
     name: 'aapks',
     help: 'aapks-metrics',
-    labelNames: ['type', 'timestamp', 'label', 'version', 'size', 'date'],
+    labelNames: ['type', 'ext', 'label', 'version', 'size', 'date'],
 
     async collect() {
         try {
@@ -47,7 +47,7 @@ const gauge = new client.Gauge({
             this.labels('errors-count', null, null, null, null, null).set(errors.length);
 
             errors.forEach(error => {
-                this.labels('errors', error).set(1);
+                this.labels('errors', error, null, null, null, null).set(1);
             });
         } catch (err) {
             logError(err);
