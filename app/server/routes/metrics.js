@@ -43,19 +43,14 @@ const gauge = new client.Gauge({
             const providers = Object.keys(apk);
             const apps = Object.values(apk).flat();
 
-            addLabels(this, 'timestamp', timestamp.pretty).set(1);
             addLabels(this, 'duration').set(timestamp.duration);
+            addLabels(this, 'errors-count').set(errors.length);
             addLabels(this, 'providers-count').set(providers.length);
+            addLabels(this, 'timestamp', timestamp.pretty).set(1);
             addLabels(this, 'apps-count').set(apps.length);
 
             apps.forEach(app => {
                 addLabels(this, 'apps', app.label, app.pkg, app.version, app.date || '-').set(Number(app.size.value));
-            });
-
-            addLabels(this, 'errors-count').set(errors.length);
-
-            errors.forEach(error => {
-                addLabels(this, 'errors', error).set(1);
             });
         } catch (err) {
             logError(err);
