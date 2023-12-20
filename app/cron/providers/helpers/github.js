@@ -88,7 +88,7 @@ export const getApkFromGhOrgs = async orgs => {
         }
     }));
 
-    return getApkFromGhRepos(repos);
+    return getApkFromGhRepos(repos.filter(Boolean));
 };
 
 /**
@@ -104,5 +104,5 @@ export const getApkFromGhUsers = async orgs => {
         }
     }));
 
-    return getApkFromGhRepos(repos);
+    return getApkFromGhRepos(repos.filter(Boolean));
 };

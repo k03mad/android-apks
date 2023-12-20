@@ -24,5 +24,5 @@ export const getApkFromFdPackages = async packages => {
         }
     }));
 
-    return links.filter(elem => elem.link);
+    return links.filter(elem => elem?.link);
 };

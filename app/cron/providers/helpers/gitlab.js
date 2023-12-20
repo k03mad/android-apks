@@ -47,5 +47,5 @@ export const getApkFromGlRepos = async repos => {
         }
     }));
 
-    return links.flat().filter(elem => elem.link);
+    return links.flat().filter(elem => elem?.link);
 };

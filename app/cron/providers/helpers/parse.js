@@ -39,5 +39,5 @@ export const getApkFromParse = async parse => {
         }
     }));
 
-    return links.filter(Boolean);
+    return links.filter(elem => elem?.link);
 };
