@@ -64,8 +64,6 @@ export default router.get(
     '/metrics', async (req, res, next) => {
         try {
             const metrics = await register.metrics();
-
-            res.setHeader('Content-Type', register.contentType);
             res.send(metrics);
         } catch (err) {
             next(err);
