@@ -28,8 +28,8 @@ const addLabels = (ctx, ...labels) => ctx.labels(
 );
 
 const gauge = new client.Gauge({
-    name: 'a_apks',
-    help: 'a_apks-metrics',
+    name: 'a-apks',
+    help: 'a-apks',
     labelNames: ['type', 'ext', 'ext2', 'ext3', 'ext4'],
 
     async collect() {
@@ -43,15 +43,15 @@ const gauge = new client.Gauge({
             const providers = Object.keys(apk);
             const apps = Object.values(apk).flat();
 
-            addLabels(this, 'apps-count').set(apps.length);
+            addLabels(this, 'apks-count').set(apps.length);
             addLabels(this, 'errors-count').set(errors.length);
             addLabels(this, 'providers-count').set(providers.length);
             addLabels(this, 'timestamp-duration').set(timestamp.duration);
             addLabels(this, 'timestamp-pretty', timestamp.pretty).set(1);
 
             apps.forEach(app => {
-                addLabels(this, 'apps-size', app.label).set(app.size.raw);
-                addLabels(this, 'apps-full', app.label, app.pkg, app.version, app.date || '-').set(app.size.raw);
+                addLabels(this, 'apks-size', app.label).set(app.size.raw);
+                addLabels(this, 'apks-full', app.label, app.pkg, app.version, app.date || '-').set(app.size.raw);
             });
         } catch (err) {
             logError(err);
