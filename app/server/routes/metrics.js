@@ -50,9 +50,8 @@ const gauge = new client.Gauge({
             addLabels(this, 'timestamp-pretty', timestamp.pretty).set(1);
 
             apps.forEach(app => {
-                const size = Number(app.size.value);
-                addLabels(this, 'apps-size', app.label).set(size);
-                addLabels(this, 'apps-full', app.label, app.pkg, app.version, app.date || '-').set(size);
+                addLabels(this, 'apps-size', app.label).set(app.size.raw);
+                addLabels(this, 'apps-full', app.label, app.pkg, app.version, app.date || '-').set(app.size.raw);
             });
         } catch (err) {
             logError(err);
