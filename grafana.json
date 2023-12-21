@@ -124,7 +124,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "a_apks{type=\"timestamp\"}",
+          "expr": "a_apks{type=\"timestamp-pretty\"}",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -381,7 +381,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "a_apks{type=\"duration\"}",
+          "expr": "a_apks{type=\"timestamp-duration\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -486,7 +486,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "a_apks{type=\"apps\"}",
+          "expr": "a_apks{type=\"apps-size\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -496,12 +496,12 @@
           "useBackend": false
         }
       ],
-      "title": "All Apks",
+      "title": "Total Size",
       "transformations": [
         {
           "id": "calculateField",
           "options": {
-            "alias": "size",
+            "alias": "total",
             "mode": "reduceRow",
             "reduce": {
               "reducer": "sum"
@@ -603,8 +603,8 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "a_apks{type=\"apps\"}",
+          "editorMode": "code",
+          "expr": "a_apks{type=\"apps-size\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -718,7 +718,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 96
+                "value": 93
               }
             ]
           },
@@ -781,9 +781,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "a_apks{type=\"apps\"}",
+          "expr": "a_apks{type=\"apps-full\"}",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -839,13 +839,13 @@
     "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "A-APKS",
   "uid": "b6bbd9e8-d985-4ee5-b656-c9941f6d34e9",
-  "version": 30,
+  "version": 35,
   "weekStart": ""
 }
