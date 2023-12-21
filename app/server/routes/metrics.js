@@ -28,8 +28,8 @@ const addLabels = (ctx, ...labels) => ctx.labels(
 );
 
 const gauge = new client.Gauge({
-    name: 'a-apks',
-    help: 'a-apks',
+    name: 'aapks',
+    help: 'aapks',
     labelNames: ['type', 'ext', 'ext2', 'ext3', 'ext4'],
 
     async collect() {
