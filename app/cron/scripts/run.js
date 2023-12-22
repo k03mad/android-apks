@@ -5,7 +5,7 @@ import {getProvidersData} from '../task/helpers/fetch.js';
 import {removeStartUnderline} from '../task/helpers/providers.js';
 import task from '../task/task.js';
 
-const providers = removeStartUnderline({..._providers});
+const providers = removeStartUnderline(_providers);
 
 if (env.scripts.provider) {
     for (const key in providers) {

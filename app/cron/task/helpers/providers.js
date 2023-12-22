@@ -5,7 +5,7 @@ import _ from 'lodash';
  */
 export const removeStartUnderline = providers => {
     const UNDERLINE = '_';
-    const cloneProviders = _.cloneDeep(providers);
+    const cloneProviders = _.cloneDeep({...providers});
 
     Object.keys(cloneProviders).forEach(provider => {
         if (provider.startsWith(UNDERLINE)) {

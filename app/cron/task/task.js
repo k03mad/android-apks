@@ -9,7 +9,6 @@ import serverConfig from '../../server/config.js';
 import cronConfig from '../config.js';
 import {downloadApkFile, getProvidersData} from './helpers/fetch.js';
 import {addObtainiumLinks, getTimestamp, sortData} from './helpers/json.js';
-import {removeStartUnderline} from './helpers/providers.js';
 
 const debug = _debug('mad:task');
 
@@ -25,7 +24,7 @@ export default async providers => {
     };
 
     const [providersData] = await Promise.all([
-        getProvidersData(removeStartUnderline(providers)),
+        getProvidersData(providers),
         fs.rm(serverConfig.static.apk, {force: true, recursive: true}),
     ]);
 

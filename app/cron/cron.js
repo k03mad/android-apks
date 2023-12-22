@@ -3,8 +3,11 @@ import {Cron} from 'recron';
 import {cronStyle} from '../../utils/colors.js';
 import {log} from '../../utils/logs.js';
 import config from './config.js';
-import * as providers from './providers/_index.js';
+import * as _providers from './providers/_index.js';
+import {removeStartUnderline} from './task/helpers/providers.js';
 import task from './task/task.js';
+
+const providers = removeStartUnderline(_providers);
 
 /** */
 export default () => {
