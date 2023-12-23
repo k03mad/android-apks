@@ -1,4 +1,4 @@
-name: ESLint
+name: StyleLint
 
 on:
   push:
@@ -29,8 +29,8 @@ jobs:
       - name: Install dependencies
         run: npm run setup
 
-      - name: Run ESLint
-        run: npm run lint:eslint:github
+      - name: Run StyleLint
+        run: npm run lint:stylelint:github
         continue-on-error: true
 
       - name: Upload results

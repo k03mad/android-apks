@@ -40,11 +40,17 @@
     "eslint-plugin-sonarjs": "0.23.0",
     "eslint-plugin-unicorn": "50.0.1",
     "husky": "8.0.3",
-    "nodemon": "3.0.2"
+    "nodemon": "3.0.2",
+    "stylelint": "16.0.2",
+    "stylelint-config-standard": "35.0.0",
+    "stylelint-sarif-formatter": "1.0.7"
   },
   "scripts": {
-    "lint": "eslint ./ --report-unused-disable-directives",
-    "lint:github": "eslint ./ --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif",
+    "lint": "npm run lint:eslint && npm run lint:stylelint",
+    "lint:eslint": "eslint ./ --report-unused-disable-directives",
+    "lint:eslint:github": "eslint ./ --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif",
+    "lint:stylelint": "stylelint '**/*.css'",
+    "lint:stylelint:github": "stylelint '**/*.css' --custom-formatter=stylelint-sarif-formatter -o stylelint-results.sarif",
     "clean": "rm -rf ./node_modules || true",
     "setup": "npm run clean && npm i",
     "setup:prod": "npm run clean && npm i --omit=dev",
