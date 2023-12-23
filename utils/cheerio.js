@@ -6,6 +6,10 @@ import * as cheerio from 'cheerio';
  */
 export const getAllLinksFromSelector = (html, selector) => {
     const $ = cheerio.load(html);
-    const hrefs = $(selector).find('a').map((i, el) => $(el).attr('href'));
-    return [...hrefs];
+
+    const hrefsElem = $(selector)
+        .find('a')
+        .map((i, el) => $(el).attr('href'));
+
+    return [...new Set(hrefsElem)];
 };

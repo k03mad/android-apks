@@ -26,17 +26,19 @@ export const getApkFromGlRepos = async repos => {
                 .filter(elem => APPS_FILTER_DEFAULT_RE.test(elem))
                 .map(elem => `${urls.web}/${name}${elem.match(APPS_FILTER_DEFAULT_RE)[1]}`);
 
-            if (apkUrls.length > 1) {
-                if (re?.include) {
-                    apkUrls = apkUrls.filter(elem => re.include.test(elem));
-                }
+            if (re?.include) {
+                apkUrls = apkUrls.filter(elem => re.include.test(elem));
+            }
 
-                if (re?.exclude) {
-                    apkUrls = apkUrls.filter(elem => !re.exclude.test(elem));
-                }
+            if (re?.exclude) {
+                apkUrls = apkUrls.filter(elem => !re.exclude.test(elem));
             }
 
             const homepage = `${urls.web}/${name}`;
+
+            if (apkUrls.length === 0) {
+                throw new Error(`[GITLAB] No apk link found\n${homepage}\n${re}`);
+            }
 
             return apkUrls.map(link => ({
                 link,

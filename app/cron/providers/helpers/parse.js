@@ -30,7 +30,7 @@ export const getApkFromParse = async parse => {
             debug.extend('link')('%o', link);
 
             if (!link) {
-                throw new Error(`No apk link found\n${homepage}\n${re}`);
+                throw new Error(`[PARSE] No apk link found\n${homepage}\n${re}`);
             }
 
             return {link, opts, homepage};

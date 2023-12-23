@@ -1,11 +1,11 @@
-import {getApkFromFdPackages} from './helpers/fdroid.js';
+import {getApkFromFd} from './helpers/fdroid.js';
 
 /** */
-export default () => getApkFromFdPackages([
-    'com.atharok.barcodescanner',
-    'com.foxdebug.acode',
-    'net.osmand.plus',
-    'org.fdroid.fdroid',
-    'org.jitsi.meet',
-    'ws.xsoh.etar',
+export default () => getApkFromFd([
+    {pkg: 'com.atharok.barcodescanner'},
+    {pkg: 'com.foxdebug.acode'},
+    {pkg: 'net.osmand.plus'},
+    {pkg: 'org.fdroid.fdroid'},
+    {pkg: 'org.jitsi.meet'},
+    {pkg: 'ws.xsoh.etar'},
 ]);

@@ -1,4 +1,4 @@
-import {getApkFromAgIds} from './helpers/huawei.js';
+import {getApkFromAg} from './helpers/appgallery.js';
 import {getApkFromParse} from './helpers/parse.js';
 
 const direct = [
@@ -29,11 +29,9 @@ const direct = [
     },
 ];
 
-const agIds = [
-    // ru.homecredit.mycredit
-    'C101185761',
-    // ru.ftc.faktura.absolutbank
-    'C104493061',
+const agApps = [
+    {name: 'Абсолют', id: 'C104493061'},
+    {name: 'Хоум Банк', id: 'C101185761'},
 ];
 
 const parse = [
@@ -48,6 +46,6 @@ const parse = [
 export default async () => {
     const parsed = await getApkFromParse(parse);
 
-    const ag = getApkFromAgIds(agIds);
+    const ag = getApkFromAg(agApps);
     return [direct, parsed, ag].flat();
 };

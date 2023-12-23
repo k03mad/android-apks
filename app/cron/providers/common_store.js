@@ -1,4 +1,4 @@
-import {getApkFromAgIds} from './helpers/huawei.js';
+import {getApkFromAg} from './helpers/appgallery.js';
 
 const direct = [
     {
@@ -11,13 +11,10 @@ const direct = [
     },
 ];
 
-const agIds = [
-    // com.huawei.appmarket
-    'C27162',
-];
+const agApps = [{name: 'AppGallery', id: 'C27162'}];
 
 /** */
 export default () => {
-    const ag = getApkFromAgIds(agIds);
+    const ag = getApkFromAg(agApps);
     return [direct, ag].flat();
 };

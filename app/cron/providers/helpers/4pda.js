@@ -16,10 +16,6 @@ const selectors = {
     },
 };
 
-const POST_ID_RE = /post\/(\d+)\//;
-
-const MAX_POSTS_PARSE = 10;
-
 /**
  * @param {string|number} topicId
  * @returns {Promise<object>}
@@ -40,60 +36,57 @@ const getTopicPost = (topicId, postId) => req(urls.web, {
 });
 
 /**
- * @param {Array<string|number>} topicIds
+ * @param {Array<{name: string, showtopic: number, re: {include: RegExp, exclude: RegExp}}>} apps
  */
-export const getApkFromTopicIds = async topicIds => {
-    const links = await Promise.all(topicIds.map(async topicId => {
+export const getApkFrom4Pda = async apps => {
+    const links = await Promise.all(apps.map(async ({name, re, showtopic}) => {
         try {
-            // забираем все ссылки на другие посты из шапки темы (часть из них — на посты со скачиванием версии приложения)
-            const {body: topicBody} = await getTopic(topicId);
-            const mainPostLinks = new Set(getAllLinksFromSelector(topicBody, selectors.post.main));
+            // забираем все ссылки на другие посты из шапки темы
+            // часть из них — на посты со скачиванием версии приложения
+            const {body: topicBody} = await getTopic(showtopic);
+            const mainPostLinks = getAllLinksFromSelector(topicBody, selectors.post.main);
 
-            // сортируем по айдишнику поста — выше айдишник больше, значит пост новее
-            const postsLinks = [...mainPostLinks]
-                ?.filter(elem => elem.includes(topicId))
-                ?.sort((a, b) => b.split('=').at(-1) - a.split('=').at(-1))
+            // сортируем по айдишнику поста — выше айдишник больше, значит пост свежее
+            const postsLinks = mainPostLinks
+                .filter(elem => elem.includes(showtopic))
+                .sort((a, b) => b.split('=').at(-1) - a.split('=').at(-1))
                 || [];
 
-            const apkLinks = new Set();
+            // идём по каждой сохраненной ссылке на пост, начиная с самой свежей
+            // если там есть ссылка на скачивание apk, возвращаем её
+            for (const postsLink of postsLinks) {
+                const postId = postsLink.split('=').at(-1);
+                const {body: postBody} = await getTopicPost(showtopic, postId);
 
-            // идём по каждой ссылке на пост в теме и забираем все ссылки на apk именно из этого поста
-            for (let i = 0; i < postsLinks.length && i < MAX_POSTS_PARSE; i++) {
-                const postId = postsLinks[i].split('=').at(-1);
-                const {body: postBody} = await getTopicPost(topicId, postId);
+                const postLinks = getAllLinksFromSelector(postBody, selectors.post.byId(postId));
 
-                const postLinks = new Set(getAllLinksFromSelector(postBody, selectors.post.byId(postId)));
+                let filteredLinks = postLinks.filter(elem => elem.endsWith('.apk'));
 
-                const apkLink = [...postLinks]
-                    ?.filter(elem => elem.endsWith('.apk'))
-                    ?.at(-1);
+                if (filteredLinks.length > 0) {
+                    if (re?.include) {
+                        filteredLinks = filteredLinks.filter(elem => re.include.test(elem));
+                    }
 
-                if (apkLink) {
-                    apkLinks.add(apkLink);
+                    if (re?.exclude) {
+                        filteredLinks = filteredLinks.filter(elem => !re.exclude.test(elem));
+                    }
+
+                    return filteredLinks.map(link => ({
+                        link,
+                        homepage: urls.topic(showtopic),
+                        opts: {
+                            header: `Cookie: member_id=${env['4pda'].memberId}; pass_hash=${env['4pda'].passHash}`,
+                            ua: 'mobile',
+                        },
+                    }));
                 }
             }
 
-            if (apkLinks.size > 0) {
-                // сортируем по айдишнику поста в ссылке загрузки и забираем первую ссылку
-                // выше айдишник больше, значит ссылка свежее
-                const apkLink = [...apkLinks]
-                    .sort((a, b) => b.match(POST_ID_RE)?.[1] - a.match(POST_ID_RE)?.[1])[0];
-
-                return {
-                    link: apkLink,
-                    homepage: urls.topic(topicId),
-                    opts: {
-                        header: `Cookie: member_id=${env['4pda'].memberId}; pass_hash=${env['4pda'].passHash}`,
-                        ua: 'mobile',
-                    },
-                };
-            }
-
-            throw new Error(`No apk link found\n${urls.topic(topicId)}`);
+            throw new Error(`[4PDA] No apk link found\n${name} ${urls.topic(showtopic)}`);
         } catch (err) {
             logError(err);
         }
     }));
 
-    return links.filter(elem => elem?.link);
+    return links.flat().filter(elem => elem?.link);
 };

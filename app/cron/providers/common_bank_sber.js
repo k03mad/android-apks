@@ -1,6 +1,6 @@
 import {logError} from '../../../utils/logs.js';
 import {req} from '../../../utils/request.js';
-import {getApkFromAgIds} from './helpers/huawei.js';
+import {getApkFromAg} from './helpers/appgallery.js';
 
 const REQUEST_URL = 'https://apps.sber.ru/apps/';
 
@@ -18,10 +18,7 @@ const direct = [
     },
 ];
 
-const agIds = [
-    // youdrive.today.huawei
-    'C106367313',
-];
+const agApps = [{name: 'Ситидрайв', id: 'C106367313'}];
 
 /** */
 export default async () => {
@@ -46,7 +43,7 @@ export default async () => {
         .filter(link => link?.startsWith('http'))
         .map(link => ({link, opts, homepage: REQUEST_URL}));
 
-    const ag = getApkFromAgIds(agIds);
+    const ag = getApkFromAg(agApps);
 
     return [links, ag, direct].flat();
 };

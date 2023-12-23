@@ -1,4 +1,4 @@
-import {getApkFromAgIds} from './helpers/huawei.js';
+import {getApkFromAg} from './helpers/appgallery.js';
 
 const direct = [
     {link: 'https://alfamobile-web.servicecdn.ru/latest/alfa-bank.apk'},
@@ -6,13 +6,10 @@ const direct = [
     {link: 'https://alfabusinessmobile.servicecdn.ru/abm/latest/ABM-release.apk'},
 ].map(elem => ({...elem, homepage: 'https://alfabank.ru/apps/'}));
 
-const agIds = [
-    // ru.alfastrah.app
-    'C103154181',
-];
+const agApps = [{name: 'АльфаСтрахование', id: 'C103154181'}];
 
 /** */
 export default () => {
-    const ag = getApkFromAgIds(agIds);
+    const ag = getApkFromAg(agApps);
     return [direct, ag].flat();
 };

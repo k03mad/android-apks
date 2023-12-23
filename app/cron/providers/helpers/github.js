@@ -41,8 +41,10 @@ const getUserRepos = user => req(`${urls.api}/users/${user}/repos`, reqOpts);
 
 /**
  * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} repos
+ * @param {object} opts
+ * @param {boolean} opts.skipEmptyCheck
  */
-export const getApkFromGhRepos = async repos => {
+export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
     const links = await Promise.all(repos.flat().map(async ({name, re}) => {
         try {
             const {body} = await getReleases(name);
@@ -50,17 +52,19 @@ export const getApkFromGhRepos = async repos => {
             const apkUrls = body?.[0]?.assets?.map(asset => asset?.browser_download_url) || [];
             let filteredLinks = apkUrls.filter(elem => APPS_FILTER_DEFAULT_RE.test(elem));
 
-            if (filteredLinks.length > 1) {
-                if (re?.include) {
-                    filteredLinks = filteredLinks.filter(elem => re.include.test(elem));
-                }
+            if (re?.include) {
+                filteredLinks = filteredLinks.filter(elem => re.include.test(elem));
+            }
 
-                if (re?.exclude) {
-                    filteredLinks = filteredLinks.filter(elem => !re.exclude.test(elem));
-                }
+            if (re?.exclude) {
+                filteredLinks = filteredLinks.filter(elem => !re.exclude.test(elem));
             }
 
             const homepage = `${urls.web}/${name}`;
+
+            if (!skipEmptyCheck && filteredLinks.length === 0) {
+                throw new Error(`[GITHUB] No apk link found\n${homepage}\n${re}`);
+            }
 
             return filteredLinks.map(link => ({
                 link,
@@ -88,7 +92,7 @@ export const getApkFromGhOrgs = async orgs => {
         }
     }));
 
-    return getApkFromGhRepos(repos.filter(Boolean));
+    return getApkFromGhRepos(repos.filter(Boolean), {skipEmptyCheck: true});
 };
 
 /**
@@ -104,5 +108,5 @@ export const getApkFromGhUsers = async orgs => {
         }
     }));
 
-    return getApkFromGhRepos(repos.filter(Boolean));
+    return getApkFromGhRepos(repos.filter(Boolean), {skipEmptyCheck: true});
 };
