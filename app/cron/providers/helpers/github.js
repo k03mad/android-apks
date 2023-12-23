@@ -49,24 +49,24 @@ export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
         try {
             const {body} = await getReleases(name);
 
-            const apkUrls = body?.[0]?.assets?.map(asset => asset?.browser_download_url) || [];
-            let filteredLinks = apkUrls.filter(elem => APPS_FILTER_DEFAULT_RE.test(elem));
+            let apkUrls = (body?.[0]?.assets?.map(asset => asset?.browser_download_url) || [])
+                .filter(elem => APPS_FILTER_DEFAULT_RE.test(elem));
 
             if (re?.include) {
-                filteredLinks = filteredLinks.filter(elem => re.include.test(elem));
+                apkUrls = apkUrls.filter(elem => re.include.test(elem));
             }
 
             if (re?.exclude) {
-                filteredLinks = filteredLinks.filter(elem => !re.exclude.test(elem));
+                apkUrls = apkUrls.filter(elem => !re.exclude.test(elem));
             }
 
             const homepage = `${urls.web}/${name}`;
 
-            if (!skipEmptyCheck && filteredLinks.length === 0) {
+            if (!skipEmptyCheck && apkUrls.length === 0) {
                 throw new Error(`[GITHUB] No apk link found\n${homepage}\n${re}`);
             }
 
-            return filteredLinks.map(link => ({
+            return apkUrls.map(link => ({
                 link,
                 homepage,
             }));

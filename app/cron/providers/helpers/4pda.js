@@ -58,20 +58,19 @@ export const getApkFrom4Pda = async apps => {
                 const postId = postsLink.split('=').at(-1);
                 const {body: postBody} = await getTopicPost(showtopic, postId);
 
-                const postLinks = getAllLinksFromSelector(postBody, selectors.post.byId(postId));
+                let apkLinks = getAllLinksFromSelector(postBody, selectors.post.byId(postId))
+                    .filter(elem => elem.endsWith('.apk'));
 
-                let filteredLinks = postLinks.filter(elem => elem.endsWith('.apk'));
-
-                if (filteredLinks.length > 0) {
+                if (apkLinks.length > 0) {
                     if (re?.include) {
-                        filteredLinks = filteredLinks.filter(elem => re.include.test(elem));
+                        apkLinks = apkLinks.filter(elem => re.include.test(elem));
                     }
 
                     if (re?.exclude) {
-                        filteredLinks = filteredLinks.filter(elem => !re.exclude.test(elem));
+                        apkLinks = apkLinks.filter(elem => !re.exclude.test(elem));
                     }
 
-                    return filteredLinks.map(link => ({
+                    return apkLinks.map(link => ({
                         link,
                         homepage: urls.topic(showtopic),
                         opts: {
