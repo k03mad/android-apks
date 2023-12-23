@@ -45,7 +45,7 @@
   },
   "scripts": {
     "lint": "npm run lint:eslint && npm run lint:stylelint",
-    "lint:eslint": "eslint ./ --report-unused-disable-directives",
+    "lint:eslint": "eslint ./ --report-unused-disable-directives --cache",
     "lint:stylelint": "stylelint '**/*.css'",
     "clean": "rm -rf ./node_modules || true",
     "setup": "npm run clean && npm i",
