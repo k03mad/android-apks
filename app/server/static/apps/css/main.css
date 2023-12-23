@@ -6,17 +6,16 @@
 
 :root {
     --font: 12px;
-    --fontSmall: 10px;
-
+    --font-small: 10px;
     --black: #19181D;
     --magenta: #956485;
-    --gray: #778899;
-    --grayDark: #4d5760;
+    --gray: #789;
+    --gray-dark: #4d5760;
     --blue: #8282FF;
-    --blueDark: #414168;
+    --blue-dark: #414168;
     --green: #819b93;
-    --greenDark: #5c716b;
-    --greenDarker: #39423f;
+    --green-dark: #5c716b;
+    --green-darker: #39423f;
 }
 
 html {
@@ -27,19 +26,19 @@ html {
 
 a {
     text-decoration: none;
-    color: var(--blueDark)
+    color: var(--blue-dark)
 }
 
 table {
     font-size: var(--font);
-    color: var(--greenDarker);
+    color: var(--green-darker);
     border: solid;
     border-radius: 10px;
-    border-spacing: 1em 0em;
+    border-spacing: 1em 0;
 }
 
 table .provider {
-    font-size: var(--fontSmall);
+    font-size: var(--font-small);
     color: var(--magenta);
 }
 
@@ -56,16 +55,16 @@ table .version[title] {
 }
 
 table .pkg {
-    color: var(--greenDark);
+    color: var(--green-dark);
 }
 
-table .main_link a {
+table .main-link a {
     color: var(--blue);
 }
 
-table .main_link,
-table .extra_link {
-    font-size: var(--fontSmall);
+table .main-link,
+table .extra-link {
+    font-size: var(--font-small);
     white-space: nowrap;
 }
 
@@ -74,10 +73,10 @@ table .extra_link {
 }
 
 .info .data {
-    color: var(--grayDark)
+    color: var(--gray-dark)
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (width <= 800px) {
     table .version,
     table .pkg,
     table .date,

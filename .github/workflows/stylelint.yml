@@ -30,4 +30,4 @@ jobs:
         run: npm run setup
 
       - name: Run StyleLint
-        run: npm run lint:stylelint:github
+        run: npm run lint:stylelint
