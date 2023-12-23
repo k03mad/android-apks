@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'production';
 const env = {
     'server': {
         domain: process.env.AAPKS_DOMAIN,
-        port: process.env.npm_config_port || 13_010,
+        port: process.env.npm_config_port || 13_010
     },
     'debug': process.env.DEBUG,
     'scripts': {
