@@ -5,10 +5,11 @@ import _ from 'lodash';
 import pMap from 'p-map';
 
 import {logError} from '../../../utils/logs.js';
-import serverConfig from '../../server/config.js';
 import cronConfig from '../config.js';
-import {downloadApkFile, getProvidersData} from './helpers/fetch.js';
+import serverConfig from '../../server/config.js';
+
 import {addObtainiumLinks, getTimestamp, sortData} from './helpers/json.js';
+import {downloadApkFile, getProvidersData} from './helpers/fetch.js';
 
 const debug = _debug('mad:task');
 

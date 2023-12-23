@@ -30,14 +30,13 @@
     "recron": "1.1.5"
   },
   "devDependencies": {
-    "@k03mad/eslint-config": "15.1.0",
+    "@k03mad/eslint-config": "15.2.0",
     "@microsoft/eslint-formatter-sarif": "3.0.0",
     "@stylistic/eslint-plugin": "1.5.1",
     "eslint": "8.56.0",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-jsdoc": "46.9.1",
     "eslint-plugin-n": "16.5.0",
-    "eslint-plugin-simple-import-sort": "10.0.0",
     "eslint-plugin-sonarjs": "0.23.0",
     "eslint-plugin-unicorn": "50.0.1",
     "husky": "8.0.3",

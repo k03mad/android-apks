@@ -1,5 +1,6 @@
 import {logError} from '../../../utils/logs.js';
 import {req} from '../../../utils/request.js';
+
 import {getApkFromAg} from './helpers/appgallery.js';
 
 const REQUEST_URL = 'https://apps.sber.ru/apps/';
