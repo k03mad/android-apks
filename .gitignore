@@ -2,6 +2,7 @@
 node_modules
 
 .eslintcache
+.stylelintcache
 
 data.json
 **/static/apps/apk
