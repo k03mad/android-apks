@@ -1,4 +1,8 @@
+import fs from 'node:fs/promises';
+
 import {request} from '@k03mad/request';
+
+import cronConfig from '../app/cron/config.js';
 
 import {retry} from './promise.js';
 
@@ -28,4 +32,15 @@ export const getUa = (type = 'mobile') => ua()[type];
 /**
  * @param {...any} args
  */
-export const req = (...args) => retry(() => request(...args));
+export const req = async (...args) => {
+    try {
+        return await retry(() => request(...args));
+    } catch (err) {
+        if (err.__req) {
+            await fs.mkdir(cronConfig.output.folder, {recursive: true});
+            await fs.appendFile(cronConfig.output.errors, err.__req);
+        }
+
+        throw err;
+    }
+};

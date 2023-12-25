@@ -36,7 +36,7 @@ const gauge = new client.Gauge({
         try {
             this.reset();
 
-            const dataFile = await fs.readFile(cronConfig.json.file);
+            const dataFile = await fs.readFile(cronConfig.output.data);
             const parsed = JSON.parse(dataFile);
 
             const {apk, errors, timestamp} = parsed;

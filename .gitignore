@@ -4,5 +4,6 @@ node_modules
 .eslintcache
 .stylelintcache
 
-data.json
+/output
+
 **/static/apps/apk

@@ -12,7 +12,7 @@ const userAgents = new Set();
  * @param {object} [req.headers]
  */
 const getPageData = async req => {
-    const dataFile = await fs.readFile(cronConfig.json.file);
+    const dataFile = await fs.readFile(cronConfig.output.data);
     const parsedData = JSON.parse(dataFile);
 
     const ua = req.headers?.['user-agent'];

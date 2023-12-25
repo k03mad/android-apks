@@ -8,7 +8,7 @@ import cronConfig from '../config.js';
 import serverConfig from '../../server/config.js';
 import {shuffle} from '../../../utils/array.js';
 
-import {addObtainiumLinks, getTimestamp, sortData} from './helpers/json.js';
+import {addObtainiumLinks, getRequestErrorsArray, getTimestamp, sortData} from './helpers/json.js';
 import {downloadApkFile, getProvidersData} from './helpers/fetch.js';
 
 const debug = _debug('mad:task');
@@ -19,15 +19,16 @@ const debug = _debug('mad:task');
 export default async providers => {
     const startDate = new Date();
 
-    const json = {
-        apk: {},
-        errors: [],
-    };
-
     const [providersData] = await Promise.all([
         getProvidersData(providers),
+        fs.rm(cronConfig.output.folder, {force: true, recursive: true}),
         fs.rm(serverConfig.static.apk, {force: true, recursive: true}),
     ]);
+
+    const json = {
+        apk: {},
+        errors: await getRequestErrorsArray() || [],
+    };
 
     await pMap(
         shuffle(providersData),
@@ -66,5 +67,6 @@ export default async providers => {
     data = addObtainiumLinks(data);
     data.timestamp = getTimestamp(startDate);
 
-    await fs.writeFile(cronConfig.json.file, JSON.stringify(data));
+    await fs.mkdir(cronConfig.output.folder, {recursive: true});
+    await fs.writeFile(cronConfig.output.data, JSON.stringify(data));
 };

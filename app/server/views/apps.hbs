@@ -1,2 +1,106 @@
-{{> table}}
-{{> footer}}
+<table>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    {{#each apk}}
+        <tr>
+            <td class="provider">{{@key}}</td>
+        </tr>
+        {{#each this}}
+            <tr>
+                <td class="label">
+                    {{#if this.label}}
+                        {{this.label}}
+                    {{/if}}
+                </td>
+
+                <td class="version" {{#if this.arch}}title="{{this.arch}}"{{/if}}>
+                    {{#if this.version}}
+                        {{this.version}}
+                    {{/if}}
+                </td>
+
+                <td class="pkg">
+                    {{#if this.pkg}}
+                        {{this.pkg}}
+                    {{/if}}
+                </td>
+
+                <td class="date">
+                    {{#if this.date}}
+                        {{this.date}}
+                    {{/if}}
+                </td>
+
+                <td class="size">
+                    {{#if this.size.value}}
+                        {{#if this.size.unit}}
+                            {{this.size.value}}&#8239;{{this.size.unit}}
+                        {{/if}}
+                    {{/if}}
+                </td>
+
+                <td class="main-link">
+                    {{#if this.download.original}}
+                        <a href="{{this.download.original}}" title="download apk from original url">download</a>
+                    {{/if}}
+                </td>
+
+                <td class="extra-link">
+                    {{#if this.download.mirror}}
+                        <a href="{{this.download.mirror}}" title="download apk from mirror url">mirror</a>
+                    {{/if}}
+                </td>
+
+                <td class="extra-link">
+                    {{#if this.homepage}}
+                        <a href="{{this.homepage}}" target="_blank" title="home page">home</a>
+                    {{/if}}
+                </td>
+
+                <td class="extra-link">
+                    {{#if this.obtainium.original}}
+                        <a href="{{this.obtainium.original}}" title="obtainium: import original url">obt:orig</a>
+                    {{/if}}
+                </td>
+
+                <td class="extra-link">
+                    {{#if this.obtainium.mirror}}
+                        <a href="{{this.obtainium.mirror}}" title="obtainium: import mirror url">obt:mirror</a>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/each}}
+        <tr class="empty">
+            <td>&nbsp;</td>
+        </tr>
+    {{/each}}
+</table>
+
+<div class="info">
+    <p>
+        Updated
+        <br>
+        <span class="data">— {{timestamp.pretty}}</span>
+    </p>
+    {{#if errors}}
+        <p>
+            Errors
+            <br>
+            {{#each errors}}
+                <span class="data">
+                    — {{this}}
+                </span>
+                <br>
+            {{/each}}
+        </p>
+    {{/if}}
+    <p>
+        Visits
+        <br>
+        {{#each ua}}
+            <span class="data">— {{this}}</span>
+            <br>
+        {{/each}}
+    </p>
+</div>
