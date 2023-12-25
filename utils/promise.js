@@ -17,7 +17,7 @@ export const retry = async (fn, count = 2) => {
                 throw err;
             }
 
-            await sleep();
+            await sleep((i + 1) * 3000);
         }
     }
 };
