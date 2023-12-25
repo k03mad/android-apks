@@ -29,7 +29,7 @@ export default async () => {
         .map(elem => elem?.[1]);
 
     const appDownloadLinks = await Promise.all(
-        appPageLinks.filter(Boolean).map(async appPageLink => {
+        [...new Set(appPageLinks)].filter(Boolean).map(async appPageLink => {
             try {
                 const {body: appPageBody} = await req(REQUEST_URL + appPageLink);
                 return appPageBody.match(RESPONSE_APP_DOWNLOAD_LINK_RE);
