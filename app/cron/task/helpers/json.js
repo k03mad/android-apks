@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import ms from 'ms';
 
 import env from '../../../../env.js';
@@ -33,7 +32,7 @@ export const getTimestamp = startDate => {
  * @param {Array<string>} json.errors
  */
 export const sortData = json => {
-    const cloneJson = _.cloneDeep(json);
+    const cloneJson = structuredClone(json);
 
     // app labels
     Object
@@ -61,7 +60,7 @@ export const sortData = json => {
  */
 export const addObtainiumLinks = json => {
     if (env.server.domain) {
-        const cloneJson = _.cloneDeep(json);
+        const cloneJson = structuredClone(json);
 
         Object
             .keys(cloneJson.apk)

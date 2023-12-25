@@ -1,12 +1,12 @@
 import fs from 'node:fs/promises';
 
 import _debug from 'debug';
-import _ from 'lodash';
 import pMap from 'p-map';
 
 import {logError} from '../../../utils/logs.js';
 import cronConfig from '../config.js';
 import serverConfig from '../../server/config.js';
+import {shuffle} from '../../../utils/array.js';
 
 import {addObtainiumLinks, getTimestamp, sortData} from './helpers/json.js';
 import {downloadApkFile, getProvidersData} from './helpers/fetch.js';
@@ -30,7 +30,7 @@ export default async providers => {
     ]);
 
     await pMap(
-        _.shuffle(providersData),
+        shuffle(providersData),
 
         async (providerData, counter) => {
             try {

@@ -1,8 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import _ from 'lodash';
-
 import {getApkFileInfo} from '../../../../utils/aapt.js';
 import {download} from '../../../../utils/aria.js';
 import {convertToArray} from '../../../../utils/array.js';
@@ -27,8 +25,7 @@ export const getProvidersData = async providers => {
         }),
     );
 
-    const flattenProvidersData = data.flat().filter(Boolean);
-    return _.uniqWith(flattenProvidersData, _.isEqual);
+    return data.flat().filter(Boolean);
 };
 
 /**
