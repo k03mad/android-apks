@@ -1,4 +1,3 @@
-import fs from 'node:fs/promises';
 import os from 'node:os';
 
 import express from 'express';
@@ -7,7 +6,7 @@ import client from 'prom-client';
 import env from '../../../env.js';
 import {logError} from '../../../utils/logs.js';
 import {packageJson} from '../../../utils/meta.js';
-import cronConfig from '../../cron/config.js';
+import {getPageData} from '../helpers/page.js';
 
 const router = express.Router();
 const register = new client.Registry();
@@ -36,18 +35,26 @@ const gauge = new client.Gauge({
         try {
             this.reset();
 
-            const dataFile = await fs.readFile(cronConfig.output.data);
-            const parsed = JSON.parse(dataFile);
+            const data = await getPageData();
 
-            const {apk, errors, timestamp} = parsed;
+            const {apk, errors, timestamp, ua} = data;
             const providers = Object.keys(apk);
             const apps = Object.values(apk).flat();
 
             addLabels(this, 'apks-count').set(apps.length);
             addLabels(this, 'errors-count').set(errors.length);
+            addLabels(this, 'ua-count').set(ua.length);
             addLabels(this, 'providers-count').set(providers.length);
             addLabels(this, 'timestamp-duration').set(timestamp.duration);
             addLabels(this, 'timestamp-pretty', timestamp.pretty).set(1);
+
+            ua.forEach((useragent, i) => {
+                addLabels(this, 'ua-string', useragent).set(++i);
+            });
+
+            errors.forEach((err, i) => {
+                addLabels(this, 'errors-string', err).set(++i);
+            });
 
             apps.forEach(app => {
                 addLabels(this, 'apks-size', app.label).set(app.size.raw);
