@@ -52,7 +52,7 @@ export const sortData = json => {
         }, {});
 
     // app errors
-    cloneJson.errors.sort();
+    cloneJson.errors = [...new Set(cloneJson.errors.sort())];
 
     return cloneJson;
 };
