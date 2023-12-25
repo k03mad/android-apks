@@ -21,7 +21,7 @@ export default async providers => {
 
     const [providersData] = await Promise.all([
         getProvidersData(providers),
-        fs.rm(cronConfig.output.folder, {force: true, recursive: true}),
+        fs.rm(cronConfig.output.errors, {force: true, recursive: true}),
         fs.rm(serverConfig.static.apk, {force: true, recursive: true}),
     ]);
 
