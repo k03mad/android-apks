@@ -46,8 +46,8 @@
     "clean:stylelint:cache": "rm -rf .stylelintcache || true",
     "setup": "npm run clean && npm i",
     "setup:prod": "npm run clean && npm i --omit=dev",
-    "start": "node index",
-    "start:dev": "DEBUG=mad* nodemon -e js,json,css,hbs,woff,woff2,ico,webmanifest index",
+    "start": "node app/index",
+    "start:dev": "DEBUG=mad* nodemon -e js,json,css,hbs,woff,woff2,ico,webmanifest app/index",
     "apk:get": "DEBUG=mad* node app/cron/scripts/run",
     "apk:dl": "DEBUG=mad* TYPE=dl node app/cron/scripts/run",
     "prepare": "husky install || true"
