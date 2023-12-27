@@ -3,13 +3,13 @@ import fs from 'node:fs/promises';
 import _debug from 'debug';
 import pMap from 'p-map';
 
-import {logError} from '../../../utils/logs.js';
-import cronConfig from '../config.js';
-import serverConfig from '../../server/config.js';
 import {shuffle} from '../../../utils/array.js';
+import {logError} from '../../../utils/logs.js';
+import serverConfig from '../../server/config.js';
+import cronConfig from '../config.js';
 
-import {addObtainiumLinks, getRequestErrorsArray, getTimestamp, sortData} from './helpers/json.js';
 import {downloadApkFile, getProvidersData} from './helpers/fetch.js';
+import {addObtainiumLinks, getRequestErrorsArray, getTimestamp, sortData} from './helpers/json.js';
 
 const debug = _debug('mad:task');
 

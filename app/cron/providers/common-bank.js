@@ -37,7 +37,7 @@ const agApps = [
 const parse = [
     {
         homepage: 'https://www.vbrr.ru/private/remote-service-app/',
-        re: /href="(.+.apk)"/,
+        re: /href="(.+\.apk)"/,
         relative: true,
     },
 ];

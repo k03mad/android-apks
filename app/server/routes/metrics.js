@@ -23,7 +23,7 @@ const labelNames = ['type', 'ext', 'ext2', 'ext3', 'ext4'];
 
 const addLabels = (ctx, ...labels) => ctx.labels(
     ...labels,
-    ...Array.from({length: labelNames.length - labels.length}).map(() => null),
+    ...Array.from({length: labelNames.length - labels.length}, () => null),
 );
 
 const gauge = new client.Gauge({

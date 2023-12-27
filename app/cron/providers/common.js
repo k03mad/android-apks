@@ -13,7 +13,7 @@ const direct = [
 const parse = [
     {
         homepage: 'https://download.wireguard.com/android-client/',
-        re: /href="(.+.apk)"/,
+        re: /href="(.+\.apk)"/,
         relative: true,
     },
     {
@@ -22,7 +22,7 @@ const parse = [
     },
     {
         homepage: 'https://питание.дети/mobile',
-        re: /href="(.+.apk)\s?"/,
+        re: /href="(.{2,}apk)\s?"/,
     },
     {
         homepage: 'https://www.whatsapp.com/android',

@@ -10,7 +10,7 @@ const direct = [
 const parse = [
     {
         homepage: 'https://get.videolan.org/vlc-android/last/',
-        re: /href="(.+arm64.+.apk)"/,
+        re: /href="(.+arm64.+\.apk)"/,
         opts: {ua: 'curl'},
         relative: true,
     },

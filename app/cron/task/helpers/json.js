@@ -2,8 +2,8 @@ import fs from 'node:fs/promises';
 
 import ms from 'ms';
 
-import cronConfig from '../../config.js';
 import env from '../../../../env.js';
+import cronConfig from '../../config.js';
 
 import {getObtainiumImportHtmlApp, getObtainiumImportSupportedLink} from './obtainium.js';
 
