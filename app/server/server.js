@@ -10,7 +10,7 @@ import {linkStyle} from '../../utils/colors.js';
 import {log} from '../../utils/logs.js';
 
 import config from './config.js';
-import routesIndex from './routes/_index.js';
+import * as routesIndex from './routes/_index.js';
 
 const routes = Object.values(routesIndex);
 const getRoutePath = route => route.stack?.[0]?.route?.path;
