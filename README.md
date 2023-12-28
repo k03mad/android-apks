@@ -32,4 +32,7 @@ npm run apk:dl
 # старт сервера
 npm run start --port=3030
 open http://localhost:3030/apps
+
+# экспорт метрик для prometheus
+open http://localhost:3030/metrics
 ```
