@@ -38,20 +38,30 @@ const getAriaArgs = opts => [
  * @param {string} [opts.header]
  */
 export const download = async (url, opts = {}) => {
-    const cmd = `aria2c ${getAriaArgs(opts)} "${url}"`;
+    const cmd = `time aria2c ${getAriaArgs(opts)} "${url}"`;
+    const timeRe = /real\s+(\d+)m([\d.]+)s/;
     debug.extend('cmd')('%o', cmd);
 
     if (opts.dir) {
         await fs.mkdir(opts.dir, {recursive: true});
     }
 
-    const output = await run(cmd);
+    const logs = await run(cmd);
+
+    const data = {};
+    const time = logs.stderr?.match(timeRe);
+
+    if (time) {
+        data.durationSeconds = Number(time[1]) * 60 + Number(time[2]);
+    }
 
     if (opts.ext) {
         const filePathRe = new RegExp(`path[\\s\\S]+\\|(.+${opts.ext})`);
-        const filePath = output?.match(filePathRe)?.[1];
+        const filePath = logs.stdout?.match(filePathRe)?.[1];
         debug.extend('downloaded')('%o', filePath);
 
-        return filePath;
+        data.downloadedApkPath = filePath;
     }
+
+    return data;
 };

@@ -58,6 +58,7 @@ const gauge = new client.Gauge({
 
             apps.forEach(app => {
                 addLabels(this, 'apks-size', app.label).set(app.size.raw);
+                addLabels(this, 'apks-duration', app.label).set(app.download.duration);
                 addLabels(this, 'apks-full', app.label, app.pkg, app.version, app.date || '-').set(app.size.raw);
             });
         } catch (err) {

@@ -5,9 +5,6 @@ const exec = util.promisify(cp.exec);
 
 /**
  * @param {string} runString
- * @returns {Promise<string>}
+ * @returns {Promise<{stdout: string, stderr: string}>}
  */
-export const run = async runString => {
-    const {stdout} = await exec(runString);
-    return stdout;
-};
+export const run = runString => exec(runString);
