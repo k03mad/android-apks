@@ -5,6 +5,7 @@ export default () => getApkFromGhRepos([
     {name: 'Aefyr/SAI'},
     {name: 'Chooloo/koler'},
     {name: 'EtchDroid/EtchDroid'},
+    {name: 'fast4x/RiMusic'},
     {name: 'imranr98/obtainium', re: {include: /arm64/}},
     {name: 'kyujin-cho/pixel-volte-patch'},
     {name: 'M66B/NetGuard'},
@@ -14,4 +15,5 @@ export default () => getApkFromGhRepos([
     {name: 'proninyaroslav/libretorrent', re: {include: /arm64/}},
     {name: 'RikkaApps/Shizuku'},
     {name: 'tytydraco/PDNSQS', re: {exclude: /unsigned/}},
+    {name: 'z-huang/InnerTune', re: {include: /arm64/}},
 ]);

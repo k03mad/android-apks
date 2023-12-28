@@ -1,4 +1,12 @@
-export {default as apps} from './apps.js';
-export {default as _all} from './common/all.js';
-export {default as _error} from './common/error.js';
-export {default as metrics} from './metrics.js';
+import apps from './apps.js';
+import _all from './common/all.js';
+import _error from './common/error.js';
+import metrics from './metrics.js';
+
+export default {
+    apps,
+    metrics,
+
+    _error,
+    _all,
+};
