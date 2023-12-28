@@ -60,7 +60,7 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
+  "graphTooltip": 1,
   "id": null,
   "links": [],
   "liveNow": false,
@@ -444,10 +444,12 @@
       "options": {
         "legend": {
           "calcs": [
+            "max",
+            "mean",
             "lastNotNull"
           ],
           "displayMode": "table",
-          "placement": "right",
+          "placement": "bottom",
           "showLegend": true,
           "sortBy": "Last *",
           "sortDesc": true
@@ -1166,13 +1168,13 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "A-APKS",
   "uid": "b6bbd9e8-d985-4ee5-b656-c9941f6d34e9",
-  "version": 52,
+  "version": 54,
   "weekStart": ""
 }
