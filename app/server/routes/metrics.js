@@ -49,11 +49,11 @@ const gauge = new client.Gauge({
             addLabels(this, 'timestamp-pretty', timestamp.pretty).set(1);
 
             ua.forEach((useragent, i) => {
-                addLabels(this, 'ua-string', useragent).set(++i);
+                addLabels(this, 'ua-string', useragent).set(i + 1);
             });
 
             errors.forEach((err, i) => {
-                addLabels(this, 'errors-string', err).set(++i);
+                addLabels(this, 'errors-string', err).set(i + 1);
             });
 
             apps.forEach(app => {

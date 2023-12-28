@@ -35,11 +35,9 @@ export default async providers => {
 
         async (providerData, counter) => {
             try {
-                counter++;
-
                 const {link, providerName} = providerData;
 
-                const debugOpts = ['[%o/%o] %o', counter, providersData.length, link];
+                const debugOpts = ['[%o/%o] %o', counter + 1, providersData.length, link];
                 debug.extend('started')(...debugOpts);
                 const apk = await downloadApkFile(providerData);
                 debug.extend('finished')(...debugOpts);
