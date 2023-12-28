@@ -35,7 +35,7 @@ export const getProvidersData = async providers => {
  * @param {string} [apk.homepage]
  */
 export const downloadApkFile = async ({homepage, link, opts}) => {
-    const {downloadedApkPath, durationSeconds} = await retry(
+    const {downloadedApkPath, duration} = await retry(
         () => download(link, {
             ...opts,
             ext: 'apk',
@@ -66,7 +66,7 @@ export const downloadApkFile = async ({homepage, link, opts}) => {
         download: {
             original: link,
             mirror: relativeDownloadLink,
-            duration: durationSeconds,
+            duration,
         },
     };
 };
