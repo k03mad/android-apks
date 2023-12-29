@@ -1,7 +1,4 @@
 import {getApkFromGlRepos} from './helpers/gitlab.js';
 
 /** */
-export default () => getApkFromGlRepos([
-    {name: 'sunilpaulmathew/ashell'},
-    {name: 'AuroraOSS/AuroraStore'},
-]);
+export default () => getApkFromGlRepos([{name: 'sunilpaulmathew/ashell'}]);

@@ -6,6 +6,4 @@ export default () => getApkFromFd([
     {pkg: 'com.foxdebug.acode'},
     {pkg: 'net.osmand.plus'},
     {pkg: 'org.fdroid.fdroid'},
-    {pkg: 'org.jitsi.meet'},
-    {pkg: 'ws.xsoh.etar'},
 ]);

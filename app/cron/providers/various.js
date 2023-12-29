@@ -17,16 +17,8 @@ const direct = [
         homepage: 'https://app.yota.ru/',
     },
     {
-        link: 'https://lk.megafon.ru/download/apk',
-        homepage: 'https://lc.megafon.ru/help/lk/',
-    },
-    {
-        link: 'https://d.tap.io/latest',
-        homepage: 'https://www.taptap.io/mobile',
-    },
-    {
-        link: 'https://www.rustore.ru/download',
-        homepage: 'https://www.rustore.ru/instruction.html',
+        link: 'https://telegram.org/dl/android/apk',
+        homepage: 'https://telegram.org/android',
     },
 ];
 
@@ -59,10 +51,7 @@ const parse = [
 
 const apApps = [{path: 'mi-home/com.xiaomi.smarthome'}];
 
-const agApps = [
-    {name: 'РЖД', id: 'C101979029'},
-    {name: 'AppGallery', id: 'C27162'},
-];
+const agApps = [{name: 'РЖД', id: 'C101979029'}];
 
 /** */
 export default async () => {
