@@ -15,5 +15,5 @@ export default async () => {
     const {body} = await req(REQUEST_URL, REQUEST_OPTS);
 
     const links = body.match(RESPONSE_LINK_RE);
-    return links.map(link => ({link, homepage: REQUEST_URL}));
+    return [...new Set(links)].map(link => ({link, homepage: REQUEST_URL}));
 };
