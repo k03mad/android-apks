@@ -5,7 +5,7 @@ export const getDateYMD = ts => {
     const date = ts ? new Date(ts) : new Date();
 
     const year = date.getFullYear();
-    const month = date.getMonth();
+    const month = date.getMonth() + 1;
     const day = date.getDate();
 
     return [
