@@ -1,16 +1,18 @@
-/**
- * @param {number} [ts]
- */
-export const getDateYMD = ts => {
-    const date = ts ? new Date(ts) : new Date();
+const prefixZero = datePart => String(datePart).length === 1
+    ? `0${datePart}`
+    : datePart;
 
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+/**
+ * @param {number|string} [init]
+ * @param {object} [opts]
+ * @param {string} [opts.ymdSeparator]
+ */
+export const getDateYMD = (init, {ymdSeparator = '-'} = {}) => {
+    const date = init ? new Date(init) : new Date();
 
     return [
-        year,
-        String(month).length === 1 ? `0${month}` : month,
-        String(day).length === 1 ? `0${day}` : day,
-    ].join('-');
+        date.getFullYear(),
+        date.getMonth() + 1,
+        date.getDate(),
+    ].map(elem => prefixZero(elem)).join(ymdSeparator);
 };
