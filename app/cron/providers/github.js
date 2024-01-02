@@ -11,4 +11,5 @@ export default () => getApkFromGhRepos([
     {name: 'RikkaApps/Shizuku'},
     {name: 'streetcomplete/StreetComplete'},
     {name: 'tytydraco/PDNSQS', re: {exclude: /unsigned/}},
+    {name: 'NoName-exe/revanced-extended-mnml', re: {include: /reddit/}},
 ]);
