@@ -12,4 +12,5 @@ export default () => getApkFromGhRepos([
     {name: 'streetcomplete/StreetComplete'},
     {name: 'tytydraco/PDNSQS', re: {exclude: /unsigned/}},
     {name: 'NoName-exe/revanced-extended-mnml', re: {include: /reddit/}},
+    {name: 'termux/termux-app', re: {include: /arm64/}},
 ]);
