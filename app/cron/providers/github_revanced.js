@@ -1,15 +1,7 @@
-import {getApkFromGhUsers, getApkFromGhRepos} from './helpers/github.js';
-
-const users = [{name: 'NoName-exe', re: {include: /mnml/, exclude: /youtube-(music-)?revanced-mnml/}}];
-
-const repos = [{name: 'inotia00/VancedMicroG'}];
+import {getApkFromGhRepos} from './helpers/github.js';
 
 /** */
-export default async () => {
-    const links = await Promise.all([
-        getApkFromGhUsers(users),
-        getApkFromGhRepos(repos),
-    ]);
-
-    return links.flat();
-};
+export default () => getApkFromGhRepos([
+    {name: 'inotia00/VancedMicroG'},
+    {name: 'NoName-exe/revanced-extended-mnml'},
+]);
