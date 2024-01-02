@@ -1,7 +1,7 @@
 const OUTPUT_FOLDER = './output';
 
 export default {
-    interval: '0 */6 * * *',
+    interval: '0 */3 * * *',
     apk: {
         minSizeB: 51_200,
     },
