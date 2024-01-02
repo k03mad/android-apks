@@ -5,6 +5,7 @@ const repos = [
     {name: 'polymorphicshade/NewPipe'},
     {name: 'TeamNewPipe/NewPipe'},
     {name: 'yuliskov/SmartTube', re: {include: /arm64/}},
+    {name: 'lamarios/clipious', re: {include: /arm64/}},
 ];
 
 /** */
