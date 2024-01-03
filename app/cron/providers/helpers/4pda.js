@@ -56,7 +56,7 @@ export const getApkFrom4Pda = async apps => {
             // если там есть ссылка на скачивание apk, возвращаем её
             for (const postsLink of postsLinks) {
                 const postId = postsLink.split('=').at(-1);
-                const {body: postBody} = await getTopicPost(showtopic, postId);
+                const {url, body: postBody} = await getTopicPost(showtopic, postId);
 
                 let apkLinks = getAllLinksFromSelector(postBody, selectors.post.byId(postId))
                     .filter(elem => elem.endsWith('.apk'));
@@ -72,7 +72,7 @@ export const getApkFrom4Pda = async apps => {
 
                     return apkLinks.map(link => ({
                         link,
-                        homepage: urls.topic(showtopic),
+                        homepage: url,
                         opts: {
                             header: `Cookie: member_id=${env['4pda'].memberId}; pass_hash=${env['4pda'].passHash}`,
                             ua: 'mobile',
