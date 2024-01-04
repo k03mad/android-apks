@@ -28,14 +28,14 @@
 # установить зависимости
 # (только при первом запуске)
 npm i pnpm -g
-pnpm run setup
+npm run setup
 
 # предварительно скачать апк-файлы
 # (только при первом запуске, далее будут скачиваться по крону)
-pnpm run apk:dl
+npm run apk:dl
 
 # старт сервера
-pnpm run start --port=3030
+npm run start --port=3030
 open http://localhost:3030/apps
 
 # экспорт метрик для prometheus
