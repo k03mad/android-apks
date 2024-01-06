@@ -7,4 +7,5 @@ export default () => getApkFrom4Pda([
     {name: 'AnyBalance', showtopic: 300_836},
     {name: 'App&Game 4PDA', showtopic: 275_433},
     {name: 'Brotato Mobile', showtopic: 1_059_651},
+    {name: 'HDrezka', showtopic: 1_028_761},
 ]);
