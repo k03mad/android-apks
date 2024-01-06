@@ -7,7 +7,7 @@ export const getApkFromAp = apps => apps.map(({path}) => {
 
     return {
         homepage,
-        link: `https://d.apkpure.com/b/APK/${pkg}?version=latest`,
+        link: `https://d.cdnpure.com/b/APK/${pkg}?version=latest`,
         opts: {ua: 'aria'},
     };
 });
