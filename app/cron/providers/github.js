@@ -14,6 +14,7 @@ export default () => getApkFromGhRepos([
     {name: 'RikkaApps/Shizuku'},
     {name: 'streetcomplete/StreetComplete'},
     {name: 'termux/termux-app', re: {include: /arm64/}},
+    {name: 'truefedex/tv-bro', re: {include: /arm64/}},
     {name: 'tytydraco/PDNSQS', re: {exclude: /unsigned/}},
     {name: 'Zverik/every_door'},
 ]);

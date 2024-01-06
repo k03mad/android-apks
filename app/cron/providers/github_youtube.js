@@ -5,7 +5,7 @@ const repos = [
     {name: 'NoName-exe/revanced-extended-mnml', re: {exclude: /reddit|youtube-music/}},
     {name: 'polymorphicshade/NewPipe'},
     {name: 'TeamNewPipe/NewPipe'},
-    {name: 'yuliskov/SmartTube', re: {include: /arm64/}},
+    {name: 'yuliskov/SmartTube', skipPrerelease: true, re: {include: /arm64/}},
 ];
 
 /** */

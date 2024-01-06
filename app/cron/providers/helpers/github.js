@@ -40,16 +40,18 @@ const getOrgRepos = org => req(`${urls.api}/orgs/${org}/repos`, reqOpts);
 const getUserRepos = user => req(`${urls.api}/users/${user}/repos`, reqOpts);
 
 /**
- * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} repos
+ * @param {Array<{name: string, skipPrerelease: boolean, re: {include: RegExp, exclude: RegExp}}>} repos
  * @param {object} opts
  * @param {boolean} opts.skipEmptyCheck
  */
 export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
-    const links = await Promise.all(repos.flat().map(async ({name, re}) => {
+    const links = await Promise.all(repos.flat().map(async ({name, skipPrerelease, re}) => {
         try {
             const {body} = await getReleases(name);
 
-            let apkUrls = (body?.[0]?.assets?.map(asset => asset?.browser_download_url) || [])
+            const item = skipPrerelease ? body?.find(elem => !elem.prerelease) : body?.[0];
+
+            let apkUrls = (item?.assets?.map(asset => asset?.browser_download_url) || [])
                 .filter(elem => APPS_FILTER_DEFAULT_RE.test(elem));
 
             if (re?.include) {
@@ -79,14 +81,14 @@ export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
 };
 
 /**
- * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} orgs
+ * @param {Array<{name: string, skipPrerelease: boolean, re: {include: RegExp, exclude: RegExp}}>} orgs
  * @returns {Promise<Array<{name: string, re: {include: RegExp, exclude: RegExp}}>>}
  */
 export const getApkFromGhOrgs = async orgs => {
-    const repos = await Promise.all(orgs.map(async ({name, re}) => {
+    const repos = await Promise.all(orgs.map(async opts => {
         try {
-            const {body} = await getOrgRepos(name);
-            return body.map(elem => ({name: `${name}/${elem.name}`, re}));
+            const {body} = await getOrgRepos(opts.name);
+            return body.map(elem => ({...opts, name: `${opts.name}/${elem.name}`}));
         } catch (err) {
             logError(err);
         }
@@ -96,13 +98,13 @@ export const getApkFromGhOrgs = async orgs => {
 };
 
 /**
- * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} orgs
+ * @param {Array<{name: string, skipPrerelease: boolean, re: {include: RegExp, exclude: RegExp}}>} orgs
  */
 export const getApkFromGhUsers = async orgs => {
-    const repos = await Promise.all(orgs.map(async ({name, re}) => {
+    const repos = await Promise.all(orgs.map(async opts => {
         try {
-            const {body} = await getUserRepos(name);
-            return body.map(elem => ({name: `${name}/${elem.name}`, re}));
+            const {body} = await getUserRepos(opts.name);
+            return body.map(elem => ({...opts, name: `${opts.name}/${elem.name}`}));
         } catch (err) {
             logError(err);
         }
