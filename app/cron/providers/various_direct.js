@@ -17,4 +17,8 @@ export default () => [
         link: 'https://telegram.org/dl/android/apk',
         homepage: 'https://telegram.org/android',
     },
+    {
+        link: 'https://files.televizo.net/televizo-default.apk',
+        homepage: 'https://televizo.net/',
+    },
 ];

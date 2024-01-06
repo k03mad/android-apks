@@ -22,8 +22,4 @@ export default () => getApkFromParse([
         opts: {ua: 'curl'},
         relative: true,
     },
-    {
-        homepage: 'https://televizo.net/',
-        re: /href="(.+)">APK \(ALL DEVICES\)/,
-    },
 ]);
