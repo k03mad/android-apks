@@ -8,7 +8,6 @@ export default () => getApkFromGhRepos([
     {name: 'imranr98/obtainium', re: {include: /arm64/}},
     {name: 'kyujin-cho/pixel-volte-patch'},
     {name: 'massivemadness/Squircle-CE', re: {include: /fdroid/}},
-    {name: 'MuntashirAkon/AppManager'},
     {name: 'NoName-exe/revanced-extended-mnml', re: {include: /reddit/}},
     {name: 'organicmaps/organicmaps'},
     {name: 'RikkaApps/Shizuku'},
@@ -16,5 +15,4 @@ export default () => getApkFromGhRepos([
     {name: 'termux/termux-app', re: {include: /arm64/}},
     {name: 'truefedex/tv-bro', re: {include: /arm64/}},
     {name: 'tytydraco/PDNSQS', re: {exclude: /unsigned/}},
-    {name: 'Zverik/every_door'},
 ]);
