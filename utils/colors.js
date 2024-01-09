@@ -1,6 +1,5 @@
 import chalk from 'chalk';
 
-export const stringStyle = chalk.yellow;
 export const cronStyle = chalk.green;
 
 /**
