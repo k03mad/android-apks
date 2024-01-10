@@ -32,7 +32,7 @@ export const getApkFileInfo = async apkFilePath => {
     }
 
     try {
-        const remoteDate = getDateYMD(stat.mtime);
+        const remoteDate = getDateYMD({init: stat.mtime});
 
         if (remoteDate !== getDateYMD()) {
             date = remoteDate;
