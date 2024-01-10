@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 
+import {getDateYMDHMS} from '@k03mad/simple-date';
 import ms from 'ms';
 
 import env from '../../../../env.js';
@@ -22,8 +23,7 @@ export const getTimestamp = startDate => {
     return {
         duration,
         pretty: [
-            startDate.toLocaleDateString(),
-            startDate.toLocaleTimeString(),
+            getDateYMDHMS({init: startDate}),
             `+${ms(Date.now() - startDate.getTime())}`,
         ].join(' '),
     };
