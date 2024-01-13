@@ -21,4 +21,8 @@ export default () => [
         link: 'https://files.televizo.net/televizo-default.apk',
         homepage: 'https://televizo.net/',
     },
+    {
+        link: 'https://news.datafun.org/apk/OpenTvBrowser.apk',
+        homepage: 'https://open-browser.com/',
+    },
 ];
