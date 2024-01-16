@@ -1,10 +1,10 @@
 import os from 'node:os';
 
+import {logError} from '@k03mad/simple-log';
 import express from 'express';
 import client from 'prom-client';
 
 import env from '../../../env.js';
-import {logError} from '../../../utils/logs.js';
 import {packageJson} from '../../../utils/meta.js';
 import {getPageData} from '../helpers/page.js';
 

@@ -1,6 +1,7 @@
+import {logError} from '@k03mad/simple-log';
+
 import env from '../../../../env.js';
 import {getAllLinksFromSelector} from '../../../../utils/cheerio.js';
-import {logError} from '../../../../utils/logs.js';
 import {req} from '../../../../utils/request.js';
 
 const urls = {

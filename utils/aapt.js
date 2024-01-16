@@ -1,8 +1,8 @@
 import fs from 'node:fs/promises';
 
 import {getDateYMD} from '@k03mad/simple-date';
+import {logError} from '@k03mad/simple-log';
 
-import {logError} from './logs.js';
 import {run} from './shell.js';
 
 /**

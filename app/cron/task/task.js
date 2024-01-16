@@ -1,10 +1,10 @@
 import fs from 'node:fs/promises';
 
+import {logError} from '@k03mad/simple-log';
 import _debug from 'debug';
 import pMap from 'p-map';
 
 import {shuffle} from '../../../utils/array.js';
-import {logError} from '../../../utils/logs.js';
 import serverConfig from '../../server/config.js';
 import cronConfig from '../config.js';
 

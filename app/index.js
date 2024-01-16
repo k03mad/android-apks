@@ -1,5 +1,6 @@
+import {log} from '@k03mad/simple-log';
+
 import {headerStyle} from '../utils/colors.js';
-import {log} from '../utils/logs.js';
 import {packageJson} from '../utils/meta.js';
 
 import cron from './cron/cron.js';

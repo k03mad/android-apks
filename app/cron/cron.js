@@ -1,7 +1,7 @@
+import {log} from '@k03mad/simple-log';
 import {Cron} from 'recron';
 
 import {cronStyle} from '../../utils/colors.js';
-import {log} from '../../utils/logs.js';
 
 import config from './config.js';
 import * as _providers from './providers/_index.js';

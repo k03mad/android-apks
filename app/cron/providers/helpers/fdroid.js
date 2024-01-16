@@ -1,4 +1,5 @@
-import {logError} from '../../../../utils/logs.js';
+import {logError} from '@k03mad/simple-log';
+
 import {req} from '../../../../utils/request.js';
 
 const REQUEST_URL = 'https://f-droid.org/packages/';

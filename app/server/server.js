@@ -1,3 +1,4 @@
+import {log} from '@k03mad/simple-log';
 import compression from 'compression';
 import express from 'express';
 import {engine} from 'express-handlebars';
@@ -7,7 +8,6 @@ import morgan from 'morgan';
 
 import env from '../../env.js';
 import {linkStyle} from '../../utils/colors.js';
-import {log} from '../../utils/logs.js';
 
 import config from './config.js';
 import routesIndex from './routes/_index.js';

@@ -1,6 +1,6 @@
+import {logError} from '@k03mad/simple-log';
 import _debug from 'debug';
 
-import {logError} from '../../../../utils/logs.js';
 import {req} from '../../../../utils/request.js';
 
 const debug = _debug('mad:parse');

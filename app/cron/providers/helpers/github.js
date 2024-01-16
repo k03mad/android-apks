@@ -1,5 +1,6 @@
+import {logError} from '@k03mad/simple-log';
+
 import env from '../../../../env.js';
-import {logError} from '../../../../utils/logs.js';
 import {req} from '../../../../utils/request.js';
 
 const APPS_FILTER_DEFAULT_RE = /apk$/;

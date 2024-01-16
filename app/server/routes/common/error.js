@@ -1,4 +1,4 @@
-import {logError} from '../../../../utils/logs.js';
+import {logError} from '@k03mad/simple-log';
 
 /**
  * @param {Error} err

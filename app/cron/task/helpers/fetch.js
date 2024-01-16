@@ -1,10 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+import {logError} from '@k03mad/simple-log';
+
 import {getApkFileInfo} from '../../../../utils/aapt.js';
 import {download} from '../../../../utils/aria.js';
 import {convertToArray} from '../../../../utils/array.js';
-import {logError} from '../../../../utils/logs.js';
 import {retry} from '../../../../utils/promise.js';
 import serverConfig from '../../../server/config.js';
 import cronConfig from '../../config.js';
