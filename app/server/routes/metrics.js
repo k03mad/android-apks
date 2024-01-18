@@ -1,23 +1,11 @@
-import os from 'node:os';
-
-import {logError} from '@k03mad/simple-log';
+import {registerMetrics} from '@k03mad/simple-prom';
 import express from 'express';
-import client from 'prom-client';
 
 import env from '../../../env.js';
 import {packageJson} from '../../../utils/meta.js';
 import {getPageData} from '../helpers/page.js';
 
 const router = express.Router();
-const register = new client.Registry();
-
-client.collectDefaultMetrics({register});
-
-register.setDefaultLabels({
-    app: packageJson.name,
-    host: os.hostname,
-    port: env.server.port,
-});
 
 const labelNames = ['type', 'ext', 'ext2', 'ext3', 'ext4'];
 
@@ -26,48 +14,49 @@ const addLabels = (ctx, ...labels) => ctx.labels(
     ...Array.from({length: labelNames.length - labels.length}, () => null),
 );
 
-const gauge = new client.Gauge({
-    name: 'aapks',
-    help: 'aapks',
-    labelNames: ['type', 'ext', 'ext2', 'ext3', 'ext4'],
+const register = registerMetrics({
+    appName: packageJson.name,
+    port: env.server.port,
 
-    async collect() {
-        try {
-            this.reset();
+    metrics: {
+        aapks: {
+            name: 'aapks',
+            help: 'aapks',
+            labelNames,
 
-            const data = await getPageData();
+            async collect(ctx) {
+                ctx.reset();
 
-            const {apk, errors, timestamp, ua} = data;
-            const providers = Object.keys(apk);
-            const apps = Object.values(apk).flat();
+                const data = await getPageData();
 
-            addLabels(this, 'apks-count').set(apps.length);
-            addLabels(this, 'errors-count').set(errors.length);
-            addLabels(this, 'ua-count').set(ua.length);
-            addLabels(this, 'providers-count').set(providers.length);
-            addLabels(this, 'timestamp-duration').set(timestamp.duration);
-            addLabels(this, 'timestamp-pretty', timestamp.pretty).set(1);
+                const {apk, errors, timestamp, ua} = data;
+                const providers = Object.keys(apk);
+                const apps = Object.values(apk).flat();
 
-            ua.forEach((useragent, i) => {
-                addLabels(this, 'ua-string', useragent).set(i + 1);
-            });
+                addLabels(ctx, 'apks-count').set(apps.length);
+                addLabels(ctx, 'errors-count').set(errors.length);
+                addLabels(ctx, 'ua-count').set(ua.length);
+                addLabels(ctx, 'providers-count').set(providers.length);
+                addLabels(ctx, 'timestamp-duration').set(timestamp.duration);
+                addLabels(ctx, 'timestamp-pretty', timestamp.pretty).set(1);
 
-            errors.forEach((err, i) => {
-                addLabels(this, 'errors-string', err).set(i + 1);
-            });
+                ua.forEach((useragent, i) => {
+                    addLabels(ctx, 'ua-string', useragent).set(i + 1);
+                });
 
-            apps.forEach(app => {
-                addLabels(this, 'apks-size', app.label).set(app.size.raw);
-                addLabels(this, 'apks-duration', app.label).set(app.download.duration);
-                addLabels(this, 'apks-full', app.label, app.pkg, app.version, app.date || '-').set(1);
-            });
-        } catch (err) {
-            logError(err);
-        }
+                errors.forEach((err, i) => {
+                    addLabels(ctx, 'errors-string', err).set(i + 1);
+                });
+
+                apps.forEach(app => {
+                    addLabels(ctx, 'apks-size', app.label).set(app.size.raw);
+                    addLabels(ctx, 'apks-duration', app.label).set(app.download.duration);
+                    addLabels(ctx, 'apks-full', app.label, app.pkg, app.version, app.date || '-').set(1);
+                });
+            },
+        },
     },
 });
-
-register.registerMetric(gauge);
 
 export default router.get(
     '/metrics', async (req, res, next) => {
