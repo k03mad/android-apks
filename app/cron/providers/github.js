@@ -5,7 +5,7 @@ export default () => getApkFromGhRepos([
     {name: 'AdguardTeam/ContentBlocker'},
     {name: 'Aefyr/SAI'},
     {name: 'FossifyOrg/Gallery'},
-    {name: 'imranr98/obtainium', re: {include: /arm64/}},
+    {name: 'imranr98/obtainium', re: {include: /arm64/, exclude: /fdroid/}},
     {name: 'kyujin-cho/pixel-volte-patch'},
     {name: 'massivemadness/Squircle-CE', re: {include: /fdroid/}},
     {name: 'NoName-exe/revanced-extended-mnml', re: {include: /reddit/}},
