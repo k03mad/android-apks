@@ -2,9 +2,16 @@ import {logError} from '@k03mad/simple-log';
 
 import env from '../../../../env.js';
 import {getAllLinksFromSelector} from '../../../../utils/cheerio.js';
-import {req} from '../../../../utils/request.js';
+import {getUa, req} from '../../../../utils/request.js';
 
-const rps = 2;
+const UA = 'mobile';
+
+const reqOpts = {
+    headers: {
+        'user-agent': getUa(UA),
+    },
+    rps: 2,
+};
 
 const urls = {
     web: 'https://4pda.to/forum/index.php',
@@ -23,7 +30,9 @@ const selectors = {
  * @param {string|number} topicId
  * @returns {Promise<object>}
  */
-const getTopic = topicId => req(urls.topic(topicId), {}, {rps});
+const getTopic = topicId => req(urls.topic(topicId), {
+    headers: reqOpts.headers,
+}, {rps: reqOpts.rps});
 
 /**
  * @param {string|number} topicId
@@ -36,7 +45,8 @@ const getTopicPost = (topicId, postId) => req(urls.web, {
         view: 'findpost',
         p: postId,
     },
-}, {rps});
+    headers: reqOpts.headers,
+}, {rps: reqOpts.rps});
 
 /**
  * @param {Array<{name: string, showtopic: number, re: {include: RegExp, exclude: RegExp}}>} apps
@@ -78,7 +88,7 @@ export const getApkFrom4Pda = async apps => {
                         homepage: url,
                         opts: {
                             header: `Cookie: member_id=${env['4pda'].memberId}; pass_hash=${env['4pda'].passHash}`,
-                            ua: 'mobile',
+                            ua: UA,
                         },
                     }));
                 }
