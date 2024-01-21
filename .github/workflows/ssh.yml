@@ -19,10 +19,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            source ~/.keyrc
             cd ~/git/android-apks
             git reset --hard
             git pull
             ~/.nvm/nvm-exec npm run setup
-            ~/.nvm/nvm-exec npm run apk:dl
             systemctl restart android-apks.service

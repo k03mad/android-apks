@@ -47,7 +47,7 @@ export const getApkFileInfo = async apkFilePath => {
     // &shy;
     )?.replace(/\u00AD/g, '');
 
-    const version = aapt?.match(/versionName='(.+?)'/)?.[1]?.replace(/^\D+/, '').replaceAll(/\s+/g, '_');
+    const version = aapt?.match(/versionName='(.+?)'/)?.[1]?.replace(/^\D+/, '').replaceAll(/\s+/g, ' ');
     const pkg = aapt?.match(/name='(.+?)'/)?.[1];
 
     const nativeCode = aapt?.match(/native-code: '(.+)'/)?.[1];
