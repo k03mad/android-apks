@@ -23,4 +23,5 @@ jobs:
             git reset --hard
             git pull
             ~/.nvm/nvm-exec npm run setup
+            npm run apk:dl
             systemctl restart android-apks.service
