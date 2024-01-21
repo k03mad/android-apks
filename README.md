@@ -6,7 +6,7 @@
 — По крону скачивает Android-приложения \
 — Отдаёт страницу с текущими версиями и ссылками на скачивание \
 — Используется [в Obtainium](https://github.com/ImranR98/Obtainium) \
-— Экспорт метрик в Prometheus ([дашборд Grafana](https://github.com/k03mad/grafana-dashboards))
+— Экспорт метрик в Prometheus ([дашборд Grafana](https://github.com/k03mad/grafana-dashboards/tree/master/export))
 
 ## Локальный запуск приложения
 
