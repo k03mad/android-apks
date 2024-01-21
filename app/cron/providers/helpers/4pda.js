@@ -21,7 +21,7 @@ const selectors = {
  * @param {string|number} topicId
  * @returns {Promise<object>}
  */
-const getTopic = topicId => req(urls.topic(topicId));
+const getTopic = topicId => req(urls.topic(topicId), {}, {rps: 2});
 
 /**
  * @param {string|number} topicId
@@ -34,7 +34,7 @@ const getTopicPost = (topicId, postId) => req(urls.web, {
         view: 'findpost',
         p: postId,
     },
-});
+}, {rps: 2});
 
 /**
  * @param {Array<{name: string, showtopic: number, re: {include: RegExp, exclude: RegExp}}>} apps

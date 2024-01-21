@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            source ~/.zshrc
+            source ~/.keyrc
             cd ~/git/android-apks
             git reset --hard
             git pull
