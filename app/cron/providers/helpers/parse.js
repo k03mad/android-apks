@@ -6,22 +6,22 @@ import {req} from '../../../../utils/request.js';
 const debug = _debug('mad:parse');
 
 /**
- * @param {object} parse
- * @param {string} parse.homepage
- * @param {object} [parse.opts]
- * @param {RegExp} parse.re
- * @param {boolean} [parse.relative]
- * @param {object} [parse.replace]
- * @param {RegExp} [parse.replace.from]
- * @param {string} [parse.replace.to]
+ * @param {Array<{
+ * page: string,
+ * opts: object,
+ * re: RegExp,
+ * relative: boolean,
+ * replace: {from: RegExp, to: string},
+ * errorName: string
+ * }>} parse
  */
 export const getApkFromParse = async parse => {
-    const links = await Promise.all(parse.map(async ({homepage, opts, re, relative, replace}) => {
+    const links = await Promise.all(parse.map(async ({page, opts, re, relative, replace, errorName}) => {
         try {
-            const {body} = await req(homepage);
+            const {body} = await req(page);
 
             const url = body?.match(re)?.[1];
-            let link = relative ? new URL(url, homepage).href : url;
+            let link = relative ? new URL(url, page).href : url;
 
             if (replace) {
                 link = link.replaceAll(replace.from, replace.to);
@@ -30,10 +30,13 @@ export const getApkFromParse = async parse => {
             debug.extend('link')('%o', link);
 
             if (!link) {
-                throw new Error(`[PARSE] No apk link found\n${homepage}\n${re}`);
+                throw new Error(
+                    `${errorName ? `[${errorName.toUpperCase()}]` : '[PARSE]'} `
+                    + `No apk link found\n${page}\n${re}`,
+                );
             }
 
-            return {link, opts, homepage};
+            return {homepage: page, link, opts};
         } catch (err) {
             logError(err);
         }

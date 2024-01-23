@@ -1,9 +1,9 @@
 /**
- * @param {Array<{path: string}>} apps
+ * @param {Array<{name: string}>} apps
  */
-export const getApkFromAp = apps => apps.map(({path}) => {
-    const [, pkg] = path.split('/');
-    const homepage = `https://apkpure.com/${path}`;
+export const getApkFromAp = apps => apps.map(({name}) => {
+    const [, pkg] = name.split('/');
+    const homepage = `https://apkpure.com/${name}`;
 
     return {
         homepage,

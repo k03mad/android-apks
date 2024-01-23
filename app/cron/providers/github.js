@@ -7,6 +7,7 @@ export default () => getApkFromGhRepos([
     {name: 'FossifyOrg/Gallery'},
     {name: 'imranr98/obtainium', re: {include: /arm64/, exclude: /fdroid/}},
     {name: 'kyujin-cho/pixel-volte-patch'},
+    {name: 'lampa-app/LAMPA'},
     {name: 'massivemadness/Squircle-CE', re: {include: /fdroid/}},
     {name: 'NoName-exe/revanced-extended-mnml', re: {include: /reddit/}},
     {name: 'organicmaps/organicmaps'},

@@ -8,4 +8,6 @@ export default () => getApkFrom4Pda([
     {name: 'App&Game 4PDA', showtopic: 275_433},
     {name: 'Brotato Mobile', showtopic: 1_059_651},
     {name: 'HDrezka', showtopic: 1_028_761, re: {exclude: /UA/}},
+    {name: 'KinoHome', showtopic: 1_035_261},
+    {name: 'MovieLab', showtopic: 1_034_740, re: {includes: /tv/}},
 ]);
