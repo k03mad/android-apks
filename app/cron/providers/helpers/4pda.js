@@ -74,15 +74,15 @@ export const getApkFrom4Pda = async apps => {
                 let apkLinks = getAllLinksFromSelector(postBody, selectors.post.byId(postId))
                     .filter(elem => elem.endsWith('.apk'));
 
+                if (re?.include) {
+                    apkLinks = apkLinks.filter(elem => re.include.test(elem));
+                }
+
+                if (re?.exclude) {
+                    apkLinks = apkLinks.filter(elem => !re.exclude.test(elem));
+                }
+
                 if (apkLinks.length > 0) {
-                    if (re?.include) {
-                        apkLinks = apkLinks.filter(elem => re.include.test(elem));
-                    }
-
-                    if (re?.exclude) {
-                        apkLinks = apkLinks.filter(elem => !re.exclude.test(elem));
-                    }
-
                     return apkLinks.map(link => ({
                         link,
                         homepage: url,
