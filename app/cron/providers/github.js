@@ -16,4 +16,5 @@ export default () => getApkFromGhRepos([
     {name: 'termux/termux-app', filter: {include: /arm64/}},
     {name: 'truefedex/tv-bro', filter: {include: /arm64/}},
     {name: 'tytydraco/PDNSQS', filter: {exclude: /unsigned/}},
+    {name: 'YouROK/TorrServe'},
 ]);
