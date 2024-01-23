@@ -49,7 +49,11 @@ const getTopicPost = (topicId, postId) => req(urls.web, {
 }, {rps: reqOpts.rps});
 
 /**
- * @param {Array<{name: string, showtopic: number, filter: {include: RegExp, exclude: RegExp}}>} apps
+ * @param {Array<{
+ * name: string,
+ * showtopic: number,
+ * filter: {include: RegExp, exclude: RegExp}
+ * }>} apps
  */
 export const getApkFrom4Pda = async apps => {
     const links = await Promise.all(apps.map(async ({name, filter, showtopic}) => {

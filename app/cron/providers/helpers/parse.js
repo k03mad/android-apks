@@ -10,13 +10,7 @@ const debug = _debug('mad:parse');
  * page: string,
  * opts: {ua: string, proxy: boolean},
  * errorName: string
- * href: {
- * re: RegExp,
- * filter: {include: RegExp, exclude: RegExp},
- * relative: boolean,
- * all: boolean,
- * replace: {from: string|RegExp, to: string}
- * },
+ * href: {re: RegExp, filter: {include: RegExp, exclude: RegExp}, relative: boolean, all: boolean, replace: {from: string|RegExp, to: string}}
  * }>} parse
  */
 export const getApkFromParse = async parse => {
