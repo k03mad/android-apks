@@ -16,10 +16,10 @@ const urls = {
 const getReleases = repo => req(`${urls.api}/projects/${encodeURIComponent(repo)}/releases`);
 
 /**
- * @param {Array<{name: string, re: {include: RegExp, exclude: RegExp}}>} repos
+ * @param {Array<{name: string, filter: {include: RegExp, exclude: RegExp}}>} repos
  */
 export const getApkFromGlRepos = async repos => {
-    const links = await Promise.all(repos.flat().map(async ({name, re}) => {
+    const links = await Promise.all(repos.flat().map(async ({name, filter}) => {
         try {
             const {body} = await getReleases(name);
 
@@ -27,18 +27,18 @@ export const getApkFromGlRepos = async repos => {
                 .filter(elem => APPS_FILTER_DEFAULT_RE.test(elem))
                 .map(elem => `${urls.web}/${name}${elem.match(APPS_FILTER_DEFAULT_RE)[1]}`);
 
-            if (re?.include) {
-                apkUrls = apkUrls.filter(elem => re.include.test(elem));
+            if (filter?.include) {
+                apkUrls = apkUrls.filter(elem => filter.include.test(elem));
             }
 
-            if (re?.exclude) {
-                apkUrls = apkUrls.filter(elem => !re.exclude.test(elem));
+            if (filter?.exclude) {
+                apkUrls = apkUrls.filter(elem => !filter.exclude.test(elem));
             }
 
             const homepage = `${urls.web}/${name}`;
 
             if (apkUrls.length === 0) {
-                throw new Error(`[GITLAB] No apk link found\n${homepage}\n${re}`);
+                throw new Error(`[GITLAB] No apk link found\n${homepage}\n${filter}`);
             }
 
             return apkUrls.map(link => ({

@@ -4,22 +4,47 @@ import {getApkFromParse} from './helpers/parse.js';
 export default () => getApkFromParse([
     {
         page: 'https://download.wireguard.com/android-client/',
-        re: /href="(.+\.apk)"/,
-        relative: true,
+        href: {
+            re: /href="(.+\.apk)"/,
+            relative: true,
+        },
     },
     {
         page: 'https://питание.дети/mobile',
-        re: /href="(.{2,}apk)\s?"/,
+        href: {
+            re: /href="(.{2,}apk)\s?"/,
+        },
     },
     {
         page: 'https://www.whatsapp.com/android',
-        re: /href="(https:\/\/scontent.+)" data.+Android_PackageInstaller/,
-        replace: {from: /&amp;/g, to: '&'},
+        opts: {ua: 'curl'},
+        href: {
+            re: /href="(https:\/\/scontent.+)" data.+Android_PackageInstaller/,
+            replace: {from: '&amp;', to: '&'},
+        },
     },
     {
         page: 'https://get.videolan.org/vlc-android/last/',
-        re: /href="(.+arm64.+\.apk)"/,
         opts: {ua: 'curl'},
-        relative: true,
+        href: {
+            re: /href="(.+arm64.+\.apk)"/,
+            relative: true,
+        },
+    },
+    {
+        page: 'https://android.zona.pub/download.html',
+        href: {
+            re: /href="(.+\.apk)"/,
+            replace: {from: '//', to: 'https://'},
+        },
+    },
+    {
+        page: 'https://www.tinkoff.ru/apps/',
+        opts: {ua: 'mobile'},
+        href: {
+            re: /[^"]+apk/g,
+            all: true,
+            filter: {include: /bank|invest|tinkoff_mobile/i},
+        },
     },
 ]);

@@ -49,10 +49,10 @@ const getTopicPost = (topicId, postId) => req(urls.web, {
 }, {rps: reqOpts.rps});
 
 /**
- * @param {Array<{name: string, showtopic: number, re: {include: RegExp, exclude: RegExp}}>} apps
+ * @param {Array<{name: string, showtopic: number, filter: {include: RegExp, exclude: RegExp}}>} apps
  */
 export const getApkFrom4Pda = async apps => {
-    const links = await Promise.all(apps.map(async ({name, re, showtopic}) => {
+    const links = await Promise.all(apps.map(async ({name, filter, showtopic}) => {
         try {
             // забираем все ссылки на другие посты из шапки темы
             // часть из них — на посты со скачиванием версии приложения
@@ -74,12 +74,12 @@ export const getApkFrom4Pda = async apps => {
                 let apkLinks = getAllLinksFromSelector(postBody, selectors.post.byId(postId))
                     .filter(elem => elem.endsWith('.apk'));
 
-                if (re?.include) {
-                    apkLinks = apkLinks.filter(elem => re.include.test(elem));
+                if (filter?.include) {
+                    apkLinks = apkLinks.filter(elem => filter.include.test(elem));
                 }
 
-                if (re?.exclude) {
-                    apkLinks = apkLinks.filter(elem => !re.exclude.test(elem));
+                if (filter?.exclude) {
+                    apkLinks = apkLinks.filter(elem => !filter.exclude.test(elem));
                 }
 
                 if (apkLinks.length > 0) {

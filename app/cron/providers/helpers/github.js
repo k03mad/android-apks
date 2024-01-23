@@ -41,12 +41,12 @@ const getOrgRepos = org => req(`${urls.api}/orgs/${org}/repos`, reqOpts);
 const getUserRepos = user => req(`${urls.api}/users/${user}/repos`, reqOpts);
 
 /**
- * @param {Array<{name: string, skipPrerelease: boolean, re: {include: RegExp, exclude: RegExp}}>} repos
+ * @param {Array<{name: string, skipPrerelease: boolean, filter: {include: RegExp, exclude: RegExp}}>} repos
  * @param {object} opts
  * @param {boolean} opts.skipEmptyCheck
  */
 export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
-    const links = await Promise.all(repos.flat().map(async ({name, skipPrerelease, re}) => {
+    const links = await Promise.all(repos.flat().map(async ({name, skipPrerelease, filter}) => {
         try {
             const {body} = await getReleases(name);
 
@@ -55,18 +55,18 @@ export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
             let apkUrls = (item?.assets?.map(asset => asset?.browser_download_url) || [])
                 .filter(elem => APPS_FILTER_DEFAULT_RE.test(elem));
 
-            if (re?.include) {
-                apkUrls = apkUrls.filter(elem => re.include.test(elem));
+            if (filter?.include) {
+                apkUrls = apkUrls.filter(elem => filter.include.test(elem));
             }
 
-            if (re?.exclude) {
-                apkUrls = apkUrls.filter(elem => !re.exclude.test(elem));
+            if (filter?.exclude) {
+                apkUrls = apkUrls.filter(elem => !filter.exclude.test(elem));
             }
 
             const homepage = `${urls.web}/${name}`;
 
             if (!skipEmptyCheck && apkUrls.length === 0) {
-                throw new Error(`[GITHUB] No apk link found\n${homepage}\n${re}`);
+                throw new Error(`[GITHUB] No apk link found\n${homepage}\n${filter}`);
             }
 
             return apkUrls.map(link => ({
@@ -82,7 +82,7 @@ export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
 };
 
 /**
- * @param {Array<{name: string, skipPrerelease: boolean, re: {include: RegExp, exclude: RegExp}}>} orgs
+ * @param {Array<{name: string, skipPrerelease: boolean, filter: {include: RegExp, exclude: RegExp}}>} orgs
  * @returns {Promise<Array<{name: string, re: {include: RegExp, exclude: RegExp}}>>}
  */
 export const getApkFromGhOrgs = async orgs => {
@@ -99,7 +99,7 @@ export const getApkFromGhOrgs = async orgs => {
 };
 
 /**
- * @param {Array<{name: string, skipPrerelease: boolean, re: {include: RegExp, exclude: RegExp}}>} orgs
+ * @param {Array<{name: string, skipPrerelease: boolean, filter: {include: RegExp, exclude: RegExp}}>} orgs
  */
 export const getApkFromGhUsers = async orgs => {
     const repos = await Promise.all(orgs.map(async opts => {
