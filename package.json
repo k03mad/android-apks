@@ -34,9 +34,9 @@
     "recron": "1.1.5"
   },
   "devDependencies": {
-    "@k03mad/eslint-config": "19.4.0",
+    "@k03mad/eslint-config": "20.2.0",
     "eslint": "8.56.0",
-    "husky": "8.0.3",
+    "husky": "9.0.5",
     "nodemon": "3.0.3",
     "stylelint": "16.2.0",
     "stylelint-config-standard": "36.0.0"
@@ -54,6 +54,6 @@
     "start:dev": "DEBUG=mad* nodemon -e js,json,css,hbs,woff,woff2,ico,webmanifest app/index",
     "apk:get": "DEBUG=mad* node app/cron/scripts/run",
     "apk:dl": "DEBUG=mad* TYPE=dl node app/cron/scripts/run",
-    "prepare": "husky install || true"
+    "prepare": "husky || true"
   }
 }
