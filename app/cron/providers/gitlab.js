@@ -1,4 +1,7 @@
 import {getApkFromGlRepos} from './helpers/gitlab.js';
 
 /** */
-export default () => getApkFromGlRepos([{name: 'sunilpaulmathew/ashell'}]);
+export default () => getApkFromGlRepos([
+    {name: 'sunilpaulmathew/ashell'},
+    {name: 'asdoi/quick-tiles'},
+]);
