@@ -49,7 +49,7 @@ export default () => getApkFromParse([
     },
     {
         page: 'https://5play.org/4159-vampire-survivors.html',
-        opts: {proxy: true},
+        opts: {ua: 'curl'},
         intermediate: {
             re: /href="(.+do=cdn&id=\d+)"/,
         },
