@@ -10,7 +10,7 @@ const debug = _debug('mad:parse');
  * page: string,
  * opts: {ua: string, proxy: boolean},
  * errorName: string
- * href: {re: RegExp, filter: {include: RegExp, exclude: RegExp}, relative: boolean, all: boolean, replace: {from: string|RegExp, to: string}}
+ * href: {re: RegExp, filter: {file: boolean, include: RegExp, exclude: RegExp}, relative: boolean, all: boolean, replace: {from: string|RegExp, to: string}}
  * }>} parse
  */
 export const getApkFromParse = async parse => {
@@ -27,10 +27,10 @@ export const getApkFromParse = async parse => {
                 },
             });
 
-            let urls = (href.all ? [...new Set(body?.match(href.re))] : [body?.match(href.re)?.[1]])
+            let apkLinks = (href.all ? [...new Set(body?.match(href.re))] : [body?.match(href.re)?.[1]])
                 .filter(Boolean);
 
-            if (urls.length === 0) {
+            if (apkLinks.length === 0) {
                 throw new Error(
                     `${errorName ? `[${errorName.toUpperCase()}]` : '[PARSE]'} `
                     + `No apk link found\n${page}\n${href}`,
@@ -38,22 +38,28 @@ export const getApkFromParse = async parse => {
             }
 
             if (href.filter?.include) {
-                urls = urls.filter(elem => href.filter.include.test(elem));
+                apkLinks = apkLinks.filter(elem => href.filter?.file
+                    ? href.filter?.include.test(elem.split('/').at(-1))
+                    : href.filter?.include.test(elem),
+                );
             }
 
             if (href.filter?.exclude) {
-                urls = urls.filter(elem => !href.filter.exclude.test(elem));
+                apkLinks = apkLinks.filter(elem => href.filter?.file
+                    ? !href.filter?.exclude.test(elem.split('/').at(-1))
+                    : !href.filter?.exclude.test(elem),
+                );
             }
 
-            return urls.map(url => {
-                let link = href.relative ? new URL(url, page).href : url;
+            return apkLinks.map(link => {
+                let fullLink = href.relative ? new URL(link, page).href : link;
 
                 if (href.replace) {
-                    link = link.replaceAll(href.replace.from, href.replace.to);
+                    fullLink = fullLink.replaceAll(href.replace.from, href.replace.to);
                 }
 
-                debug.extend('link')('%o', link);
-                return {homepage: page, link, opts};
+                debug.extend('fullLink')('%o', fullLink);
+                return {homepage: page, link: fullLink, opts};
             });
         } catch (err) {
             logError(err);

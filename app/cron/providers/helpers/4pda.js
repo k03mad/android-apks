@@ -52,7 +52,7 @@ const getTopicPost = (topicId, postId) => req(urls.web, {
  * @param {Array<{
  * name: string,
  * showtopic: number,
- * filter: {include: RegExp, exclude: RegExp}
+ * filter: {file: boolean, include: RegExp, exclude: RegExp}
  * }>} apps
  */
 export const getApkFrom4Pda = async apps => {
@@ -79,11 +79,17 @@ export const getApkFrom4Pda = async apps => {
                     .filter(elem => elem.endsWith('.apk'));
 
                 if (filter?.include) {
-                    apkLinks = apkLinks.filter(elem => filter.include.test(elem));
+                    apkLinks = apkLinks.filter(elem => filter.file
+                        ? filter.include.test(elem.split('/').at(-1))
+                        : filter.include.test(elem),
+                    );
                 }
 
                 if (filter?.exclude) {
-                    apkLinks = apkLinks.filter(elem => !filter.exclude.test(elem));
+                    apkLinks = apkLinks.filter(elem => filter.file
+                        ? !filter.exclude.test(elem.split('/').at(-1))
+                        : !filter.exclude.test(elem),
+                    );
                 }
 
                 if (apkLinks.length > 0) {

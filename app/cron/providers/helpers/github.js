@@ -44,7 +44,7 @@ const getUserRepos = user => req(`${urls.api}/users/${user}/repos`, reqOpts);
  * @typedef {object} request
  * @property {string} name
  * @property {boolean} skipPrerelease
- * @property {{include: RegExp, exclude: RegExp}} filter
+ * @property {{file: boolean, include: RegExp, exclude: RegExp}} filter
  */
 
 /**
@@ -59,24 +59,30 @@ export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
 
             const item = skipPrerelease ? body?.find(elem => !elem.prerelease) : body?.[0];
 
-            let apkUrls = (item?.assets?.map(asset => asset?.browser_download_url) || [])
+            let apkLinks = (item?.assets?.map(asset => asset?.browser_download_url) || [])
                 .filter(elem => APPS_FILTER_DEFAULT_RE.test(elem));
 
             if (filter?.include) {
-                apkUrls = apkUrls.filter(elem => filter.include.test(elem));
+                apkLinks = apkLinks.filter(elem => filter.file
+                    ? filter.include.test(elem.split('/').at(-1))
+                    : filter.include.test(elem),
+                );
             }
 
             if (filter?.exclude) {
-                apkUrls = apkUrls.filter(elem => !filter.exclude.test(elem));
+                apkLinks = apkLinks.filter(elem => filter.file
+                    ? !filter.exclude.test(elem.split('/').at(-1))
+                    : !filter.exclude.test(elem),
+                );
             }
 
             const homepage = `${urls.web}/${name}`;
 
-            if (!skipEmptyCheck && apkUrls.length === 0) {
+            if (!skipEmptyCheck && apkLinks.length === 0) {
                 throw new Error(`[GITHUB] No apk link found\n${homepage}\n${filter}`);
             }
 
-            return apkUrls.map(link => ({
+            return apkLinks.map(link => ({
                 link,
                 homepage,
             }));
