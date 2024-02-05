@@ -38,23 +38,4 @@ export default () => getApkFromParse([
             replace: {from: '//', to: 'https://'},
         },
     },
-    {
-        page: 'https://www.tinkoff.ru/apps/',
-        opts: {ua: 'mobile'},
-        href: {
-            re: /[^"]+apk/g,
-            all: true,
-            filter: {include: /bank|invest|tinkoff_mobile/i},
-        },
-    },
-    {
-        page: 'https://5play.org/4159-vampire-survivors.html',
-        opts: {ua: 'curl'},
-        intermediate: {
-            re: /href="(.+do=cdn&id=\d+)"/,
-        },
-        href: {
-            re: /href="(.+\.apk)"/,
-        },
-    },
 ]);
