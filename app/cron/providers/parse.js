@@ -47,4 +47,14 @@ export default () => getApkFromParse([
             filter: {include: /bank|invest|tinkoff_mobile/i},
         },
     },
+    {
+        page: 'https://5play.org/4159-vampire-survivors.html',
+        opts: {proxy: true},
+        intermediate: {
+            re: /href="(.+do=cdn&id=\d+)"/,
+        },
+        href: {
+            re: /href="(.+\.apk)"/,
+        },
+    },
 ]);

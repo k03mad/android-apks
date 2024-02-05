@@ -3,7 +3,7 @@ export default () => [
     {
         link: 'https://disk.2gis.com/android/Latest/2GIS.apk',
         homepage: 'https://apk.2gis.ru/',
-        opts: {ua: 'curl', proxy: true},
+        opts: {ua: 'curl'},
     },
     {
         link: 'https://kpdl.cc/k.apk',
