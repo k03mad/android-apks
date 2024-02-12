@@ -2,7 +2,6 @@ import {getApkFromGhRepos} from './helpers/github.js';
 
 /** */
 export default () => getApkFromGhRepos([
-    {name: 'AdguardTeam/ContentBlocker'},
     {name: 'Aefyr/SAI'},
     {name: 'FossifyOrg/Gallery'},
     {name: 'imranr98/obtainium', filter: {include: /arm64/, exclude: /fdroid/}},
@@ -12,7 +11,7 @@ export default () => getApkFromGhRepos([
     {name: 'massivemadness/Squircle-CE', filter: {include: /fdroid/}},
     {name: 'organicmaps/organicmaps'},
     {name: 'polymorphicshade/Tubular'},
-    {name: 'revanced-apks/build-apps', filter: {file: true, include: /^(instagram|reddit|youtube-rex)/}},
+    {name: 'revanced-apks/build-apps', filter: {file: true, include: /youtube-rex/}},
     {name: 'RikkaApps/Shizuku'},
     {name: 'streetcomplete/StreetComplete'},
     {name: 'termux/termux-app', filter: {include: /arm64/}},
