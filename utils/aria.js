@@ -15,11 +15,11 @@ const getAriaArgs = opts => [
     '--continue=true',
     '--remote-time=true',
     // connection
-    '--split=5',
-    '--max-connection-per-server=5',
+    '--split=3',
+    '--max-connection-per-server=3',
     '--min-split-size=1M',
     // retries
-    '--max-tries=5',
+    '--max-tries=12',
     '--retry-wait=5',
     // args
     `--user-agent="${getUa(opts.ua)}"`,
