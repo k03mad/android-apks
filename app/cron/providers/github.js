@@ -2,6 +2,7 @@ import {getApkFromGhRepos} from './helpers/github.js';
 
 /** */
 export default () => getApkFromGhRepos([
+    {name: 'AdguardTeam/ContentBlocker'},
     {name: 'Aefyr/SAI'},
     {name: 'FossifyOrg/Gallery'},
     {name: 'imranr98/obtainium', filter: {include: /arm64/, exclude: /fdroid/}},
