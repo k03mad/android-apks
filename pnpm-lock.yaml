@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@k03mad/request':
-    specifier: 5.6.0
-    version: 5.6.0
+    specifier: 5.6.1
+    version: 5.6.1
   '@k03mad/simple-date':
     specifier: 1.0.0
     version: 1.0.0
@@ -246,13 +246,13 @@ packages:
       - vue-eslint-parser
     dev: true
 
-  /@k03mad/request@5.6.0:
-    resolution: {integrity: sha512-3zGHj5O95FZJXUAzvtKzQ0IUyfB8i1LBMcy3jqWyAqRTzGfa3AfV6Q2Tq4noHCqcNdvtLxP74TepQvIi2wyUbw==}
+  /@k03mad/request@5.6.1:
+    resolution: {integrity: sha512-zczwuPlZ6/dkBJ/H0voqu9AfCVKxFUjZQ7O7AqPkQpDkeVXegOYHC6emFWSe/IvrUmwyGFYhi8MceTU4hbdkwA==}
     engines: {node: '>=20'}
     dependencies:
       chalk: 5.3.0
       debug: 4.3.4(supports-color@5.5.0)
-      got: 14.0.0
+      got: 14.2.0
       p-queue: 8.0.1
       pretty-bytes: 6.1.1
       strip-ansi: 7.1.0
@@ -2017,8 +2017,8 @@ packages:
     dependencies:
       get-intrinsic: 1.2.2
 
-  /got@14.0.0:
-    resolution: {integrity: sha512-X01vTgaX9SwaMq5DfImvS+3GMQFFs5HtrrlS9CuzUSzkxAf/tWGEyynuI+Qy7BjciMczZGjyVSmawYbP4eYhYA==}
+  /got@14.2.0:
+    resolution: {integrity: sha512-dBq2KkHcQl3AwPoIWsLsQScCPpUgRulz1qZVthjPYKYOPmYfBnekR3vxecjZbm91Vc3JUGnV9mqFX7B+Fe2quw==}
     engines: {node: '>=20'}
     dependencies:
       '@sindresorhus/is': 6.1.0
