@@ -11,7 +11,6 @@ export default () => getApkFromGhRepos([
     {name: 'lampa-app/LAMPA'},
     {name: 'massivemadness/Squircle-CE', filter: {include: /fdroid/}},
     {name: 'organicmaps/organicmaps'},
-    {name: 'polymorphicshade/Tubular'},
     {name: 'revanced-apks/build-apps', filter: {file: true, include: /youtube-rex/}},
     {name: 'RikkaApps/Shizuku'},
     {name: 'streetcomplete/StreetComplete'},
