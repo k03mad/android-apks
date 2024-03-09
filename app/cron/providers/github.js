@@ -11,7 +11,7 @@ export default () => getApkFromGhRepos([
     {name: 'lampa-app/LAMPA'},
     {name: 'massivemadness/Squircle-CE', filter: {include: /fdroid/}},
     {name: 'organicmaps/organicmaps'},
-    {name: 'revanced-apks/build-apps', filter: {file: true, include: /youtube-rex/}},
+    {name: 'NoName-exe/revanced-extended-mnml', filter: {file: true, include: /youtube-revanced/}},
     {name: 'RikkaApps/Shizuku'},
     {name: 'streetcomplete/StreetComplete'},
     {name: 'termux/termux-app', filter: {include: /arm64/}},
