@@ -20,4 +20,5 @@ export default () => getApkFromGhRepos([
     {name: 'YouROK/TorrServe'},
     {name: 'yuliskov/SmartTube', skipPrerelease: true, filter: {include: /arm64/}},
     {name: 'samolego/Canta', filter: {include: /arm64/}},
+    {name: 'polymorphicshade/Tubular'},
 ]);
