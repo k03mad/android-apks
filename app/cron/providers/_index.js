@@ -1,5 +1,4 @@
 export {default as _4pda} from './4pda.js';
-export {default as _5play} from './5play.js';
 export {default as apkpure} from './apkpure.js';
 export {default as direct} from './direct.js';
 export {default as fdroid} from './fdroid.js';
