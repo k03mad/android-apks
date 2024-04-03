@@ -31,7 +31,7 @@
     "lodash": "4.17.21",
     "morgan": "1.10.0",
     "ms": "2.1.3",
-    "p-map": "7.0.1",
+    "p-map": "7.0.2",
     "recron": "1.1.5"
   },
   "devDependencies": {
