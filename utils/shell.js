@@ -1,7 +1,7 @@
 import cp from 'node:child_process';
-import util from 'node:util';
+import {promisify} from 'node:util';
 
-const exec = util.promisify(cp.exec);
+const exec = promisify(cp.exec);
 
 /**
  * @param {string} runString
