@@ -18,4 +18,5 @@ export default () => getApkFromGhRepos([
     {name: 'YouROK/TorrServe'},
     {name: 'yuliskov/SmartTube', skipPrerelease: true, filter: {include: /arm64/}},
     {name: 'polymorphicshade/Tubular'},
+    {name: 'Catfriend1/syncthing-android', filter: {exclude: /gplay/}},
 ]);
