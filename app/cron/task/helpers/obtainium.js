@@ -33,7 +33,9 @@ export const getObtainiumImportSupportedLink = link => {
  * @param {string} apkElem.download.mirror
  */
 export const getObtainiumImportHtmlApp = apkElem => {
-    const obtainiumImportObject = {
+    const apkRegEx = `${apkElem.pkg}_(.+).apk$`;
+
+    const obtainiumImportJson = JSON.stringify({
         id: apkElem.pkg,
         url: `${env.server.domain}/apps`,
         author: 'A-APKS',
@@ -51,7 +53,7 @@ export const getObtainiumImportHtmlApp = apkElem => {
         additionalSettings: JSON.stringify(
             {
                 // intermediateLink: [],
-                customLinkFilterRegex: `${apkElem.pkg}_.+.apk$`,
+                customLinkFilterRegex: apkRegEx,
                 // filterByLinkText: false,
                 // skipSort: false,
                 // reverseSort: false,
@@ -64,7 +66,7 @@ export const getObtainiumImportHtmlApp = apkElem => {
                 // ],
                 // defaultPseudoVersioningMethod: 'partialAPKHash',
                 // trackOnly: false,
-                versionExtractionRegEx: `${apkElem.pkg}_(.+).apk$`,
+                versionExtractionRegEx: apkRegEx,
                 matchGroupToUse: '1',
                 // versionDetection: true,
                 // useVersionCodeAsOSVersion: false,
@@ -84,7 +86,7 @@ export const getObtainiumImportHtmlApp = apkElem => {
         // changeLog: null,
         // overrideSource: 'HTML',
         // allowIdChange: false,
-    };
+    });
 
-    return obtainiumProto.app + encodeURIComponent(JSON.stringify(obtainiumImportObject));
+    return obtainiumProto.app + encodeURIComponent(obtainiumImportJson);
 };
