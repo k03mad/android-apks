@@ -42,8 +42,8 @@ export const getObtainiumImportHtmlApp = apkElem => {
         latestVersion: apkElem.version,
         apkUrls: JSON.stringify([
             [
-                `${env.server.domain}/${apkElem.download.mirror}`,
-                `${env.server.domain}/${apkElem.download.mirror}`,
+                env.server.domain + apkElem.download.mirror,
+                env.server.domain + apkElem.download.mirror,
             ],
         ]),
         preferredApkIndex: 0,
