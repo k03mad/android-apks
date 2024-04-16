@@ -38,14 +38,15 @@
     "eslint": "8.57.0",
     "husky": "9.0.11",
     "nodemon": "3.1.0",
+    "npm-run-all": "4.1.5",
     "stylelint": "16.3.1",
     "stylelint-config-standard": "36.0.0"
   },
   "scripts": {
-    "lint": "npm run lint:eslint && npm run lint:stylelint",
+    "lint": "run-p -c lint:eslint lint:stylelint",
     "lint:eslint": "eslint ./ --cache",
     "lint:stylelint": "stylelint '**/*.css' --cache",
-    "clean": "npm run clean:modules && npm run clean:eslint:cache && npm run clean:stylelint:cache",
+    "clean": "run-p -c clean:modules clean:eslint:cache clean:stylelint:cache",
     "clean:modules": "rm -rf ./node_modules || true",
     "clean:eslint:cache": "rm -rf .eslintcache || true",
     "clean:stylelint:cache": "rm -rf .stylelintcache || true",
