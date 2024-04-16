@@ -34,12 +34,12 @@ export const getObtainiumImportSupportedLink = link => {
  */
 export const getObtainiumImportHtmlApp = apkElem => {
     const obtainiumImportObject = {
-        id: apkElem.pkg,
+        // id: apkElem.pkg,
         url: `${env.server.domain}/apps`,
-        author: 'A-APKS',
-        name: apkElem.label,
-        installedVersion: null,
-        latestVersion: apkElem.version,
+        // author: 'A-APKS',
+        // name: apkElem.label,
+        // installedVersion: null,
+        // latestVersion: apkElem.version,
         // apkUrls: JSON.stringify([
         //     [
         //         env.server.domain + apkElem.download.mirror,
@@ -47,7 +47,7 @@ export const getObtainiumImportHtmlApp = apkElem => {
         //     ],
         // ]),
         // otherAssetUrls: JSON.stringify([]),
-        preferredApkIndex: 0,
+        // preferredApkIndex: 0,
         additionalSettings: JSON.stringify(
             {
                 // intermediateLink: [],
@@ -77,13 +77,13 @@ export const getObtainiumImportHtmlApp = apkElem => {
                 // about: '',
             },
         ),
-        lastUpdateCheck: 1_713_296_253_119_912,
-        pinned: false,
-        categories: [],
-        releaseDate: null,
-        changeLog: null,
-        overrideSource: 'HTML',
-        allowIdChange: false,
+        // lastUpdateCheck: 1_713_296_253_119_912,
+        // pinned: false,
+        // categories: [],
+        // releaseDate: null,
+        // changeLog: null,
+        // overrideSource: 'HTML',
+        // allowIdChange: false,
     };
 
     return obtainiumProto.app + encodeURIComponent(JSON.stringify(obtainiumImportObject));
