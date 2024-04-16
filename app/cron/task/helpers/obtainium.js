@@ -40,13 +40,13 @@ export const getObtainiumImportHtmlApp = apkElem => {
         name: apkElem.label,
         installedVersion: null,
         latestVersion: apkElem.version,
-        apkUrls: JSON.stringify([
-            [
-                env.server.domain + apkElem.download.mirror,
-                env.server.domain + apkElem.download.mirror,
-            ],
-        ]),
-        otherAssetUrls: JSON.stringify([]),
+        // apkUrls: JSON.stringify([
+        //     [
+        //         env.server.domain + apkElem.download.mirror,
+        //         env.server.domain + apkElem.download.mirror,
+        //     ],
+        // ]),
+        // otherAssetUrls: JSON.stringify([]),
         preferredApkIndex: 0,
         additionalSettings: JSON.stringify(
             {
