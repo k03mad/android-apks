@@ -50,13 +50,13 @@ export const getObtainiumImportHtmlApp = apkElem => {
         preferredApkIndex: 0,
         additionalSettings: JSON.stringify(
             {
-                intermediateLink: [],
+                // intermediateLink: [],
                 customLinkFilterRegex: `${apkElem.pkg}_.+.apk$`,
-                filterByLinkText: false,
-                skipSort: false,
-                reverseSort: false,
-                sortByLastLinkSegment: false,
-                versionExtractWholePage: false,
+                // filterByLinkText: false,
+                // skipSort: false,
+                // reverseSort: false,
+                // sortByLastLinkSegment: false,
+                // versionExtractWholePage: false,
                 requestHeader: [
                     {
                         requestHeader: 'User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36',
