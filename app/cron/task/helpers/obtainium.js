@@ -36,7 +36,7 @@ export const getObtainiumImportHtmlApp = apkElem => {
     const obtainiumImportObject = {
         id: apkElem.pkg,
         url: `${env.server.domain}/apps`,
-        // author: 'A-APKS',
+        author: 'A-APKS',
         // name: apkElem.label,
         // installedVersion: null,
         latestVersion: apkElem.version,
