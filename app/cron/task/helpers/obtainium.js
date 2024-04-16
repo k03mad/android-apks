@@ -34,12 +34,12 @@ export const getObtainiumImportSupportedLink = link => {
  */
 export const getObtainiumImportHtmlApp = apkElem => {
     const obtainiumImportObject = {
-        // id: apkElem.pkg,
+        id: apkElem.pkg,
         url: `${env.server.domain}/apps`,
-        // author: 'A-APKS',
-        // name: apkElem.label,
-        // installedVersion: null,
-        // latestVersion: apkElem.version,
+        author: 'A-APKS',
+        name: apkElem.label,
+        installedVersion: null,
+        latestVersion: apkElem.version,
         // apkUrls: JSON.stringify([
         //     [
         //         env.server.domain + apkElem.download.mirror,
@@ -47,7 +47,7 @@ export const getObtainiumImportHtmlApp = apkElem => {
         //     ],
         // ]),
         // otherAssetUrls: JSON.stringify([]),
-        // preferredApkIndex: 0,
+        preferredApkIndex: 0,
         additionalSettings: JSON.stringify(
             {
                 // intermediateLink: [],
