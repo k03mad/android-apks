@@ -46,7 +46,7 @@
     "lint": "run-p -c lint:eslint lint:stylelint",
     "lint:eslint": "eslint ./ --cache",
     "lint:stylelint": "stylelint '**/*.css' --cache",
-    "clean": "run-p -c clean:modules clean:eslint:cache clean:stylelint:cache",
+    "clean": "npm run clean:modules && npm run clean:eslint:cache && npm run clean:stylelint:cache",
     "clean:modules": "rm -rf ./node_modules || true",
     "clean:eslint:cache": "rm -rf .eslintcache || true",
     "clean:stylelint:cache": "rm -rf .stylelintcache || true",
