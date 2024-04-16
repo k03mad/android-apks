@@ -28,7 +28,11 @@ export const getApkFromParse = async parse => {
             });
 
             if (intermediate?.re) {
-                const nextLinks = (intermediate?.all ? [...new Set(body?.match(intermediate.re))] : [body?.match(intermediate.re)?.[1]])
+                const nextLinks = (
+                    intermediate?.all
+                        ? [...new Set(body?.match(intermediate.re))]
+                        : [body?.match(intermediate.re)?.[1]]
+                )
                     .filter(Boolean);
 
                 const responses = await Promise.all(nextLinks.map(async nextLink => {
@@ -74,7 +78,14 @@ export const getApkFromParse = async parse => {
                 }
 
                 debug.extend('fullLink')('%o', fullLink);
-                return {homepage: page, link: fullLink, opts};
+
+                return {
+                    // obtainium crashed with cyrillic domains
+                    // URL auto converts them to punycode
+                    homepage: new URL(page).href,
+                    link: fullLink,
+                    opts,
+                };
             });
         } catch (err) {
             logError(err);

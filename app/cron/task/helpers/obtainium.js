@@ -18,7 +18,7 @@ const supportedProvidersDomains = [
  */
 export const getObtainiumImportSupportedLink = link => {
     for (const domain of supportedProvidersDomains) {
-        if (link.startsWith(domain)) {
+        if (link?.startsWith(domain)) {
             return link.replace(/^https:\/\//, obtainiumProto.add);
         }
     }
