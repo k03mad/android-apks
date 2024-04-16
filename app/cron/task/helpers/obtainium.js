@@ -38,7 +38,7 @@ export const getObtainiumImportHtmlApp = apkElem => {
         url: `${env.server.domain}/apps`,
         author: 'A-APKS',
         name: apkElem.label,
-        installedVersion: null,
+        // installedVersion: null,
         latestVersion: apkElem.version,
         // apkUrls: JSON.stringify([
         //     [
@@ -47,7 +47,7 @@ export const getObtainiumImportHtmlApp = apkElem => {
         //     ],
         // ]),
         // otherAssetUrls: JSON.stringify([]),
-        preferredApkIndex: 0,
+        // preferredApkIndex: 0,
         additionalSettings: JSON.stringify(
             {
                 // intermediateLink: [],
