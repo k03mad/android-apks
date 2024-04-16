@@ -57,13 +57,13 @@ export const getObtainiumImportHtmlApp = apkElem => {
                 // reverseSort: false,
                 // sortByLastLinkSegment: false,
                 // versionExtractWholePage: false,
-                requestHeader: [
-                    {
-                        requestHeader: 'User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36',
-                    },
-                ],
-                defaultPseudoVersioningMethod: 'partialAPKHash',
-                trackOnly: false,
+                // requestHeader: [
+                //     {
+                //         requestHeader: 'User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36',
+                //     },
+                // ],
+                // defaultPseudoVersioningMethod: 'partialAPKHash',
+                // trackOnly: false,
                 versionExtractionRegEx: `${apkElem.pkg}_(.+).apk$`,
                 matchGroupToUse: '1',
                 versionDetection: true,
