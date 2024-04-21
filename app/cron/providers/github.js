@@ -19,4 +19,5 @@ export default () => getApkFromGhRepos([
     {name: 'tytydraco/PDNSQS', filter: {exclude: /unsigned/}},
     {name: 'YouROK/TorrServe'},
     {name: 'yuliskov/SmartTube', skipPrerelease: true, filter: {include: /arm64/}},
+    {name: 'Sheinices/Prisma_TV'},
 ]);
