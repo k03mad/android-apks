@@ -29,4 +29,8 @@ export default () => [
         link: 'https://mobile-apps-prod.cdn-tinkoff.ru/Tinkoff_Mobile.apk',
         homepage: 'https://www.tinkoff.ru/apps/',
     },
+    {
+        link: 'https://megamarket.ru/app/sbermegamarket.apk',
+        homepage: 'https://megamarket.ru/info/download-app/',
+    },
 ];
