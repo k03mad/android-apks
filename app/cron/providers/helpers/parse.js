@@ -23,7 +23,7 @@ export const getApkFromParse = async parse => {
         try {
             let {body} = await req(page, {
                 headers: {'user-agent': getUa(opts?.ua)},
-                https: {rejectUnauthorized: !opts.skipSSL},
+                https: {rejectUnauthorized: !opts?.skipSSL},
             });
 
             if (intermediate?.re) {
@@ -39,7 +39,7 @@ export const getApkFromParse = async parse => {
                 const responses = await Promise.all(nextLinks.map(async nextLink => {
                     const response = await req(nextLink, {
                         headers: {'user-agent': getUa(opts?.ua)},
-                        https: {rejectUnauthorized: !opts.skipSSL},
+                        https: {rejectUnauthorized: !opts?.skipSSL},
                     });
 
                     return response.body;
