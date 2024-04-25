@@ -50,10 +50,10 @@ export default () => getApkFromParse([
     },
     {
         page: 'https://mobile.alfastrah.ru/',
+        opts: {skipSSL: true},
         href: {
             re: /href="(.+\.apk)"/,
             relative: true,
-            checkSSL: false,
         },
     },
 ]);

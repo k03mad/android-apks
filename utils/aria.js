@@ -25,7 +25,7 @@ const getAriaArgs = opts => [
     `--user-agent="${getUa(opts.ua)}"`,
     opts.header ? `--header="${opts.header}"` : '',
     opts.dir ? `--dir="${opts.dir}"` : '',
-    opts.skipCheckCert ? '--check-certificate=false' : '',
+    opts.skipSSL ? '--check-certificate=false' : '',
     opts.proxy && env.aria.proxy ? `--all-proxy="${env.aria.proxy}"` : '',
 ].filter(Boolean).join(' ');
 
@@ -35,7 +35,7 @@ const getAriaArgs = opts => [
  * @param {'desktop'|'mobile'|'curl'|'aria'|'empty'} [opts.ua]
  * @param {boolean} [opts.proxy]
  * @param {string} [opts.ext]
- * @param {boolean} [opts.skipCheckCert]
+ * @param {boolean} [opts.skipSSL]
  * @param {string} [opts.header]
  */
 export const download = async (url, opts = {}) => {

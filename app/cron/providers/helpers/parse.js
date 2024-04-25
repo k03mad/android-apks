@@ -8,9 +8,9 @@ const debug = _debug('mad:parse');
 /**
  * @param {Array<{
  * page: string,
- * intermediate: {re: RegExp, all: boolean, checkSSL: boolean},
+ * intermediate: {re: RegExp, all: boolean},
  * opts: {ua: string, proxy: boolean},
- * href: {re: RegExp, filter: {file: boolean, include: RegExp, exclude: RegExp}, relative: boolean, all: boolean, replace: {from: string|RegExp, to: string}, checkSSL: boolean},
+ * href: {re: RegExp, filter: {file: boolean, include: RegExp, exclude: RegExp}, relative: boolean, all: boolean, replace: {from: string|RegExp, to: string}},
  * }>} parse
  */
 export const getApkFromParse = async parse => {
@@ -23,7 +23,7 @@ export const getApkFromParse = async parse => {
         try {
             let {body} = await req(page, {
                 headers: {'user-agent': getUa(opts?.ua)},
-                https: {rejectUnauthorized: href.checkSSL},
+                https: {rejectUnauthorized: !opts.skipSSL},
             });
 
             if (intermediate?.re) {
@@ -39,7 +39,7 @@ export const getApkFromParse = async parse => {
                 const responses = await Promise.all(nextLinks.map(async nextLink => {
                     const response = await req(nextLink, {
                         headers: {'user-agent': getUa(opts?.ua)},
-                        https: {rejectUnauthorized: intermediate.checkSSL},
+                        https: {rejectUnauthorized: !opts.skipSSL},
                     });
 
                     return response.body;
