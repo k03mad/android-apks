@@ -5,4 +5,3 @@ export {default as fdroid} from './fdroid.js';
 export {default as github} from './github.js';
 export {default as gitlab} from './gitlab.js';
 export {default as parse} from './parse.js';
-export {default as tinkoff} from './tinkoff.js';

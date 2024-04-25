@@ -38,4 +38,14 @@ export default () => getApkFromParse([
             replace: {from: '//', to: 'https://'},
         },
     },
+    {
+        page: 'https://www.tinkoff.ru/apps/',
+        opts: {ua: 'mobile'},
+        intermediate: {
+            re: /href="(.+?tinkoff-bank.+?\.html)"/,
+        },
+        href: {
+            re: /href="(.+\.apk)"/,
+        },
+    },
 ]);

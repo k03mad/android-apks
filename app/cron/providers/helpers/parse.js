@@ -35,6 +35,8 @@ export const getApkFromParse = async parse => {
                 )
                     .filter(Boolean);
 
+                debug.extend('nextLinks')('%o', nextLinks);
+
                 const responses = await Promise.all(nextLinks.map(async nextLink => {
                     const response = await req(nextLink, {
                         headers: {'user-agent': getUa(opts?.ua)},
@@ -55,6 +57,8 @@ export const getApkFromParse = async parse => {
                     + `No apk link found\n${page}\n${href}`,
                 );
             }
+
+            debug.extend('apkLinks')('%o', apkLinks);
 
             if (href.filter?.include) {
                 apkLinks = apkLinks.filter(elem => href.filter?.file

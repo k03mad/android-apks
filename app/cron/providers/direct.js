@@ -21,4 +21,12 @@ export default () => [
         link: 'https://files.televizo.net/televizo-default.apk',
         homepage: 'https://televizo.net/',
     },
+    {
+        link: 'https://mobile-apps-prod.cdn-tinkoff.ru/Tinkoff_Invest.apk',
+        homepage: 'https://www.tinkoff.ru/apps/',
+    },
+    {
+        link: 'https://mobile-apps-prod.cdn-tinkoff.ru/Tinkoff_Mobile.apk',
+        homepage: 'https://www.tinkoff.ru/apps/',
+    },
 ];
