@@ -48,4 +48,12 @@ export default () => getApkFromParse([
             re: /href="(.+\.apk)"/,
         },
     },
+    {
+        page: 'https://mobile.alfastrah.ru/',
+        href: {
+            re: /href="(.+\.apk)"/,
+            relative: true,
+            checkSSL: false,
+        },
+    },
 ]);

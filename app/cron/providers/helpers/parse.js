@@ -8,10 +8,9 @@ const debug = _debug('mad:parse');
 /**
  * @param {Array<{
  * page: string,
- * intermediate: {re: RegExp, all: boolean},
+ * intermediate: {re: RegExp, all: boolean, checkSSL: boolean},
  * opts: {ua: string, proxy: boolean},
- * errorName: string
- * href: {re: RegExp, filter: {file: boolean, include: RegExp, exclude: RegExp}, relative: boolean, all: boolean, replace: {from: string|RegExp, to: string}}
+ * href: {re: RegExp, filter: {file: boolean, include: RegExp, exclude: RegExp}, relative: boolean, all: boolean, replace: {from: string|RegExp, to: string}, checkSSL: boolean},
  * }>} parse
  */
 export const getApkFromParse = async parse => {
@@ -20,11 +19,11 @@ export const getApkFromParse = async parse => {
         intermediate,
         opts,
         href,
-        errorName,
     }) => {
         try {
             let {body} = await req(page, {
                 headers: {'user-agent': getUa(opts?.ua)},
+                https: {rejectUnauthorized: href.checkSSL},
             });
 
             if (intermediate?.re) {
@@ -40,6 +39,7 @@ export const getApkFromParse = async parse => {
                 const responses = await Promise.all(nextLinks.map(async nextLink => {
                     const response = await req(nextLink, {
                         headers: {'user-agent': getUa(opts?.ua)},
+                        https: {rejectUnauthorized: intermediate.checkSSL},
                     });
 
                     return response.body;
@@ -52,10 +52,7 @@ export const getApkFromParse = async parse => {
                 .filter(Boolean);
 
             if (apkLinks.length === 0) {
-                throw new Error(
-                    `${errorName ? `[${errorName.toUpperCase()}]` : '[PARSE]'} `
-                    + `No apk link found\n${page}\n${href}`,
-                );
+                throw new Error(`[PARSE] No apk link found\n${page}\n${href}`);
             }
 
             debug.extend('apkLinks')('%o', apkLinks);
