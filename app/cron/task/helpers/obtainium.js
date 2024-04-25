@@ -68,7 +68,7 @@ export const getObtainiumImportHtmlApp = apkElem => {
                 // trackOnly: false,
                 versionExtractionRegEx: apkRegEx,
                 matchGroupToUse: '1',
-                // versionDetection: true,
+                versionDetection: false,
                 // useVersionCodeAsOSVersion: false,
                 // apkFilterRegEx: '',
                 // invertAPKFilter: false,
