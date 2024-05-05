@@ -10,7 +10,7 @@ export default () => getApkFromGhRepos([
     {name: 'kyujin-cho/pixel-volte-patch'},
     {name: 'lampa-app/LAMPA'},
     {name: 'massivemadness/Squircle-CE', filter: {include: /fdroid/}},
-    {name: 'organicmaps/organicmaps'},
+    {name: 'organicmaps/organicmaps', filter: {include: /web/}},
     {name: 'polymorphicshade/Tubular'},
     {name: 'RikkaApps/Shizuku'},
     {name: 'streetcomplete/StreetComplete'},
