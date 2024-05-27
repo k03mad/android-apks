@@ -34,12 +34,12 @@
     "recron": "1.1.6"
   },
   "devDependencies": {
-    "@k03mad/eslint-config": "21.0.0",
+    "@k03mad/eslint-config": "22.1.0",
     "eslint": "8.57.0",
     "husky": "9.0.11",
     "nodemon": "3.1.1",
     "npm-run-all": "4.1.5",
-    "stylelint": "16.3.1",
+    "stylelint": "16.6.0",
     "stylelint-config-standard": "36.0.0"
   },
   "scripts": {
