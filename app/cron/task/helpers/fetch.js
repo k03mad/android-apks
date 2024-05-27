@@ -87,6 +87,7 @@ export const downloadApkFile = async ({homepage, link, opts, archive}) => {
             original: link,
             mirror: relativeDownloadLink,
             duration,
+            ...archive ? {archive} : {},
         },
     };
 };

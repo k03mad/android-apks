@@ -75,7 +75,7 @@ export const addObtainiumLinks = json => {
 
                     const originalSupportedLink = getObtainiumImportSupportedLink(elem.homepage);
 
-                    if (originalSupportedLink) {
+                    if (originalSupportedLink && !elem.download.archive) {
                         elem.obtainium.original = originalSupportedLink;
                     }
                 });
