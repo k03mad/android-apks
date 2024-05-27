@@ -54,8 +54,8 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
       recron:
-        specifier: 1.1.5
-        version: 1.1.5
+        specifier: 1.1.6
+        version: 1.1.6
     devDependencies:
       '@k03mad/eslint-config':
         specifier: 21.0.0
@@ -67,8 +67,8 @@ importers:
         specifier: 9.0.11
         version: 9.0.11
       nodemon:
-        specifier: 3.1.0
-        version: 3.1.0
+        specifier: 3.1.1
+        version: 3.1.1
       npm-run-all:
         specifier: 4.1.5
         version: 4.1.5
@@ -1483,8 +1483,8 @@ packages:
   node-releases@2.0.14:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
 
-  nodemon@3.1.0:
-    resolution: {integrity: sha512-xqlktYlDMCepBJd43ZQhjWwMw2obW/JRvkrLxq5RCNcuDDX1DbcPT+qT1IlIIdf+DhnWs90JpTMe+Y5KxOchvA==}
+  nodemon@3.1.1:
+    resolution: {integrity: sha512-k43xGaDtaDIcufn0Fc6fTtsdKSkV/hQzoQFigNH//GaKta28yoKVYXCnV+KXRqfT/YzsFaQU9VdeEG+HEyxr6A==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -1751,8 +1751,8 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
 
-  recron@1.1.5:
-    resolution: {integrity: sha512-Vq0I1wfMrONecxZsq2UA2pXh4Utm3UaRhRQbUh9HizeaR0h+KJ+EuCFaMd1LD8ec+x7xPKQxQwbysgMyR8c/Ow==}
+  recron@1.1.6:
+    resolution: {integrity: sha512-prH6axhdlZ22oQQrDqhYTjYXm3tDQAr2KAbzAPAvwLd72LJdXgEjgDpTpq6MinSSgOsvFlBCycu/rYUuSaqeaA==}
 
   refa@0.12.1:
     resolution: {integrity: sha512-J8rn6v4DBb2nnFqkqwy6/NnTYMcgLA+sLr0iIO41qpv0n+ngb7ksag2tMRl0inb1bbO/esUwzW1vbJi7K0sI0g==}
@@ -3760,7 +3760,7 @@ snapshots:
 
   node-releases@2.0.14: {}
 
-  nodemon@3.1.0:
+  nodemon@3.1.1:
     dependencies:
       chokidar: 3.6.0
       debug: 4.3.4(supports-color@5.5.0)
@@ -4027,7 +4027,7 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
-  recron@1.1.5:
+  recron@1.1.6:
     dependencies:
       cron-parser: 4.9.0
 

@@ -1,14 +1,10 @@
 import fs from 'node:fs/promises';
 
-import _debug from 'debug';
-
 import {getTimestamp} from '../app/cron/task/helpers/json.js';
 import env from '../env.js';
 
 import {getUa} from './request.js';
 import {run} from './shell.js';
-
-const debug = _debug('mad:aria');
 
 const getAriaArgs = opts => [
     // general
@@ -40,7 +36,6 @@ const getAriaArgs = opts => [
  */
 export const download = async (url, opts = {}) => {
     const cmd = `aria2c ${getAriaArgs(opts)} "${url}"`;
-    debug.extend('cmd')('%o', cmd);
 
     if (opts.dir) {
         await fs.mkdir(opts.dir, {recursive: true});
@@ -56,7 +51,6 @@ export const download = async (url, opts = {}) => {
     if (opts.ext) {
         const filePathRe = new RegExp(`path[\\s\\S]+\\|(.+${opts.ext})`);
         const filePath = logs.stdout?.match(filePathRe)?.[1];
-        debug.extend('downloaded')('%o', filePath);
 
         data.downloadedApkPath = filePath;
     }

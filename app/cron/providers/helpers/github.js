@@ -3,7 +3,7 @@ import {logError} from '@k03mad/simple-log';
 import env from '../../../../env.js';
 import {req} from '../../../../utils/request.js';
 
-const APPS_FILTER_DEFAULT_RE = /apk$/;
+const APPS_FILTER_DEFAULT = 'apk';
 
 const urls = {
     api: 'https://api.github.com',
@@ -42,25 +42,26 @@ const getUserRepos = user => req(`${urls.api}/users/${user}/repos`, reqOpts);
 
 /**
  * @typedef {object} request
- * @property {string} name
- * @property {boolean} skipPrerelease
- * @property {{file: boolean, include: RegExp, exclude: RegExp}} filter
+ * @property {string} [name]
+ * @property {string} [archive]
+ * @property {boolean} [skipPrerelease]
+ * @property {{file: boolean, include: RegExp, exclude: RegExp}} [filter]
  */
 
 /**
  * @param {Array<request>} repos
- * @param {object} opts
- * @param {boolean} opts.skipEmptyCheck
+ * @param {object} [opts]
+ * @param {boolean} [opts.skipEmptyCheck]
  */
 export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
-    const links = await Promise.all(repos.flat().map(async ({name, skipPrerelease, filter}) => {
+    const links = await Promise.all(repos.flat().map(async ({name, archive, skipPrerelease, filter}) => {
         try {
             const {body} = await getReleases(name);
 
             const item = skipPrerelease ? body?.find(elem => !elem.prerelease) : body?.[0];
 
             let apkLinks = (item?.assets?.map(asset => asset?.browser_download_url) || [])
-                .filter(elem => APPS_FILTER_DEFAULT_RE.test(elem));
+                .filter(elem => elem.endsWith(archive) || elem.endsWith(APPS_FILTER_DEFAULT));
 
             if (filter?.include) {
                 apkLinks = apkLinks.filter(elem => filter.file
@@ -85,6 +86,7 @@ export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
             return apkLinks.map(link => ({
                 link,
                 homepage,
+                archive,
             }));
         } catch (err) {
             logError(err);
