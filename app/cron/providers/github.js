@@ -13,7 +13,7 @@ export default () => getApkFromGhRepos([
     {name: 'MuntashirAkon/AppManager'},
     {name: 'organicmaps/organicmaps', filter: {include: /web/}},
     {name: 'polymorphicshade/Tubular'},
-    {name: 'Rakashazi/emu-ex-plus-alpha', archive: 'zip', filter: {include: /GbaEmu|MdEmu|NesEmu|Snes9xEXPlus/}},
+    {name: 'Rakashazi/emu-ex-plus-alpha', archive: 'zip', filter: {include: /MdEmu|NesEmu|Snes9xEXPlus/}},
     {name: 'RikkaApps/Shizuku'},
     {name: 'Sheinices/Prisma_TV'},
     {name: 'streetcomplete/StreetComplete'},
