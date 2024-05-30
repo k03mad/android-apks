@@ -32,13 +32,6 @@ export default () => getApkFromParse([
         },
     },
     {
-        page: 'https://android.zona.pub/download.html',
-        href: {
-            re: /href="(.+\.apk)"/,
-            replace: {from: '//', to: 'https://'},
-        },
-    },
-    {
         page: 'https://www.tinkoff.ru/apps/',
         opts: {ua: 'mobile'},
         intermediate: {

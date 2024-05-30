@@ -33,4 +33,8 @@ export default () => [
         link: 'https://megamarket.ru/app/sbermegamarket.apk',
         homepage: 'https://megamarket.ru/info/download-app/',
     },
+    {
+        link: 'https://apkr.upzona.net/zona5.apk',
+        homepage: 'https://android.zona.pub',
+    },
 ];
