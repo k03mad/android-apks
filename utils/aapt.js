@@ -7,8 +7,9 @@ import {run} from './shell.js';
 
 /**
  * @param {string} apkFilePath
+ * @param {object} opts
  */
-export const getApkFileInfo = async apkFilePath => {
+export const getApkFileInfo = async (apkFilePath, opts = {}) => {
     let aapt, date, size, stat;
 
     try {
@@ -47,7 +48,12 @@ export const getApkFileInfo = async apkFilePath => {
     // &shy;
     )?.replace(/\u00AD/g, '');
 
-    const version = aapt?.match(/versionName='(.+?)'/)?.[1];
+    let version = aapt?.match(/versionName='(.+?)'/)?.[1];
+
+    if (opts.semVerRemovePatch) {
+        version = version.split('.').slice(0, -1).join('.');
+    }
+
     const pkg = aapt?.match(/name='(.+?)'/)?.[1];
     const nativeCode = aapt?.match(/native-code: '(.+)'/)?.[1];
     const arch = nativeCode?.split(/\s+|'/).filter(Boolean).sort().join(', ');

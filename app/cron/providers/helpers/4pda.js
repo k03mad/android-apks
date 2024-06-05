@@ -53,10 +53,11 @@ const getTopicPost = (topicId, postId) => req(urls.web, {
  * name: string,
  * showtopic: number,
  * filter: {file: boolean, include: RegExp, exclude: RegExp}
+ * opts: {ua: string, proxy: boolean, semVerRemovePatch: boolean}
  * }>} apps
  */
 export const getApkFrom4Pda = async apps => {
-    const links = await Promise.all(apps.map(async ({name, filter, showtopic}) => {
+    const links = await Promise.all(apps.map(async ({name, filter, showtopic, opts = {}}) => {
         try {
             // забираем все ссылки на другие посты из шапки темы
             // часть из них — на посты со скачиванием версии приложения
@@ -99,6 +100,7 @@ export const getApkFrom4Pda = async apps => {
                         opts: {
                             header: `Cookie: member_id=${env['4pda'].memberId}; pass_hash=${env['4pda'].passHash}`,
                             ua: UA,
+                            ...opts,
                         },
                     }));
                 }

@@ -17,7 +17,10 @@ export default () => getApkFromParse([
     },
     {
         page: 'https://www.whatsapp.com/android',
-        opts: {ua: 'curl'},
+        opts: {
+            ua: 'curl',
+            semVerRemovePatch: true,
+        },
         href: {
             re: /href="(https:\/\/scontent.+)" data.+Android_PackageInstaller/,
             replace: {from: '&amp;', to: '&'},
@@ -25,7 +28,9 @@ export default () => getApkFromParse([
     },
     {
         page: 'https://get.videolan.org/vlc-android/last/',
-        opts: {ua: 'curl'},
+        opts: {
+            ua: 'curl',
+        },
         href: {
             re: /href="(.+arm64.+\.apk)"/,
             relative: true,
@@ -33,7 +38,9 @@ export default () => getApkFromParse([
     },
     {
         page: 'https://www.tinkoff.ru/apps/',
-        opts: {ua: 'mobile'},
+        opts: {
+            ua: 'mobile',
+        },
         intermediate: {
             re: /href="(.+?t-bank.+?\.html)"/,
         },
@@ -43,7 +50,9 @@ export default () => getApkFromParse([
     },
     {
         page: 'https://mobile.alfastrah.ru/',
-        opts: {skipSSL: true},
+        opts: {
+            skipSSL: true,
+        },
         href: {
             re: /href="(.+\.apk)"/,
             relative: true,

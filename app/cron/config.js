@@ -6,7 +6,7 @@ export default {
         minSizeB: 51_200,
     },
     download: {
-        concurrency: 5,
+        concurrency: 3,
     },
     output: {
         folder: OUTPUT_FOLDER,

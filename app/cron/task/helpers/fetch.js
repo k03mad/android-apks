@@ -16,7 +16,7 @@ const debug = _debug('mad:fetch');
 
 /**
  * @param {object} providers
- * @returns {Promise<Array<{providerName: string, link: string, opts: {ua: string, proxy: boolean}}>>}
+ * @returns {Promise<Array<{providerName: string, link: string, opts: {ua: string, proxy: boolean, semVerRemovePatch: boolean}}>>}
  */
 export const getProvidersData = async providers => {
     const data = await Promise.all(
@@ -62,7 +62,7 @@ export const downloadApkFile = async ({homepage, link, opts, archive}) => {
         throw new Error(`[FETCH] Archive ext "${archive}" is not supported`);
     }
 
-    const info = await getApkFileInfo(downloadedApkPath);
+    const info = await getApkFileInfo(downloadedApkPath, opts);
 
     const downloadedApkPathSplit = downloadedApkPath.split('/');
     const originalFileName = downloadedApkPathSplit.pop();

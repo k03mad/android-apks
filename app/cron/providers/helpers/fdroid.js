@@ -6,10 +6,13 @@ const REQUEST_URL = 'https://f-droid.org/packages/';
 const RESPONSE_LINK_RE = /[^"]+apk/g;
 
 /**
- * @param {Array<{name: string}>} apps
+ * @param {Array<{
+ * name: string
+ * opts: {ua: string, proxy: boolean, semVerRemovePatch: boolean}
+ * }>} apps
  */
 export const getApkFromFd = async apps => {
-    const links = await Promise.all(apps.map(async ({name}) => {
+    const links = await Promise.all(apps.map(async ({name, opts}) => {
         try {
             const homepage = REQUEST_URL + name;
 
@@ -23,6 +26,7 @@ export const getApkFromFd = async apps => {
             return {
                 link,
                 homepage,
+                opts,
             };
         } catch (err) {
             logError(err);

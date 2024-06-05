@@ -9,17 +9,12 @@ const debug = _debug('mad:parse');
  * @param {Array<{
  * page: string,
  * intermediate: {re: RegExp, all: boolean},
- * opts: {ua: string, proxy: boolean},
+ * opts: {ua: string, proxy: boolean, semVerRemovePatch: boolean},
  * href: {re: RegExp, filter: {file: boolean, include: RegExp, exclude: RegExp}, relative: boolean, all: boolean, replace: {from: string|RegExp, to: string}},
  * }>} parse
  */
 export const getApkFromParse = async parse => {
-    const links = await Promise.all(parse.map(async ({
-        page,
-        intermediate,
-        opts,
-        href,
-    }) => {
+    const links = await Promise.all(parse.map(async ({page, intermediate, opts, href}) => {
         try {
             let {body} = await req(page, {
                 headers: {'user-agent': getUa(opts?.ua)},

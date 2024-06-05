@@ -29,32 +29,19 @@ const reqOpts = {
 const getReleases = repo => req(`${urls.api}/repos/${repo}/releases`, reqOpts);
 
 /**
- * @param {string} org
- * @returns {Promise<object>}
- */
-const getOrgRepos = org => req(`${urls.api}/orgs/${org}/repos`, reqOpts);
-
-/**
- * @param {string} user
- * @returns {Promise<object>}
- */
-const getUserRepos = user => req(`${urls.api}/users/${user}/repos`, reqOpts);
-
-/**
  * @typedef {object} request
  * @property {string} [name]
  * @property {string} [archive]
  * @property {boolean} [skipPrerelease]
+ * @property {{ua: string, proxy: boolean, semVerRemovePatch: boolean}} [opts]
  * @property {{file: boolean, include: RegExp, exclude: RegExp}} [filter]
  */
 
 /**
  * @param {Array<request>} repos
- * @param {object} [opts]
- * @param {boolean} [opts.skipEmptyCheck]
  */
-export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
-    const links = await Promise.all(repos.flat().map(async ({name, archive, skipPrerelease, filter}) => {
+export const getApkFromGhRepos = async repos => {
+    const links = await Promise.all(repos.flat().map(async ({name, archive, skipPrerelease, filter, opts}) => {
         try {
             const {body} = await getReleases(name);
 
@@ -79,7 +66,7 @@ export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
 
             const homepage = `${urls.web}/${name}`;
 
-            if (!skipEmptyCheck && apkLinks.length === 0) {
+            if (apkLinks.length === 0) {
                 throw new Error(`[GITHUB] No apk link found\n${homepage}\n${filter}`);
             }
 
@@ -87,6 +74,7 @@ export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
                 link,
                 homepage,
                 archive,
+                opts,
             }));
         } catch (err) {
             logError(err);
@@ -94,36 +82,4 @@ export const getApkFromGhRepos = async (repos, {skipEmptyCheck} = {}) => {
     }));
 
     return links.flat().filter(elem => elem?.link);
-};
-
-/**
- * @param {Array<request>} orgs
- */
-export const getApkFromGhOrgs = async orgs => {
-    const repos = await Promise.all(orgs.map(async opts => {
-        try {
-            const {body} = await getOrgRepos(opts.name);
-            return body.map(elem => ({...opts, name: `${opts.name}/${elem.name}`}));
-        } catch (err) {
-            logError(err);
-        }
-    }));
-
-    return getApkFromGhRepos(repos.filter(Boolean), {skipEmptyCheck: true});
-};
-
-/**
- * @param {Array<request>} users
- */
-export const getApkFromGhUsers = async users => {
-    const repos = await Promise.all(users.map(async opts => {
-        try {
-            const {body} = await getUserRepos(opts.name);
-            return body.map(elem => ({...opts, name: `${opts.name}/${elem.name}`}));
-        } catch (err) {
-            logError(err);
-        }
-    }));
-
-    return getApkFromGhRepos(repos.filter(Boolean), {skipEmptyCheck: true});
 };

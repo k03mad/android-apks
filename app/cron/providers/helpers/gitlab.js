@@ -18,11 +18,12 @@ const getReleases = repo => req(`${urls.api}/projects/${encodeURIComponent(repo)
 /**
  * @param {Array<{
  * name: string,
+ * opts: {ua: string, proxy: boolean, semVerRemovePatch: boolean}
  * filter: {file: boolean, include: RegExp, exclude: RegExp}
  * }>} repos
  */
 export const getApkFromGlRepos = async repos => {
-    const links = await Promise.all(repos.flat().map(async ({name, filter}) => {
+    const links = await Promise.all(repos.flat().map(async ({name, filter, opts}) => {
         try {
             const {body} = await getReleases(name);
 
@@ -53,6 +54,7 @@ export const getApkFromGlRepos = async repos => {
             return apkLinks.map(link => ({
                 link,
                 homepage,
+                opts,
             }));
         } catch (err) {
             logError(err);
