@@ -9,8 +9,8 @@ dependencies:
     specifier: 5.7.0
     version: 5.7.0
   '@k03mad/simple-date':
-    specifier: 1.0.3
-    version: 1.0.3
+    specifier: 1.0.4
+    version: 1.0.4
   '@k03mad/simple-log':
     specifier: 2.1.4
     version: 2.1.4
