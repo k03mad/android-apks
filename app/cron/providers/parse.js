@@ -35,7 +35,7 @@ export default () => getApkFromParse([
         page: 'https://www.tinkoff.ru/apps/',
         opts: {ua: 'mobile'},
         intermediate: {
-            re: /href="(.+?tinkoff-bank.+?\.html)"/,
+            re: /href="(.+?t-bank.+?\.html)"/,
         },
         href: {
             re: /href="(.+\.apk)"/,

@@ -52,7 +52,7 @@ export const getApkFromParse = async parse => {
                 .filter(Boolean);
 
             if (apkLinks.length === 0) {
-                throw new Error(`[PARSE] No apk link found\n${page}\n${href}`);
+                throw new Error(`[PARSE] No apk link found\n${page}\n${JSON.stringify(href)}`);
             }
 
             debug.extend('apkLinks')('%o', apkLinks);
