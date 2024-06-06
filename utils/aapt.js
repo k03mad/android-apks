@@ -48,10 +48,10 @@ export const getApkFileInfo = async (apkFilePath, opts = {}) => {
     // &shy;
     )?.replace(/\u00AD/g, '');
 
-    let version = aapt?.match(/versionName='(.+?)'/)?.[1];
+    let version = aapt?.match(/versionName='(.+?)'/)?.[1]?.replace(/^v/, '');
 
     if (opts.semVerRemovePatch) {
-        version = version.split('.').slice(0, -1).join('.');
+        version = version?.split('.')?.slice(0, -1)?.join('.');
     }
 
     const pkg = aapt?.match(/name='(.+?)'/)?.[1];
