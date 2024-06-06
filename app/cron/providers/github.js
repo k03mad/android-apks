@@ -16,7 +16,7 @@ export default () => getApkFromGhRepos([
     {name: 'Rakashazi/emu-ex-plus-alpha', archive: 'zip', filter: {include: /MdEmu|NesEmu|Snes9xEXPlus/}},
     {name: 'revanced-apks/build-apps', filter: {include: /youtube-revanced-extended/}},
     {name: 'ReVanced/GmsCore', filter: {exclude: /-hw-/}},
-    {name: 'NoName-exe/revanced', filter: {include: 'youtube-revanced'}},
+    {name: 'NoName-exe/revanced', filter: {include: /youtube-revanced/}},
     {name: 'RikkaApps/Shizuku'},
     {name: 'Sheinices/Prisma_TV'},
     {name: 'streetcomplete/StreetComplete'},
