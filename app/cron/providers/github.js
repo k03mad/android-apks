@@ -12,11 +12,6 @@ export default () => getApkFromGhRepos([
     {name: 'massivemadness/Squircle-CE', filter: {include: /fdroid/}},
     {name: 'MuntashirAkon/AppManager'},
     {name: 'organicmaps/organicmaps', filter: {include: /web/}},
-    {name: 'polymorphicshade/Tubular'},
-    {name: 'Rakashazi/emu-ex-plus-alpha', archive: 'zip', filter: {include: /MdEmu|NesEmu|Snes9xEXPlus/}},
-    {name: 'revanced-apks/build-apps', filter: {include: /youtube-revanced-extended/}},
-    {name: 'ReVanced/GmsCore', filter: {exclude: /-hw-/}},
-    {name: 'NoName-exe/revanced', filter: {include: /youtube-revanced/}},
     {name: 'RikkaApps/Shizuku'},
     {name: 'Sheinices/Prisma_TV'},
     {name: 'streetcomplete/StreetComplete'},
@@ -24,5 +19,4 @@ export default () => getApkFromGhRepos([
     {name: 'truefedex/tv-bro', filter: {include: /arm64/}},
     {name: 'tytydraco/PDNSQS', filter: {exclude: /unsigned/}},
     {name: 'YouROK/TorrServe'},
-    {name: 'yuliskov/SmartTube', skipPrerelease: true, filter: {include: /arm64/}},
 ]);
