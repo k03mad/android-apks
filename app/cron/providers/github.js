@@ -19,4 +19,5 @@ export default () => getApkFromGhRepos([
     {name: 'truefedex/tv-bro', filter: {include: /arm64/}},
     {name: 'tytydraco/PDNSQS', filter: {exclude: /unsigned/}},
     {name: 'YouROK/TorrServe'},
+    {name: 'proninyaroslav/libretorrent', filter: {include: /arm64/}},
 ]);
