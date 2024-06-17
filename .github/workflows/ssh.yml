@@ -1,4 +1,4 @@
-name: SSH-VDS
+name: SSH
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  ssh:
+  ssh-vds:
     environment: vds
     runs-on: ubuntu-22.04
     steps:
