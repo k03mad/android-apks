@@ -37,4 +37,8 @@ export default () => [
         link: 'https://apkr.upzona.net/zona5.apk',
         homepage: 'https://android.zona.pub',
     },
+    {
+        link: 'https://res.viayoo.com/v1/via-release.apk',
+        homepage: 'https://viayoo.com/en/',
+    },
 ];
