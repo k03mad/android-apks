@@ -5,7 +5,6 @@ export default () => getApkFromGhRepos([
     {name: 'AdguardTeam/ContentBlocker'},
     {name: 'Aefyr/SAI'},
     {name: 'Catfriend1/syncthing-android', filter: {exclude: /fdroid|gplay/}},
-    {name: 'FossifyOrg/Gallery'},
     {name: 'imranr98/obtainium', filter: {include: /arm64/, exclude: /fdroid/}},
     {name: 'kyujin-cho/pixel-volte-patch'},
     {name: 'lampa-app/LAMPA'},

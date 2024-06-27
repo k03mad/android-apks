@@ -9,17 +9,17 @@ importers:
   .:
     dependencies:
       '@k03mad/request':
-        specifier: 5.8.0
-        version: 5.8.0
+        specifier: 5.8.1
+        version: 5.8.1
       '@k03mad/simple-date':
-        specifier: 1.1.0
-        version: 1.1.0
+        specifier: 1.1.1
+        version: 1.1.1
       '@k03mad/simple-log':
-        specifier: 2.2.0
-        version: 2.2.0
+        specifier: 2.2.1
+        version: 2.2.1
       '@k03mad/simple-prom':
-        specifier: 3.1.0
-        version: 3.1.0
+        specifier: 3.1.1
+        version: 3.1.1
       chalk:
         specifier: 5.3.0
         version: 5.3.0
@@ -164,20 +164,28 @@ packages:
     resolution: {integrity: sha512-re0lzmCOgEhXKKVjzxtibFJaTgn18wbV3dy+mOoNY3Lu5zKOrVGtyrOgi8U+XDd9AhEz4r0HSzH1a3uYA/A5+g==}
     engines: {node: '>=20'}
 
-  '@k03mad/request@5.8.0':
-    resolution: {integrity: sha512-lICi0UA/ap2/IPkUg1Mjrt38dEF7bbWTC75WsWxE0Z7hWh1squ+C6nbv28wRHhRzd9R/iFsbMZWlMvtoWgSqrg==}
+  '@k03mad/request@5.8.1':
+    resolution: {integrity: sha512-C1CouQdbkVKGUsVtrURBEQGhlHAcqqxJqdYAEd0ZrXYUFXnoznbC+iNGnKKpLcD2AcdT5K6gNREwr2HqcZgHbQ==}
     engines: {node: '>=20'}
 
   '@k03mad/simple-date@1.1.0':
     resolution: {integrity: sha512-ZzvlFyR49yaGXrgwvePb3LGip0OfCuh67ZFUEfJRYHHsTLkcOlgY48z5+C+z/nzLIxt+s6ZKw8L9VCVZLqh35Q==}
     engines: {node: '>=20'}
 
+  '@k03mad/simple-date@1.1.1':
+    resolution: {integrity: sha512-PNc1AdQ/8ZL/cJ8aFV25NFBVGvdvUEW5slGd/D26Pn9a2+0YdRxKHT8fIeVX/FOS5ORIsBHDPyoHrugp8gcJ1g==}
+    engines: {node: '>=20'}
+
   '@k03mad/simple-log@2.2.0':
     resolution: {integrity: sha512-qI1vCYV9mWdxhsbv6PPBe18GBhHteSb3+sTR6y1Y5yR6m8xhN0CR7b5SOG+25lgKNt2GhkOFfhW9wFPyaHO6DA==}
     engines: {node: '>=20'}
 
-  '@k03mad/simple-prom@3.1.0':
-    resolution: {integrity: sha512-jHItpEzSwUfD/Qs8+OJSnGx93jSBi2ChzpIvh2aQ4RZuJc20SY705C4BupLtS025F3r4aQj0y/E6XOuDdNFeYw==}
+  '@k03mad/simple-log@2.2.1':
+    resolution: {integrity: sha512-2ku1ShlHTTShetmspdpW0nDeN6hL9fQtnexyYeAqbnBdMQgNGnt4pWhdBsfM4RBUMQAeztycCVi+lSdjESQpZQ==}
+    engines: {node: '>=20'}
+
+  '@k03mad/simple-prom@3.1.1':
+    resolution: {integrity: sha512-I0X4/YoAY0azD/PjvWwFEJ/kTjymyfYbdMCIjg3knxT0HkFZYoqotTmdX7jdtUX2tu8jkGG1zaiIMiN+kA/PFA==}
     engines: {node: '>=20'}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -2325,7 +2333,7 @@ snapshots:
       - typescript
       - vue-eslint-parser
 
-  '@k03mad/request@5.8.0':
+  '@k03mad/request@5.8.1':
     dependencies:
       chalk: 5.3.0
       debug: 4.3.5(supports-color@5.5.0)
@@ -2338,13 +2346,19 @@ snapshots:
 
   '@k03mad/simple-date@1.1.0': {}
 
+  '@k03mad/simple-date@1.1.1': {}
+
   '@k03mad/simple-log@2.2.0':
     dependencies:
       '@k03mad/simple-date': 1.1.0
 
-  '@k03mad/simple-prom@3.1.0':
+  '@k03mad/simple-log@2.2.1':
     dependencies:
       '@k03mad/simple-date': 1.1.0
+
+  '@k03mad/simple-prom@3.1.1':
+    dependencies:
+      '@k03mad/simple-date': 1.1.1
       '@k03mad/simple-log': 2.2.0
       chalk: 5.3.0
       compression: 1.7.4
