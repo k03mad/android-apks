@@ -24,3 +24,4 @@ jobs:
             git pull
             ~/.nvm/nvm-exec npm run setup
             systemctl restart android-apks.service
+            ~/.nvm/nvm-exec npm run apk:dl
