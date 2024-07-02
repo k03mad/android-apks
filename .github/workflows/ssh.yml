@@ -15,12 +15,13 @@ jobs:
           AAPKS_4PDA_MEMBER_ID: ${{ secrets.AAPKS_4PDA_MEMBER_ID }}
           AAPKS_4PDA_PASS_HASH: ${{ secrets.AAPKS_4PDA_PASS_HASH }}
           AAPKS_GITHUB_TOKEN: ${{ secrets.AAPKS_GITHUB_TOKEN }}
+          AAPKS_DOMAIN: ${{ secrets.AAPKS_DOMAIN }}
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          envs: AAPKS_4PDA_MEMBER_ID,AAPKS_4PDA_PASS_HASH,AAPKS_GITHUB_TOKEN
+          envs: AAPKS_4PDA_MEMBER_ID,AAPKS_4PDA_PASS_HASH,AAPKS_GITHUB_TOKEN,AAPKS_DOMAIN
           script: |
             set -x
             lsb_release -a
