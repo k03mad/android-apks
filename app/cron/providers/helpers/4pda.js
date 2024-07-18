@@ -6,12 +6,12 @@ import {getUa, req} from '../../../../utils/request.js';
 
 const UA = 'mobile';
 
-const reqOpts = {
+const reqOpts = async () => ({
     headers: {
-        'user-agent': getUa(UA),
+        'user-agent': await getUa(UA),
     },
     rps: 2,
-};
+});
 
 const urls = {
     web: 'https://4pda.to/forum/index.php',
@@ -30,23 +30,35 @@ const selectors = {
  * @param {string|number} topicId
  * @returns {Promise<object>}
  */
-const getTopic = topicId => req(urls.topic(topicId), {
-    headers: reqOpts.headers,
-}, {rps: reqOpts.rps});
+const getTopic = async topicId => {
+    const opts = await reqOpts();
+
+    return req(urls.topic(topicId), {
+        headers: opts.headers,
+    }, {
+        rps: opts.rps,
+    });
+};
 
 /**
  * @param {string|number} topicId
  * @param {string|number} postId
  * @returns {Promise<object>}
  */
-const getTopicPost = (topicId, postId) => req(urls.web, {
-    searchParams: {
-        showtopic: topicId,
-        view: 'findpost',
-        p: postId,
-    },
-    headers: reqOpts.headers,
-}, {rps: reqOpts.rps});
+const getTopicPost = async (topicId, postId) => {
+    const opts = await reqOpts();
+
+    return req(urls.web, {
+        searchParams: {
+            showtopic: topicId,
+            view: 'findpost',
+            p: postId,
+        },
+        headers: opts.headers,
+    }, {
+        rps: opts.rps,
+    });
+};
 
 /**
  * @param {Array<{

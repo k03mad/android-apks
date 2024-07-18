@@ -6,7 +6,7 @@ import env from '../env.js';
 import {getUa} from './request.js';
 import {run} from './shell.js';
 
-const getAriaArgs = opts => [
+const getAriaArgs = async opts => [
     // general
     '--continue=true',
     '--remote-time=true',
@@ -18,7 +18,7 @@ const getAriaArgs = opts => [
     '--max-tries=12',
     '--retry-wait=5',
     // args
-    `--user-agent="${getUa(opts.ua)}"`,
+    `--user-agent="${await getUa(opts.ua)}"`,
     opts.header ? `--header="${opts.header}"` : '',
     opts.dir ? `--dir="${opts.dir}"` : '',
     opts.skipSSL ? '--check-certificate=false' : '',
@@ -35,7 +35,7 @@ const getAriaArgs = opts => [
  * @param {string} [opts.header]
  */
 export const download = async (url, opts = {}) => {
-    const cmd = `aria2c ${getAriaArgs(opts)} "${url}"`;
+    const cmd = `aria2c ${await getAriaArgs(opts)} "${url}"`;
 
     if (opts.dir) {
         await fs.mkdir(opts.dir, {recursive: true});

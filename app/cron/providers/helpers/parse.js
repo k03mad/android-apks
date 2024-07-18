@@ -17,7 +17,7 @@ export const getApkFromParse = async parse => {
     const links = await Promise.all(parse.map(async ({page, intermediate, opts, href}) => {
         try {
             let {body} = await req(page, {
-                headers: {'user-agent': getUa(opts?.ua)},
+                headers: {'user-agent': await getUa(opts?.ua)},
                 https: {rejectUnauthorized: !opts?.skipSSL},
             });
 
@@ -33,7 +33,7 @@ export const getApkFromParse = async parse => {
 
                 const responses = await Promise.all(nextLinks.map(async nextLink => {
                     const response = await req(nextLink, {
-                        headers: {'user-agent': getUa(opts?.ua)},
+                        headers: {'user-agent': await getUa(opts?.ua)},
                         https: {rejectUnauthorized: !opts?.skipSSL},
                     });
 
