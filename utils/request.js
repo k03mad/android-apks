@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 
+import {getAriaVersion, getChromeVersion, getCurlVersion} from '@k03mad/actual-versions';
 import {request, requestCache} from '@k03mad/request';
 
 import cronConfig from '../app/cron/config.js';
@@ -42,32 +43,37 @@ export const reqCache = async (...args) => {
 };
 
 /**
- * @param {'desktop'|'mobile'|'curl'|'empty'} type
+ * @param {'desktop'|'mobile'|'curl'|'aria'|'empty'} type
  * @returns {Promise<string>}
  */
 export const getUa = async (type = 'mobile') => {
-    const chromeVersions = 'https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions.json';
-
-    const {body} = await reqCache(chromeVersions);
-    const {version} = body.channels.Stable;
+    const [
+        ariaVersion,
+        chromeVersion,
+        curlVersion,
+    ] = await Promise.all([
+        getAriaVersion(),
+        getChromeVersion(),
+        getCurlVersion(),
+    ]);
 
     const ua = {
         desktop: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
         + 'AppleWebKit/537.36 (KHTML, like Gecko) '
-        + `Chrome/${version} `
+        + `Chrome/${chromeVersion} `
         + 'Safari/537.36',
 
         mobile: 'Mozilla/5.0 (Linux; Android 10; K) '
         + 'AppleWebKit/537.36 (KHTML, like Gecko) '
-        + `Chrome/${version} `
+        + `Chrome/${chromeVersion} `
         + 'Mobile Safari/537.36',
 
-        curl: 'curl/8.4.0',
+        curl: `curl/${curlVersion}`,
 
-        aria: 'aria/1.36.0',
+        aria: `aria/${ariaVersion}`,
 
         empty: '',
     };
 
-    return ua[type];
+    return ua[type] || ua.mobile;
 };

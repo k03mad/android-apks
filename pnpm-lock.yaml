@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@k03mad/actual-versions':
+        specifier: 1.0.2
+        version: 1.0.2
       '@k03mad/request':
         specifier: 5.8.1
         version: 5.8.1
@@ -159,6 +162,11 @@ packages:
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
+
+  '@k03mad/actual-versions@1.0.2':
+    resolution: {integrity: sha512-n1P0YtXVJIcLK5TV/TbIl1jYdTXg2SUpakjB8cS/MSW/7IqlH87joDVHETqxKBoL7OkfMrkYVLdw+dsUmBKJDQ==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   '@k03mad/eslint-config@22.5.0':
     resolution: {integrity: sha512-x75Wt1klUN9fj6xaeGLcctyEXZ4x0RF+9FFCF2dEkXki7scugo3qKuFonlHgKfgyTRGAODWxQRkbGD3gg1kZ7g==}
@@ -2300,6 +2308,15 @@ snapshots:
       strip-ansi-cjs: strip-ansi@6.0.1
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
+
+  '@k03mad/actual-versions@1.0.2':
+    dependencies:
+      '@k03mad/request': 5.8.1
+      '@k03mad/simple-log': 2.2.1
+      chalk: 5.3.0
+      table: 6.8.2
+    transitivePeerDependencies:
+      - supports-color
 
   '@k03mad/eslint-config@22.5.0(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
