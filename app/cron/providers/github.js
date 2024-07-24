@@ -17,7 +17,7 @@ export default () => getApkFromGhRepos([
     {name: 'Sheinices/Prisma_TV'},
     {name: 'streetcomplete/StreetComplete'},
     {name: 'termux/termux-app', skipPrerelease: true, filter: {include: /arm64/}},
-    {name: 'topjohnwu/Magisk'},
+    {name: 'topjohnwu/Magisk', skipPrerelease: true},
     {name: 'truefedex/tv-bro', filter: {include: /arm64/}},
     {name: 'tytydraco/PDNSQS', filter: {exclude: /unsigned/}},
     {name: 'YouROK/TorrServe'},
