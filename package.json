@@ -16,8 +16,8 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@k03mad/actual-versions": "1.1.0",
-    "@k03mad/request": "5.8.1",
+    "@k03mad/actual-versions": "1.1.1",
+    "@k03mad/request": "6.0.3",
     "@k03mad/simple-date": "1.1.1",
     "@k03mad/simple-log": "2.2.1",
     "@k03mad/simple-prom": "3.1.1",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@k03mad/eslint-config": "22.5.0",
     "eslint": "8.57.0",
-    "husky": "9.1.1",
+    "husky": "9.1.2",
     "nodemon": "3.1.4",
     "npm-run-all": "4.1.5",
     "stylelint": "16.7.0",
