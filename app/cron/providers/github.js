@@ -22,4 +22,5 @@ export default () => getApkFromGhRepos([
     {name: 'tytydraco/PDNSQS', filter: {exclude: /unsigned/}},
     {name: 'YouROK/TorrServe'},
     {name: 'theothernt/AerialViews'},
+    {name: 'reqable/reqable-app', filter: {include: /arm64/}},
 ]);
