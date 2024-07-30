@@ -5,14 +5,15 @@ export default () => getApkFromParse([
     {
         page: 'https://download.wireguard.com/android-client/',
         href: {
-            re: /href="(.+\.apk)"/,
+            text: /\.apk$/,
             relative: true,
         },
     },
     {
         page: 'https://питание.дети/mobile',
         href: {
-            re: /href="(.{2,}apk)\s?"/,
+            selector: '.btn-success',
+            remove: '\n',
         },
     },
     {
@@ -22,8 +23,7 @@ export default () => getApkFromParse([
             semVerRemovePatch: true,
         },
         href: {
-            re: /href="(https:\/\/scontent.+)" data.+Android_PackageInstaller/,
-            replace: {from: '&amp;', to: '&'},
+            selector: '[data-ms*="Android_PackageInstaller_Hero_Link"]',
         },
     },
     {
@@ -37,25 +37,60 @@ export default () => getApkFromParse([
         },
     },
     {
-        page: 'https://www.tinkoff.ru/apps/',
-        opts: {
-            ua: 'mobile',
-        },
-        intermediate: {
-            re: /href="(.+?t-bank.+?\.html)"/,
-        },
-        href: {
-            re: /href="(.+\.apk)"/,
-        },
-    },
-    {
         page: 'https://mobile.alfastrah.ru/',
         opts: {
             skipSSL: true,
         },
         href: {
-            re: /href="(.+\.apk)"/,
+            text: 'Скачать файл',
             relative: true,
+        },
+    },
+    {
+        page: 'https://apk.2gis.ru/',
+        href: {
+            selector: '._dl-store-apk',
+        },
+    },
+    {
+        page: 'https://kpdl.link/faq.html',
+        href: {
+            re: /href="(.+\.apk)"/,
+        },
+    },
+    {
+        page: 'https://app.yota.ru/',
+        href: {
+            text: 'APK-файла',
+        },
+    },
+    {
+        page: 'https://telegram.org/android',
+        href: {
+            selector: '.td_download_btn',
+            relative: true,
+        },
+    },
+    {
+        page: 'https://televizo.net/',
+        href: {
+            text: 'DOWNLOAD APK FILE',
+        },
+    },
+    {
+        page: 'https://android.zona.pub/download.html',
+        href: {
+            text: 'Android 5 и выше',
+            replace: {
+                from: '//',
+                to: 'https://',
+            },
+        },
+    },
+    {
+        page: 'https://viayoo.com/en/',
+        href: {
+            text: 'Download',
         },
     },
 ]);

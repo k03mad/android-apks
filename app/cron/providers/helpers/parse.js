@@ -1,17 +1,38 @@
 import {logError} from '@k03mad/simple-log';
 import _debug from 'debug';
+import {JSDOM} from 'jsdom';
 
 import {getUa, req} from '../../../../utils/request.js';
 
 const debug = _debug('mad:parse');
 
 /**
- * @param {Array<{
- * page: string,
- * intermediate: {re: RegExp, all: boolean},
- * opts: {ua: string, proxy: boolean, semVerRemovePatch: boolean},
- * href: {re: RegExp, filter: {file: boolean, include: RegExp, exclude: RegExp}, relative: boolean, all: boolean, replace: {from: string|RegExp, to: string}},
- * }>} parse
+ * @typedef intermediate
+ * @property {RegExp} re
+ * @property {boolean} all
+ */
+
+/**
+ * @typedef opts
+ * @property {string} ua
+ * @property {boolean} proxy
+ * @property {boolean} semVerRemovePatch
+ */
+
+/**
+ * @typedef href
+ * @property {RegExp} re
+ * @property {string} selector
+ * @property {string|RegExp} text
+ * @property {string|RegExp} remove
+ * @property {boolean} relative
+ * @property {boolean} all
+ * @property {{file: boolean, include: RegExp, exclude: RegExp}} filter
+ * @property {{from: string|RegExp, to: string}} replace
+ */
+
+/**
+ * @param {Array<{page: string, intermediate: intermediate, opts: opts, href: href}>} parse
  */
 export const getApkFromParse = async parse => {
     const links = await Promise.all(parse.map(async ({page, intermediate, opts, href}) => {
@@ -43,8 +64,40 @@ export const getApkFromParse = async parse => {
                 body = responses.join();
             }
 
-            let apkLinks = (href.all ? [...new Set(body?.match(href.re))] : [body?.match(href.re)?.[1]])
-                .filter(Boolean);
+            let apkLinks, dom;
+
+            if (!href.re) {
+                dom = new JSDOM(body);
+            }
+
+            if (href.selector) {
+                const hrefs = [
+                    ...new Set(
+                        [...dom.window.document.querySelectorAll(href.selector)]
+                            .map(elem => elem.getAttribute('href')),
+                    ),
+                ];
+
+                apkLinks = (href.all ? hrefs : [hrefs[0]]).filter(Boolean);
+            } else if (href.text) {
+                const hrefs = [
+                    ...new Set(
+                        [...dom.window.document.querySelectorAll('[href]')]
+                            .filter(elem => typeof href.text === 'string'
+                                ? elem.textContent.includes(href.text)
+                                : href.text.test(elem.textContent),
+                            )
+                            .map(elem => elem.getAttribute('href')),
+                    ),
+                ];
+
+                apkLinks = (href.all ? hrefs : [hrefs[0]]).filter(Boolean);
+            } else {
+                apkLinks = (href.all
+                    ? [...new Set(body?.match(href.re))]
+                    : [body?.match(href.re)?.[1]]
+                ).filter(Boolean);
+            }
 
             if (apkLinks.length === 0) {
                 throw new Error(`[PARSE] No apk link found\n${page}\n${JSON.stringify(href)}`);
@@ -70,7 +123,11 @@ export const getApkFromParse = async parse => {
                 let fullLink = href.relative ? new URL(link, page).href : link;
 
                 if (href.replace) {
-                    fullLink = fullLink.replaceAll(href.replace.from, href.replace.to);
+                    fullLink = fullLink.replace(href.replace.from, href.replace.to);
+                }
+
+                if (href.remove) {
+                    fullLink = fullLink.replace(href.remove, '');
                 }
 
                 debug.extend('fullLink')('%o', fullLink);
