@@ -14,3 +14,4 @@ export {default as github_youtube} from './github_youtube.js';
 export {default as gitlab} from './gitlab.js';
 export {default as parse} from './parse.js';
 export {default as parse_tinkoff} from './parse_tinkoff.js';
+export {default as parse_video} from './parse_video.js';
