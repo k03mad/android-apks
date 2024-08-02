@@ -2,7 +2,6 @@
 export {default as _4pda} from './4pda.js';
 export {default as _4pda_games} from './4pda_games.js';
 export {default as _4pda_root} from './4pda_root.js';
-export {default as apkpure} from './apkpure.js';
 export {default as direct} from './direct.js';
 export {default as fdroid} from './fdroid.js';
 export {default as github} from './github.js';

@@ -1,7 +1,9 @@
 import {logError} from '@k03mad/simple-log';
 import _debug from 'debug';
 import {JSDOM} from 'jsdom';
+import _ from 'lodash';
 
+import {convertToArray} from '../../../../utils/array.js';
 import {getUa, req} from '../../../../utils/request.js';
 
 const debug = _debug('mad:parse');
@@ -27,6 +29,7 @@ const debug = _debug('mad:parse');
  * @property {string|RegExp} remove
  * @property {boolean} relative
  * @property {boolean} all
+ * @property {string|string[]} jsonPath
  * @property {{file: boolean, include: RegExp, exclude: RegExp}} filter
  * @property {{from: string|RegExp, to: string}} replace
  */
@@ -64,13 +67,11 @@ export const getApkFromParse = async parse => {
                 body = responses.join();
             }
 
-            let apkLinks, dom;
-
-            if (!href.re) {
-                dom = new JSDOM(body);
-            }
+            let apkLinks;
 
             if (href.selector) {
+                const dom = new JSDOM(body);
+
                 const hrefs = [
                     ...new Set(
                         [...dom.window.document.querySelectorAll(href.selector)]
@@ -80,6 +81,8 @@ export const getApkFromParse = async parse => {
 
                 apkLinks = (href.all ? hrefs : [hrefs[0]]).filter(Boolean);
             } else if (href.text) {
+                const dom = new JSDOM(body);
+
                 const hrefs = [
                     ...new Set(
                         [...dom.window.document.querySelectorAll('[href]')]
@@ -92,6 +95,12 @@ export const getApkFromParse = async parse => {
                 ];
 
                 apkLinks = (href.all ? hrefs : [hrefs[0]]).filter(Boolean);
+            } else if (href.jsonPath) {
+                apkLinks = [
+                    ...new Set(
+                        convertToArray(href.jsonPath).map(path => _.get(body, path)),
+                    ),
+                ].filter(Boolean);
             } else {
                 apkLinks = (href.all
                     ? [...new Set(body?.match(href.re))]

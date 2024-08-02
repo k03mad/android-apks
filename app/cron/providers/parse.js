@@ -61,4 +61,10 @@ export default () => getApkFromParse([
             text: 'Download',
         },
     },
+    {
+        page: 'https://app.market.xiaomi.com/applinking/download?id=com.xiaomi.smarthome',
+        href: {
+            jsonPath: 'data',
+        },
+    },
 ]);
