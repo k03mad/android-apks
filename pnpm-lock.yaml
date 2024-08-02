@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@k03mad/actual-versions':
-        specifier: 1.1.1
-        version: 1.1.1
+        specifier: 1.1.2
+        version: 1.1.2
       '@k03mad/request':
         specifier: 6.0.3
         version: 6.0.3
@@ -169,17 +169,13 @@ packages:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
 
-  '@k03mad/actual-versions@1.1.1':
-    resolution: {integrity: sha512-67gBb6d2RaQXTXnISqel19MHQEUcWmbAV2ZonI9gtKNrR1P8eOmSWo1Scmqd+L0lv65ca47xH4OeGPOuB2U12g==}
+  '@k03mad/actual-versions@1.1.2':
+    resolution: {integrity: sha512-gbG1ObwgybmMVXdmnzRNwbr1wBac98YBuFyeDlFR1UryYhcTj4J5nBR+sWt4GV0cVK+C1rc2GuPvdHxNVCsuUA==}
     engines: {node: '>=20'}
     hasBin: true
 
   '@k03mad/eslint-config@22.5.0':
     resolution: {integrity: sha512-x75Wt1klUN9fj6xaeGLcctyEXZ4x0RF+9FFCF2dEkXki7scugo3qKuFonlHgKfgyTRGAODWxQRkbGD3gg1kZ7g==}
-    engines: {node: '>=20'}
-
-  '@k03mad/request@6.0.1':
-    resolution: {integrity: sha512-IT54Z5nHjo2ow1lXdZmRC0vwEbzNuF0LFJN6qauvAg3SmKIeCwBJ7AnGy1DqtcpPUVaKLov1OaErfoBkm7Uu8Q==}
     engines: {node: '>=20'}
 
   '@k03mad/request@6.0.3':
@@ -2468,9 +2464,9 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
-  '@k03mad/actual-versions@1.1.1':
+  '@k03mad/actual-versions@1.1.2':
     dependencies:
-      '@k03mad/request': 6.0.1
+      '@k03mad/request': 6.0.3
       '@k03mad/simple-log': 2.2.1
       chalk: 5.3.0
       table: 6.8.2
@@ -2502,17 +2498,6 @@ snapshots:
       - svelte-eslint-parser
       - typescript
       - vue-eslint-parser
-
-  '@k03mad/request@6.0.1':
-    dependencies:
-      chalk: 5.3.0
-      debug: 4.3.5
-      got: 14.4.1
-      p-queue: 8.0.1
-      pretty-bytes: 6.1.1
-      strip-ansi: 7.1.0
-    transitivePeerDependencies:
-      - supports-color
 
   '@k03mad/request@6.0.3':
     dependencies:
