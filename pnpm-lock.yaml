@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@k03mad/actual-versions':
-        specifier: 1.1.3
-        version: 1.1.3
+        specifier: 1.2.0
+        version: 1.2.0
       '@k03mad/request':
         specifier: 6.1.0
         version: 6.1.0
@@ -167,8 +167,8 @@ packages:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
 
-  '@k03mad/actual-versions@1.1.3':
-    resolution: {integrity: sha512-wLZt3Vso6od0BWG5Czlq8emr0JUZ3UEhp/tFv7Ddqq9iY2TNKg8nX9hkkZMaY6tqNffvatgqHHwYCuxuKbbWDQ==}
+  '@k03mad/actual-versions@1.2.0':
+    resolution: {integrity: sha512-Iyov7YjFeoo4R2tBOw4PXzvXPT9QX7pI2dhh7F5fpZse0KZSJGaUUDaw6AI0LMfLXMS74YUw0LRR8Yxkg6mw0Q==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -2443,7 +2443,7 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
-  '@k03mad/actual-versions@1.1.3':
+  '@k03mad/actual-versions@1.2.0':
     dependencies:
       '@k03mad/request': 6.0.4
       '@k03mad/simple-log': 2.2.2

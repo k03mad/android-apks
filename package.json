@@ -16,7 +16,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@k03mad/actual-versions": "1.1.3",
+    "@k03mad/actual-versions": "1.2.0",
     "@k03mad/request": "6.1.0",
     "@k03mad/simple-date": "1.2.0",
     "@k03mad/simple-log": "2.3.0",
