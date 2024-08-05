@@ -21,8 +21,8 @@ importers:
         specifier: 2.3.0
         version: 2.3.0
       '@k03mad/simple-prom':
-        specifier: 3.2.0
-        version: 3.2.0
+        specifier: 3.2.1
+        version: 3.2.1
       chalk:
         specifier: 5.3.0
         version: 5.3.0
@@ -200,8 +200,8 @@ packages:
     resolution: {integrity: sha512-cegJ94YL7cx6lv4+1GKivxHqT9cBEgauEoK+kp+LI4RniwOip0irOc9N9b3YssqxEpd4foOD38Vg1xmMJR7rpA==}
     engines: {node: '>=20'}
 
-  '@k03mad/simple-prom@3.2.0':
-    resolution: {integrity: sha512-Cu2Hn/PgJlAgP6EXoUPYV4BQUPNV/m7Ha9qo+G0NoW/V8hc2yyOJGqs5dSrMN/mctLYWVYLAt2UZuvmCpgYM1w==}
+  '@k03mad/simple-prom@3.2.1':
+    resolution: {integrity: sha512-fUL7YWREwxmAwNpZkFld2Zb7bp495dhub09grXXHfVWnhs/C0NZgo88FhoCpiWGYfA6mdZqRFGQQVVN4rIFgew==}
     engines: {node: '>=20'}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -2512,10 +2512,10 @@ snapshots:
     dependencies:
       '@k03mad/simple-date': 1.2.0
 
-  '@k03mad/simple-prom@3.2.0':
+  '@k03mad/simple-prom@3.2.1':
     dependencies:
       '@k03mad/simple-date': 1.2.0
-      '@k03mad/simple-log': 2.2.2
+      '@k03mad/simple-log': 2.3.0
       chalk: 5.3.0
       compression: 1.7.4
       express: 4.19.2
