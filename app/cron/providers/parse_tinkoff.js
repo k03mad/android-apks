@@ -1,7 +1,7 @@
 import {getApkFromParse} from './helpers/parse.js';
 
 const common = {
-    page: 'https://www.tinkoff.ru/apps/',
+    page: 'https://www.tbank.ru/apps/',
     opts: {
         ua: 'mobile',
     },
