@@ -1,7 +1,7 @@
 import {logError} from '@k03mad/simple-log';
 
 import env from '../../../../env.js';
-import {getAllLinksFromSelector} from '../../../../utils/cheerio.js';
+import {getSelectorHrefs} from '../../../../utils/dom.js';
 import {getUa, req} from '../../../../utils/request.js';
 
 const UA = 'mobile';
@@ -21,8 +21,8 @@ const urls = {
 
 const selectors = {
     post: {
-        main: '[data-post]',
-        byId: postId => `[data-post="${postId}"]`,
+        main: '[data-post] a',
+        byId: postId => `[data-post="${postId}"] a`,
     },
 };
 
@@ -74,10 +74,9 @@ export const getApkFrom4Pda = async apps => {
             // забираем все ссылки на другие посты из шапки темы
             // часть из них — на посты со скачиванием версии приложения
             const {body: topicBody} = await getTopic(showtopic);
-            const mainPostLinks = getAllLinksFromSelector(topicBody, selectors.post.main);
 
             // сортируем по айдишнику поста — выше айдишник больше, значит пост свежее
-            const postsLinks = mainPostLinks
+            const postsLinks = getSelectorHrefs(topicBody, selectors.post.main)
                 .filter(elem => elem.includes(showtopic))
                 .sort((a, b) => b.split('=').at(-1) - a.split('=').at(-1))
                 || [];
@@ -88,7 +87,7 @@ export const getApkFrom4Pda = async apps => {
                 const postId = postsLink.split('=').at(-1);
                 const {url, body: postBody} = await getTopicPost(showtopic, postId);
 
-                let apkLinks = getAllLinksFromSelector(postBody, selectors.post.byId(postId))
+                let apkLinks = getSelectorHrefs(postBody, selectors.post.byId(postId))
                     .filter(elem => elem.endsWith('.apk'));
 
                 if (filter?.include) {

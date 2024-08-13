@@ -1,9 +1,9 @@
 import {logError} from '@k03mad/simple-log';
 import _debug from 'debug';
-import {JSDOM} from 'jsdom';
 import _ from 'lodash';
 
 import {convertToArray} from '../../../../utils/array.js';
+import {getSelectorHrefs} from '../../../../utils/dom.js';
 import {getUa, req} from '../../../../utils/request.js';
 
 const debug = _debug('mad:parse');
@@ -70,31 +70,15 @@ export const getApkFromParse = async parse => {
             let apkLinks;
 
             if (href.selector) {
-                const dom = new JSDOM(body);
-
-                const hrefs = [
-                    ...new Set(
-                        [...dom.window.document.querySelectorAll(href.selector)]
-                            .map(elem => elem.getAttribute('href')),
-                    ),
-                ];
-
-                apkLinks = (href.all ? hrefs : [hrefs[0]]).filter(Boolean);
+                const hrefs = getSelectorHrefs(body, href.selector);
+                apkLinks = href.all ? hrefs : [hrefs[0]];
             } else if (href.text) {
-                const dom = new JSDOM(body);
+                const hrefs = getSelectorHrefs(body, '[href]', elem => typeof href.text === 'string'
+                    ? elem.textContent.includes(href.text)
+                    : href.text.test(elem.textContent),
+                );
 
-                const hrefs = [
-                    ...new Set(
-                        [...dom.window.document.querySelectorAll('[href]')]
-                            .filter(elem => typeof href.text === 'string'
-                                ? elem.textContent.includes(href.text)
-                                : href.text.test(elem.textContent),
-                            )
-                            .map(elem => elem.getAttribute('href')),
-                    ),
-                ];
-
-                apkLinks = (href.all ? hrefs : [hrefs[0]]).filter(Boolean);
+                apkLinks = href.all ? hrefs : [hrefs[0]];
             } else if (href.jsonPath) {
                 apkLinks = [
                     ...new Set(
