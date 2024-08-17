@@ -45,7 +45,7 @@ export default () => getApkFromParse([
     {
         page: 'https://app.yota.ru/',
         href: {
-            text: 'APK-файла',
+            text: 'APK-файл',
         },
     },
     {
