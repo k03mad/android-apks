@@ -7,5 +7,5 @@ export default () => getApkFrom4Pda([
     {name: 'AnyBalance', showtopic: 300_836},
     {name: 'App&Game 4PDA', showtopic: 275_433},
     {name: 'Brotato', showtopic: 1_059_651},
-    {name: 'X-plore', showtopic: 178_924, filter: {exclude: /black|root/i}},
+    {name: 'X-plore', showtopic: 178_924, filter: {exclude: /black|mod|root/i}},
 ]);
