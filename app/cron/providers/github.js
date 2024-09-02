@@ -12,7 +12,7 @@ export default () => getApkFromGhRepos([
     {name: 'organicmaps/organicmaps', filter: {include: /web/}},
     {name: 'proninyaroslav/libretorrent', filter: {include: /arm64/}},
     {name: 'Sheinices/Prisma_TV'},
-    {name: 'streetcomplete/StreetComplete'},
+    {name: 'streetcomplete/StreetComplete', skipPrerelease: true},
     {name: 'termux/termux-app', skipPrerelease: true, filter: {include: /arm64/}},
     {name: 'theothernt/AerialViews'},
     {name: 'truefedex/tv-bro', filter: {include: /arm64/}},
