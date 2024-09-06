@@ -5,7 +5,7 @@ export default () => [
         homepage: 'https://megamarket.ru/info/download-app/',
     },
     {
-        link: 'https://storage.googleapis.com/techet-papi.appspot.com/downloads/na-pro-3.12.apk',
+        link: 'https://storage.googleapis.com/techet-papi.appspot.com/downloads/na-lite-3.12.apk',
         homepage: 'https://techet.net/netanalyzer/',
     },
 ];
