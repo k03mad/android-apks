@@ -2,7 +2,7 @@ import express from 'express';
 
 import {getPageData} from '../helpers/page.js';
 
-const router = express.Router();
+const router = new express.Router();
 
 export default router.get(
     '/apps', async (req, res, next) => {

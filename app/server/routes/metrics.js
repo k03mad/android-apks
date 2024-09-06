@@ -5,7 +5,7 @@ import env from '../../../env.js';
 import {packageJson} from '../../../utils/meta.js';
 import {getPageData} from '../helpers/page.js';
 
-const router = express.Router();
+const router = new express.Router();
 
 const labelNames = ['type', 'ext', 'ext2', 'ext3', 'ext4'];
 

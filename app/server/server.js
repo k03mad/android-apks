@@ -19,7 +19,10 @@ const getRoutePath = route => route.stack?.[0]?.route?.path;
 export default () => {
     const app = express();
 
-    env.debug && app.use(morgan('combined'));
+    if (env.debug) {
+        app.use(morgan('combined'));
+    }
+
     app.use(express.static(config.static.root));
 
     app.use(helmet());
