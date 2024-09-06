@@ -69,7 +69,7 @@ const getTopicPost = async (topicId, postId) => {
  * }>} apps
  */
 export const getApkFrom4Pda = async apps => {
-    const links = await Promise.all(apps.map(async ({name, filter, showtopic, opts = {}}) => {
+    const links = await Promise.all(apps.map(async ({name, file, filter, showtopic, opts = {}}) => {
         try {
             // забираем все ссылки на другие посты из шапки темы
             // часть из них — на посты со скачиванием версии приложения
@@ -87,7 +87,7 @@ export const getApkFrom4Pda = async apps => {
                 const postId = postsLink.split('=').at(-1);
                 const {url, body: postBody} = await getTopicPost(showtopic, postId);
 
-                let apkLinks = getSelectorHrefs(postBody, selectors.post.byId(postId))
+                let apkLinks = file ? [urls.dl + file] : getSelectorHrefs(postBody, selectors.post.byId(postId))
                     .filter(elem => elem.endsWith('.apk'));
 
                 if (filter?.include) {
