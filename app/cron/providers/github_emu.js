@@ -5,6 +5,6 @@ export default () => getApkFromGhRepos([
     {
         name: 'Rakashazi/emu-ex-plus-alpha',
         archive: 'zip',
-        filter: {include: /MdEmu|NesEmu|Snes9xEXPlus/},
+        filter: {exclude: /EX-Emulators|Snes9xEX-/},
     },
 ]);
