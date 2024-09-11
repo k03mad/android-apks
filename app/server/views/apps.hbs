@@ -14,7 +14,7 @@
                     {{/if}}
                 </td>
 
-                <td class="version" {{#if this.arch}}title="{{this.arch}}"{{/if}}>
+                <td class="version">
                     {{#if this.version}}
                         {{this.version}}
                     {{/if}}
@@ -23,6 +23,12 @@
                 <td class="pkg">
                     {{#if this.pkg}}
                         {{this.pkg}}
+                    {{/if}}
+                </td>
+
+                <td class="arch">
+                    {{#if this.arch}}
+                        {{this.arch}}
                     {{/if}}
                 </td>
 
