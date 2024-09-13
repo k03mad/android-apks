@@ -80,8 +80,7 @@ table .extra-link {
     table .version,
     table .pkg,
     table .date,
-    table .size
-    table .arch {
+    table .size {
         display: none;
     }
 }

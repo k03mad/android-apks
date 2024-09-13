@@ -55,12 +55,6 @@ export const getApkFileInfo = async (apkFilePath, opts = {}) => {
     }
 
     const pkg = aapt?.match(/name='(.+?)'/)?.[1];
-    const nativeCode = aapt?.match(/native-code: '(.+)'/)?.[1];
-    const archArr = nativeCode?.split(/\s+|'/).filter(Boolean);
 
-    const arch = archArr?.length >= 4 || (archArr?.includes('arm64-v8a') && archArr?.includes('armeabi-v7a'))
-        ? 'all'
-        : archArr?.sort()?.join(', ');
-
-    return {label, version, pkg, arch, size, date};
+    return {label, version, pkg, size, date};
 };
