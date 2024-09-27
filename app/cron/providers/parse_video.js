@@ -29,8 +29,8 @@ export default () => getApkFromParse([
         href: {
             text: 'Android 5 и выше',
             replace: {
-                from: '//',
-                to: 'https://',
+                from: '//apk',
+                to: 'https://apkw',
             },
         },
     },
