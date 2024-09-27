@@ -13,3 +13,4 @@ export {default as gitlab} from './gitlab.js';
 export {default as parse} from './parse.js';
 export {default as parse_tinkoff} from './parse_tinkoff.js';
 export {default as parse_video} from './parse_video.js';
+export {default as rustore} from './rustore.js';
