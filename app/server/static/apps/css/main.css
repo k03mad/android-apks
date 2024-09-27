@@ -58,6 +58,10 @@ table .pkg {
     color: var(--green-dark);
 }
 
+table .size {
+    text-align: right;
+}
+
 table .main-link a {
     color: var(--blue);
 }

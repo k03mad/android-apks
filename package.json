@@ -28,7 +28,7 @@
     "express-handlebars": "8.0.1",
     "express-minify": "1.0.0",
     "helmet": "7.1.0",
-    "jsdom": "25.0.0",
+    "jsdom": "25.0.1",
     "lodash": "4.17.21",
     "morgan": "1.10.0",
     "ms": "2.1.3",
@@ -36,10 +36,10 @@
     "recron": "1.1.6"
   },
   "devDependencies": {
-    "@k03mad/eslint-config": "23.5.0",
+    "@k03mad/eslint-config": "25.5.0",
     "eslint": "8.57.0",
     "husky": "9.1.6",
-    "nodemon": "3.1.4",
+    "nodemon": "3.1.7",
     "npm-run-all": "4.1.5",
     "stylelint": "16.9.0",
     "stylelint-config-standard": "36.0.1"
