@@ -6,5 +6,8 @@ export default () => getApkFrom4Pda([
     {name: 'App&Game 4PDA', showtopic: 275_433},
     {name: 'Brotato', showtopic: 1_059_651},
     {name: 'Network Analyzer', showtopic: 969_002, file: '29505175/Network_Analyzer_3.12_mod_traceroute_fix.apk'},
+    {name: 'WIBR+', showtopic: 474_979},
+    {name: 'Wps Wpa Tester', showtopic: 677_091},
+    {name: 'WPSApp', showtopic: 809_457},
     {name: 'X-plore', showtopic: 178_924, filter: {exclude: /black|mod|root/i}},
 ]);

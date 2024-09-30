@@ -8,7 +8,7 @@ export const sleep = (ms = 3000) => new Promise(resolve => setTimeout(resolve, m
  * @param {Function} fn
  * @param {number} count
  */
-export const retry = async (fn, count = 2) => {
+export const retry = async (fn, count = 5) => {
     for (let i = 0; i <= count; i++) {
         try {
             return await fn();
