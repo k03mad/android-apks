@@ -68,7 +68,7 @@ export default () => getApkFromParse([
         },
     },
     {
-        page: 'https://avtodor-tr.ru/services/mobile-app/',,
+        page: 'https://avtodor-tr.ru/services/mobile-app/',
         href: {
             selector: '[onclick*="mp_apk"]',
         },
