@@ -16,11 +16,11 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@k03mad/actual-versions": "1.4.0",
-    "@k03mad/request": "6.2.0",
-    "@k03mad/simple-date": "3.0.0",
-    "@k03mad/simple-log": "4.1.0",
-    "@k03mad/simple-prom": "3.3.0",
+    "@k03mad/actual-versions": "1.5.0",
+    "@k03mad/request": "6.3.0",
+    "@k03mad/simple-date": "3.1.0",
+    "@k03mad/simple-log": "4.2.0",
+    "@k03mad/simple-prom": "3.4.0",
     "chalk": "5.3.0",
     "compression": "1.7.4",
     "debug": "4.3.7",
@@ -36,7 +36,7 @@
     "recron": "1.1.6"
   },
   "devDependencies": {
-    "@k03mad/eslint-config": "25.5.0",
+    "@k03mad/eslint-config": "25.6.2",
     "eslint": "8.57.1",
     "husky": "9.1.6",
     "nodemon": "3.1.7",

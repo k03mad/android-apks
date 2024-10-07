@@ -2,6 +2,7 @@
 export {default as _4pda} from './4pda.js';
 export {default as fdroid} from './fdroid.js';
 export {default as github} from './github.js';
+export {default as github_fossify} from './github_fossify.js';
 export {default as github_root} from './github_root.js';
 export {default as github_shizuku} from './github_shizuku.js';
 export {default as github_tv} from './github_tv.js';
