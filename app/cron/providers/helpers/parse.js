@@ -11,6 +11,7 @@ const debug = _debug('mad:parse');
 /**
  * @typedef intermediate
  * @property {RegExp} re
+ * @property {string} selector
  * @property {boolean} all
  */
 
@@ -35,7 +36,7 @@ const debug = _debug('mad:parse');
  */
 
 /**
- * @param {Array<{page: string, intermediate: intermediate, opts: opts, href: href}>} parse
+ * @param {Array<{page: string, intermediate?: intermediate, opts?: opts, href: href}>} parse
  */
 export const getApkFromParse = async parse => {
     const links = await Promise.all(parse.map(async ({page, intermediate, opts, href}) => {
@@ -45,13 +46,20 @@ export const getApkFromParse = async parse => {
                 https: {rejectUnauthorized: !opts?.skipSSL},
             });
 
-            if (intermediate?.re) {
-                const nextLinks = (
-                    intermediate?.all
-                        ? [...new Set(body?.match(intermediate.re))]
-                        : [body?.match(intermediate.re)?.[1]]
-                )
-                    .filter(Boolean);
+            if (intermediate) {
+                let nextLinks;
+
+                if (intermediate.selector) {
+                    const hrefs = getSelectorHrefs(body, intermediate.selector);
+                    nextLinks = href.all ? hrefs : [hrefs[0]];
+                } else {
+                    nextLinks = (
+                        intermediate?.all
+                            ? [...new Set(body?.match(intermediate.re))]
+                            : [body?.match(intermediate.re)?.[1]]
+                    )
+                        .filter(Boolean);
+                }
 
                 debug.extend('nextLinks')('%o', nextLinks);
 
