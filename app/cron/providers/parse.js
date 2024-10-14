@@ -27,28 +27,6 @@ export default () => getApkFromParse([
         },
     },
     {
-        page: 'https://mobile.alfastrah.ru/',
-        opts: {
-            skipSSL: true,
-        },
-        href: {
-            text: 'Скачать файл',
-            relative: true,
-        },
-    },
-    {
-        page: 'https://apk.2gis.ru/',
-        href: {
-            selector: '._dl-store-apk',
-        },
-    },
-    {
-        page: 'https://app.yota.ru/',
-        href: {
-            text: 'APK-файл',
-        },
-    },
-    {
         page: 'https://telegram.org/android',
         href: {
             selector: '.td_download_btn',
@@ -65,12 +43,6 @@ export default () => getApkFromParse([
         page: 'https://app.market.xiaomi.com/applinking/download?id=com.xiaomi.smarthome',
         href: {
             jsonPath: 'data',
-        },
-    },
-    {
-        page: 'https://avtodor-tr.ru/services/mobile-app/',
-        href: {
-            selector: '[onclick*="mp_apk"]',
         },
     },
     {
@@ -104,18 +76,5 @@ export default () => getApkFromParse([
                 to: 'https://apkw',
             },
         },
-    },
-    {
-        page: 'https://www.tbank.ru/apps/android-invest/',
-        href: {selector: '[href$=".apk"]'},
-    },
-    {
-        page: 'https://www.tbank.ru/apps/android-mobile/',
-        href: {selector: '[href$=".apk"]'},
-    },
-    {
-        page: 'https://www.tbank.ru/apps/android-bank/',
-        intermediate: {selector: '[href*="download"]'},
-        href: {selector: '[href$=".apk"]'},
     },
 ]);

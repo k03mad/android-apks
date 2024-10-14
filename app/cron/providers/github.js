@@ -14,7 +14,7 @@ export default () => getApkFromGhRepos([
     {name: 'organicmaps/organicmaps', filter: {include: /web/}},
     {name: 'proninyaroslav/libretorrent', filter: {include: /arm64/}},
     {name: 'reqable/reqable-app', filter: {include: /arm64/}},
-    {name: 'revanced-apks/build-apps', filter: {include: /(music|youtube)-revanced-extended-.+-(all|arm64)/}},
+    {name: 'revanced-apks/build-apps', filter: {include: /youtube-revanced-extended/}},
     {name: 'ReVanced/GmsCore', filter: {exclude: /-hw-/}},
     {name: 'RikkaApps/Shizuku'},
     {name: 'Sheinices/Prisma_TV'},
