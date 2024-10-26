@@ -11,4 +11,5 @@ export default () => getApkFromRs([
     {name: 'ru.tinkoff.investing'},
     {name: 'ru.tinkoff.mvno'},
     {name: 'ru.yota.android'},
+    {name: 'com.nedolzhnikapp'},
 ]);
