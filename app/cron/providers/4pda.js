@@ -9,5 +9,5 @@ export default () => getApkFrom4Pda([
     {name: 'WIBR+', showtopic: 474_979},
     {name: 'Wps Wpa Tester', showtopic: 677_091},
     {name: 'WPSApp', showtopic: 809_457},
-    {name: 'X-plore', showtopic: 178_924, filter: {exclude: /black|mod|root|gdrive/i}},
+    {name: 'X-plore', showtopic: 178_924, filter: {exclude: /black|gdrive|mod|root/i}},
 ]);
