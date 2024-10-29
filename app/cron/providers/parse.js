@@ -77,4 +77,10 @@ export default () => getApkFromParse([
             },
         },
     },
+    {
+        page: 'https://abr.ru/face/d-service/',
+        href: {
+            selector: '[href$=".apk"].d-service-page__button_red',
+        },
+    },
 ]);
