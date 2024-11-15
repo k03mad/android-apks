@@ -10,13 +10,6 @@ export default () => getApkFromParse([
         },
     },
     {
-        page: 'https://питание.дети/mobile',
-        href: {
-            selector: '.btn-success',
-            remove: '\n',
-        },
-    },
-    {
         page: 'https://www.whatsapp.com/android',
         opts: {
             ua: 'curl',
@@ -75,12 +68,6 @@ export default () => getApkFromParse([
                 from: '//apk',
                 to: 'https://apkw',
             },
-        },
-    },
-    {
-        page: 'https://abr.ru/face/d-service/',
-        href: {
-            selector: '[href$=".apk"].d-service-page__button_red',
         },
     },
 ]);
