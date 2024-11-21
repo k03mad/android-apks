@@ -8,7 +8,7 @@
 — Используется [в Obtainium](https://github.com/ImranR98/Obtainium) \
 — Экспорт метрик в Prometheus ([дашборд Grafana](https://github.com/k03mad/grafana-dashboards/tree/master/export))
 
-## Локальный запуск приложения
+## Локальный запуск
 
 ### Зависимости
 
