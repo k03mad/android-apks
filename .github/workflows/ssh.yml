@@ -10,7 +10,7 @@ jobs:
     environment: vds
     runs-on: ubuntu-22.04
     steps:
-      - uses: appleboy/ssh-action@v1.1.0
+      - uses: appleboy/ssh-action@v1.2.0
         env:
           AAPKS_4PDA_MEMBER_ID: ${{ secrets.AAPKS_4PDA_MEMBER_ID }}
           AAPKS_4PDA_PASS_HASH: ${{ secrets.AAPKS_4PDA_PASS_HASH }}
